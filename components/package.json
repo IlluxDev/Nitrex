@@ -1,5 +1,5 @@
 {
-  "name": "@illuxdev/nitrex-electron",
+  "name": "@illuxdev/nitrex-components",
   "version": "0.1.0-dev",
   "description": "",
   "main": "dist/Bundle.js",
@@ -10,10 +10,5 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^4.5.2"
-  },
-  "dependencies": {
-    "deepmerge": "^4.2.2",
-    "electron": "^16.0.2",
-    "electron-is-dev": "^2.0.0"
   }
 }
