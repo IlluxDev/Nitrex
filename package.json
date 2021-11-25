@@ -1,0 +1,30 @@
+{
+  "name": "@illuxdev/nitrex",
+  "version": "0.1.0-dev",
+  "private": true,
+  "description": "Create powerful native desktop applications with React and Electron",
+  "scripts": {
+    "setup:components": "cd components && npm i && cd ..",
+    "setup:electron": "cd electron && npm i && cd ..",
+    "setup:cli": "cd cli && npm i && cd ..",
+    "build:electron": "cd electron && npm run build && cd ..",
+    "build:cli": "cd cli && npm run build && cd ..",
+    "build:components": "cd components && npm run build && cd ..",
+    "build": "npm run build:cli && npm run build:components && npm run build:electron",
+    "dev": "tsc --watch",
+    "postinstall": "npm run setup:cli && npm run setup:components && npm run setup:electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlluxDev/Nitrex.git"
+  },
+  "author": "Illux",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/IlluxDev/Nitrex/issues"
+  },
+  "homepage": "https://github.com/IlluxDev/Nitrex#readme",
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  }
+}
