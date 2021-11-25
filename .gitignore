@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+
+# TypeScript Compiled Files
+*.js
+*.d.ts
+*.map
+
+# Allow Rollup Files Against TypeScript
+!rollup.config.js
+
+# Allow ENV Declerations
+!env.d.ts
