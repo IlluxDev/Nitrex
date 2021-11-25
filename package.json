@@ -7,12 +7,13 @@
     "setup:components": "cd components && npm i && cd ..",
     "setup:electron": "cd electron && npm i && cd ..",
     "setup:cli": "cd cli && npm i && cd ..",
+    "setup:test": "cd test && npm i && cd ..",
     "build:electron": "cd electron && npm run build && cd ..",
     "build:cli": "cd cli && npm run build && cd ..",
     "build:components": "cd components && npm run build && cd ..",
     "build": "npm run build:cli && npm run build:components && npm run build:electron",
     "dev": "tsc --watch",
-    "postinstall": "npm run setup:cli && npm run setup:components && npm run setup:electron"
+    "postinstall": "npm run setup:cli && npm run setup:components && npm run setup:electron && npm run setup:test"
   },
   "repository": {
     "type": "git",
