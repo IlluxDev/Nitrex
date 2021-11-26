@@ -1,7 +1,12 @@
-console.log("CLI cannot be used, Exolix has not been released");
-console.log("The application will automatically start into development mode");
+import { terminal } from "@illuxdev/exolix-terminal/Terminal";
+import packageJson from "./package.json";
+import { Cli } from "@illuxdev/exolix-cli/Cli";
 
-console.log("Illux Nitrex v0.1.0-Dev");
-console.log(" The following cannot be started:");
-console.log("    - Build");
-console.log("    - Configuration");
+terminal.log("Nitrex CLI v" + packageJson.version);
+const application = new Cli();
+
+application.addCommand("dev", {}, () => {
+    terminal.log("Development server");
+});
+
+application.execute(application.processSplice(process.argv));

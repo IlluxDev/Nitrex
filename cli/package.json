@@ -14,5 +14,9 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@illuxdev/exolix-cli": "^0.1.0-dev",
+    "@illuxdev/exolix-terminal": "^0.1.0-dev"
   }
 }
