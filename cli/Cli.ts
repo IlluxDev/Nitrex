@@ -6,6 +6,8 @@ import { NitrexAppConfig } from "./NitrexAppConfig";
 import ts, { ModuleKind } from "typescript";
 import fs from "fs-extra";
 import path from "path";
+import vm from "vm";
+import deepmerge from "deepmerge";
 
 export { defineConfig };
 
@@ -37,22 +39,20 @@ function getNitrexConfig(configPath: string): NitrexAppConfig {
                     type: "commonjs"
                 }
             });
-            console.log(typescriptCompiled);
 
-            const lastCwd = process.cwd();
-            process.chdir(configDir);
-
-            console.log(eval(typescriptCompiled.outputText));
+            return deepmerge(defaultNitrexConfig, eval(typescriptCompiled.outputText));
         }
 
-        return {};
+        return deepmerge(defaultNitrexConfig, eval(configRaw.toString()));
     }
 
+    terminal.warning("It doesnt seem like a configuration exists");
     return defaultNitrexConfig;
 }
 
 application.addCommand("dev", { ...defaultTaskFlags as any }, (args, flags) => {
     const config = getNitrexConfig(flags.config ?? "nitrex.config.ts");
+    console.log(config);
 });
 
 application.execute(application.processSplice(process.argv));

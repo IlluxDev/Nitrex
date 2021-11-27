@@ -1,5 +1,5 @@
 import { defineConfig } from "../cli/Cli";
 
-export default defineConfig({
-    name: "Nitrex App"
-});
+export default {
+    name: "Nitrex Demo"
+};
