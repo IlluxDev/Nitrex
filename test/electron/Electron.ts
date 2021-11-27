@@ -1,7 +1,7 @@
 import { ElectronNitrex } from "../../electron/ElectronNitrex";
 
 const nitrex = new ElectronNitrex({
-    title: "Hello Nitrex"
+    title: "Nitrex App"
 });
 
 nitrex.start();

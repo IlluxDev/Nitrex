@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "nitrex": "Cli.js"
+    "nitrex": "CliBin.js"
   },
   "author": "Illux",
   "license": "Apache-2.0",
