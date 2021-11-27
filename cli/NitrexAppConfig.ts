@@ -1,3 +1,4 @@
 export interface NitrexAppConfig {
-    name?: string;
+    electronMainFile?: string;
+    
 }

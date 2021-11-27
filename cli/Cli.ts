@@ -3,11 +3,9 @@ import packageJson from "./package.json";
 import { Cli } from "@illuxdev/exolix-cli/Cli";
 import { defineConfig } from "./DefineConfig";
 import { NitrexAppConfig } from "./NitrexAppConfig";
-import ts, { ModuleKind } from "typescript";
 import fs from "fs-extra";
 import path from "path";
-import vm from "vm";
-import deepmerge from "deepmerge";
+import { exec } from "child_process";
 
 export { defineConfig };
 
@@ -21,38 +19,51 @@ const defaultTaskFlags = {
     }
 }
 
-const defaultNitrexConfig = defineConfig({
-    name: "Nitrex App"
-});
+const defaultNitrexConfig = {
+    electronMainFile: "./electron/Electron.ts"
+} as NitrexAppConfig;
 
-function getNitrexConfig(configPath: string): NitrexAppConfig {
-    terminal.log("Reading Nitrex config if it exists");
+function getNitrexConfig(configPath: string): Promise<NitrexAppConfig> {
+    return new Promise((resolve, reject) => {
+        terminal.log("Reading Nitrex config if it exists");
 
-    if (fs.existsSync(path.join(process.cwd(), configPath))) {
-        const configRaw = fs.readFileSync(path.join(process.cwd(), configPath));
-        const configType = configPath.endsWith(".ts") ? "typescript" : "javascript";
-        const configDir = path.dirname(path.join(process.cwd(), configPath));
-
-        if (configType == "typescript") {
-            const typescriptCompiled = ts.transpileModule(configRaw.toString(), {
-                compilerOptions: {
-                    type: "commonjs"
-                }
-            });
-
-            return deepmerge(defaultNitrexConfig, eval(typescriptCompiled.outputText));
+        const resolveWithJson = (data: string) => {
+            console.log(data);
+            try {
+                console.log(data)
+                const jsonConfig = JSON.parse(data);
+                resolve(jsonConfig);
+            } catch (error: any) {
+                console.log(error);
+                terminal.warning("There seems to be an error in your config, using default config now");
+            }
         }
 
-        return deepmerge(defaultNitrexConfig, eval(configRaw.toString()));
-    }
+        if (fs.existsSync(path.join(process.cwd(), configPath))) {
+            const configType = configPath.endsWith(".ts") ? "typescript" : "javascript";
+            const configDir = path.dirname(path.join(process.cwd(), configPath));
 
-    terminal.warning("It doesnt seem like a configuration exists");
-    return defaultNitrexConfig;
+            if (configType == "typescript") {
+                console.log(`npx ts-node "${path.join(process.cwd(), configPath)}"`);
+                const configProcess = exec(`npx ts-node "${path.join(process.cwd(), configPath)}"`);
+
+                configProcess.stdout?.on("data", resolveWithJson);
+            }
+
+            const configProcess = exec(`node "${path.join(process.cwd(), configPath)}"`);
+            configProcess.stdout?.on("data", data => resolveWithJson);
+            return;
+        }
+
+        terminal.warning("It doesnt seem like a configuration exists");
+        resolve(defaultNitrexConfig);
+    });
 }
 
 application.addCommand("dev", { ...defaultTaskFlags as any }, (args, flags) => {
-    const config = getNitrexConfig(flags.config ?? "nitrex.config.ts");
-    console.log(config);
+    getNitrexConfig(flags.config ?? "nitrex.config.ts").then(config => {
+        console.log(config);
+    });
 });
 
 application.execute(application.processSplice(process.argv));

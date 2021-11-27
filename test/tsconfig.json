@@ -18,5 +18,10 @@
   },
   "include": [
     "./app"
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }
