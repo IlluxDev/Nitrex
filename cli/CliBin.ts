@@ -67,7 +67,7 @@ function getNitrexConfig(configPath: string, useDefaultConfig: boolean = false):
 }
 
 application.addCommand("dev", { ...defaultTaskFlags as any }, (args, flags) => {
-    getNitrexConfig(flags.config, flags.useDefaultConfig).then(config => new Dev(args, flags, config));
+    getNitrexConfig(flags.config, (flags.useDefaultConfig == "true" || flags.useDefaultConfig as any == true)).then(config => new Dev(args, flags, config));
 });
 
 application.execute(application.processSplice(process.argv));
