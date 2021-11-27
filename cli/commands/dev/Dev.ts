@@ -77,6 +77,21 @@ export class Dev {
             startTypeScriptWatch().then(() => {
                 terminal.success("TypeScript is ready");
                 terminal.log("Launching application");
+
+                let electronMainFile = config.electronMainFile!;
+                if (electronMainFile?.endsWith(".ts")) {
+                    electronMainFile = electronMainFile?.slice(0, -1).slice(0, -1) + "js";
+                }
+
+                const electronWindow = spawn(process.platform == "win32" ? "npx.cmd" : "npx", [
+                    "electron",
+                    electronMainFile
+                ], {
+                    cwd: process.cwd()
+                });
+
+                electronWindow.stdout.on("data", d => console.log(d.toString()));
+                electronWindow.stderr.on("data", d => console.log(d.toString()));
             });
         });
     }

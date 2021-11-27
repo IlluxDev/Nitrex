@@ -10,7 +10,7 @@ export class ElectronNitrex {
     private started = false;
     private browserWindow?: BrowserWindow;
 
-    public constructor(options: ElectronNitrexOptions = {}) {
+    public constructor(options: ElectronNitrexOptions) {
         this.electronAppReady = app.isReady();
 
         if (!this.electronAppReady) {

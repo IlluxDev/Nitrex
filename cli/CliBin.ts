@@ -6,6 +6,7 @@ import fs from "fs-extra";
 import path from "path";
 import { exec } from "child_process";
 import { Dev } from "./commands/dev/Dev";
+import deepmerge from "deepmerge";
 
 terminal.log("Nitrex CLI v" + packageJson.version);
 const application = new Cli();
@@ -28,7 +29,7 @@ function getNitrexConfig(configPath: string): Promise<NitrexAppConfig> {
         const resolveWithJson = (data: string) => {
             try {
                 const jsonConfig = JSON.parse(data);
-                resolve(jsonConfig);
+                resolve(deepmerge(defaultNitrexConfig, jsonConfig));
             } catch (error: any) {
                 terminal.warning("There seems to be an error in your config, using default config now");
             }
