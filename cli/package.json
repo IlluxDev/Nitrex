@@ -2,7 +2,7 @@
   "name": "@illuxdev/nitrex-cli",
   "version": "0.1.0-dev",
   "description": "",
-  "main": "dist/Bundle.js",
+  "main": "Cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,12 +14,13 @@
   "dependencies": {
     "@illuxdev/exolix-cli": "^0.1.0-dev",
     "@illuxdev/exolix-terminal": "^0.1.0-dev",
+    "chalk": "^5.0.0",
     "deepmerge": "^4.2.2",
     "fs-extra": "^10.0.0",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {
-    "typescript": "^4.5.2",
-    "@types/fs-extra": "^9.0.13"
+    "@types/fs-extra": "^9.0.13",
+    "typescript": "^4.5.2"
   }
 }

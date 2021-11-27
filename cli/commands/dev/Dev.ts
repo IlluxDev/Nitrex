@@ -90,8 +90,18 @@ export class Dev {
                     cwd: process.cwd()
                 });
 
-                electronWindow.stdout.on("data", d => console.log(d.toString()));
-                electronWindow.stderr.on("data", d => console.log(d.toString()));
+                let initialReady = false;
+
+                electronWindow.stdout.on("data", d => {
+                    if (!initialReady && d.toString().replace("\n", "").startsWith("[_atron][window]-ready")) {
+                        initialReady = true;
+                        resolve();
+                    }
+
+                    if (d.toString().replace("\n", "").startsWith("[_atron][debug][log]-")) {
+                        terminal.log("[ APP ] "+ d.toString().replace("\n", "").slice("[_atron][debug][log]-".length));
+                    }
+                });
             });
         });
     }

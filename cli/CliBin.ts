@@ -15,6 +15,10 @@ const defaultTaskFlags = {
     config: {
         type: "string",
         description: "The location of the Nitrex configuration"
+    },
+    useDefaultConfig: {
+        type: "boolean",
+        description: "Ignore the project configuration and use the default config"
     }
 }
 
@@ -22,8 +26,17 @@ const defaultNitrexConfig = {
     electronMainFile: "./electron/Electron.ts"
 } as NitrexAppConfig;
 
-function getNitrexConfig(configPath: string): Promise<NitrexAppConfig> {
+function getNitrexConfig(configPath: string, useDefaultConfig: boolean = false): Promise<NitrexAppConfig> {
+    if (configPath == undefined) {
+        configPath = "nitrex.config.ts"
+    }
+
     return new Promise((resolve, reject) => {
+        if (useDefaultConfig) {
+            resolve(defaultNitrexConfig);
+            return;
+        }
+
         terminal.log("Reading Nitrex config if it exists");
 
         const resolveWithJson = (data: string) => {
@@ -54,7 +67,7 @@ function getNitrexConfig(configPath: string): Promise<NitrexAppConfig> {
 }
 
 application.addCommand("dev", { ...defaultTaskFlags as any }, (args, flags) => {
-    getNitrexConfig(flags.config ?? "nitrex.config.ts").then(config => new Dev(args, flags, config));
+    getNitrexConfig(flags.config, flags.useDefaultConfig).then(config => new Dev(args, flags, config));
 });
 
 application.execute(application.processSplice(process.argv));

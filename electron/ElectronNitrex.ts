@@ -9,6 +9,9 @@ export class ElectronNitrex {
     private electronAppReady: boolean;
     private started = false;
     private browserWindow?: BrowserWindow;
+    private events = {
+        ready: [] as any[]
+    };
 
     public constructor(options: ElectronNitrexOptions) {
         this.electronAppReady = app.isReady();
@@ -19,10 +22,8 @@ export class ElectronNitrex {
 
         this.settings = deepmerge<ElectronNitrexOptions>({
             browserWindowOptions: {
-                width: 1200,
-                height: 800,
-                title: "",
                 frame: false,
+                show: false,
                 webPreferences: {
                     nodeIntegration: true,
                     contextIsolation: false,
@@ -37,6 +38,10 @@ export class ElectronNitrex {
         }, options);
     }
 
+    public log(debugText: string) {
+        console.log("[_atron][debug][log]-" + debugText);
+    }
+
     public start() {
         if (this.started) {
             throw new Error("Cannot start application multiple times");
@@ -49,7 +54,6 @@ export class ElectronNitrex {
                 title: this.settings.title,
                 width: this.settings.width,
                 height: this.settings.height,
-                show: false,
                 icon: this.settings.icon ?? path.join(__dirname, "assets/DefaultIcon.png")
             }, this.settings.browserWindowOptions!));
 
@@ -57,6 +61,9 @@ export class ElectronNitrex {
                 this.browserWindow.loadURL("http://localhost:3000").then(() => {
                     this.browserWindow!.show();
                     this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {});
+                    console.log("[_atron][window]-ready");
+
+                    this.events.ready.forEach(event => event());
                 });
             } else {
                 throw new Error("Production build is not supported currently");
@@ -69,5 +76,11 @@ export class ElectronNitrex {
         }
 
         onceElectronAppReady();
+    }
+
+    public on(event: "ready", listener: () => void): void;
+
+    public on(event: any, listener: any) {
+        (this.events as any)[event].push(listener);
     }
 }
