@@ -6,4 +6,5 @@ export interface ElectronNitrexOptions {
     height?: number;
     title?: string;
     icon?: string | null;
+    projectRoot: string;
 }

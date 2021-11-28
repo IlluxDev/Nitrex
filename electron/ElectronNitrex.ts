@@ -1,6 +1,6 @@
 import { ElectronNitrexOptions } from "./ElectronNitrexOptions";
 import deepmerge from "deepmerge";
-import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
 
@@ -57,10 +57,15 @@ export class ElectronNitrex {
                 icon: this.settings.icon ?? path.join(__dirname, "assets/DefaultIcon.png")
             }, this.settings.browserWindowOptions!));
 
+            const onWindowLoad = () => {
+                this.browserWindow!.show();
+                this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {
+                });
+            }
+
             if (electronIsDev) {
                 this.browserWindow.loadURL("http://localhost:3000").then(() => {
-                    this.browserWindow!.show();
-                    this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {});
+                    onWindowLoad();
                     console.log("[_atron][window]-ready");
 
                     this.browserWindow?.on("close", () => {
@@ -70,7 +75,12 @@ export class ElectronNitrex {
                     this.events.ready.forEach(event => event());
                 });
             } else {
-                throw new Error("Production build is not supported currently");
+                this.browserWindow.loadFile(path.join(this.settings.projectRoot, "dist/renderer/index.html")).then(() => {
+                    onWindowLoad();
+                }).catch(() => {
+                    dialog.showErrorBox("Failed to start", "Could not find renderer view");
+                    app.exit(0);
+                });
             }
         }
 
