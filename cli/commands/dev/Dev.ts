@@ -1,9 +1,10 @@
-import { DevFlags } from "./DevFlags";
-import { NitrexAppConfig } from "../../NitrexAppConfig";
-import { terminal } from "@illuxdev/exolix-terminal";
+import {DevFlags} from "./DevFlags";
+import {NitrexAppConfig} from "../../NitrexAppConfig";
+import {terminal} from "@illuxdev/exolix-terminal";
 import {ChildProcess, spawn} from "child_process";
 import path from "path";
 import chokidar from "chokidar";
+import electronString from "electron";
 
 export class Dev {
     private readonly settings: NitrexAppConfig;
@@ -96,8 +97,7 @@ export class Dev {
                 }
 
                 const spawnElectron = () => {
-                    electronWindow = spawn(process.platform == "win32" ? "npx.cmd" : "npx", [
-                        "electron",
+                    electronWindow = spawn(electronString, [
                         electronMainFile
                     ], {
                         cwd: process.cwd()
@@ -107,7 +107,7 @@ export class Dev {
                 }
 
                 const restartElectron = () => {
-                    electronWindow!.kill("SIGTERM");
+                    electronWindow!.kill("SIGINT");
                     spawnElectron();
                 }
 

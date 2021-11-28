@@ -1,9 +1,9 @@
-import { ElectronNitrex } from "../../electron/ElectronNitrex";
+import {ElectronNitrex} from "../../electron/ElectronNitrex";
 
 const nitrex = new ElectronNitrex({
-    title: "Nitrex App",
+    title: "Nitrex Demo",
     browserWindowOptions: {
-        frame: false
+        frame: true
     }
 });
 

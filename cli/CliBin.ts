@@ -1,11 +1,13 @@
-import { terminal } from "@illuxdev/exolix-terminal";
+#!/usr/bin/env node
+
+import {terminal} from "@illuxdev/exolix-terminal";
 import packageJson from "./package.json";
-import { Cli } from "@illuxdev/exolix-cli";
-import { NitrexAppConfig } from "./NitrexAppConfig";
+import {Cli} from "@illuxdev/exolix-cli";
+import {NitrexAppConfig} from "./NitrexAppConfig";
 import fs from "fs-extra";
 import path from "path";
-import { exec } from "child_process";
-import { Dev } from "./commands/dev/Dev";
+import {exec} from "child_process";
+import {Dev} from "./commands/dev/Dev";
 import deepmerge from "deepmerge";
 
 terminal.log("Nitrex CLI v" + packageJson.version);
