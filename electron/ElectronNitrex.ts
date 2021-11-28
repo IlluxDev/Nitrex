@@ -1,6 +1,6 @@
 import { ElectronNitrexOptions } from "./ElectronNitrexOptions";
 import deepmerge from "deepmerge";
-import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
 
@@ -10,7 +10,8 @@ export class ElectronNitrex {
     private started = false;
     private browserWindow?: BrowserWindow;
     private events = {
-        ready: [] as any[]
+        ready: [] as any[],
+        command: [] as any[]
     };
 
     public constructor(options: ElectronNitrexOptions) {
@@ -90,6 +91,12 @@ export class ElectronNitrex {
         }
 
         onceElectronAppReady();
+    }
+
+    public onCommand<MessageType>(channel: string, listener: (message: MessageType) => void) {
+        ipcMain.on(channel, (event, message) => {
+            listener(message);
+        });
     }
 
     public on(event: "ready", listener: () => void): void;

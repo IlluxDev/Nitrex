@@ -107,6 +107,7 @@ export class Dev {
                 }
 
                 const restartElectron = () => {
+                    terminal.log("Reloading application");
                     electronWindow!.kill("SIGINT");
                     spawnElectron();
                 }
