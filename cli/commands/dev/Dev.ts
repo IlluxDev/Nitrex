@@ -1,7 +1,7 @@
-import {DevFlags} from "./DevFlags";
-import {NitrexAppConfig} from "../../NitrexAppConfig";
-import {terminal} from "@illuxdev/exolix-terminal";
-import {ChildProcess, spawn} from "child_process";
+import { DevFlags } from "./DevFlags";
+import { NitrexAppConfig } from "../../NitrexAppConfig";
+import { terminal } from "@illuxdev/exolix-terminal";
+import { ChildProcess, spawn } from "child_process";
 import path from "path";
 import chokidar from "chokidar";
 import electronString from "electron";
@@ -97,7 +97,7 @@ export class Dev {
                 }
 
                 const spawnElectron = () => {
-                    electronWindow = spawn(electronString, [
+                    electronWindow = spawn(electronString as unknown as string, [
                         electronMainFile
                     ], {
                         cwd: process.cwd()

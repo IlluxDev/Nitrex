@@ -2,7 +2,7 @@
   "name": "@illuxdev/nitrex-electron",
   "version": "0.1.0-dev",
   "description": "",
-  "main": "dist/Bundle.js",
+  "main": "ElectronNitrex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

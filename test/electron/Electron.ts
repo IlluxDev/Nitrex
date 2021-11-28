@@ -1,4 +1,4 @@
-import {ElectronNitrex} from "../../electron/ElectronNitrex";
+import { ElectronNitrex } from "@illuxdev/nitrex-electron";
 
 const nitrex = new ElectronNitrex({
     title: "Nitrex Demo",

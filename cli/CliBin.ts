@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
-import {terminal} from "@illuxdev/exolix-terminal";
+import { terminal } from "@illuxdev/exolix-terminal";
 import packageJson from "./package.json";
-import {Cli} from "@illuxdev/exolix-cli";
-import {NitrexAppConfig} from "./NitrexAppConfig";
+import { Cli } from "@illuxdev/exolix-cli";
+import { NitrexAppConfig } from "./NitrexAppConfig";
 import fs from "fs-extra";
 import path from "path";
-import {exec} from "child_process";
-import {Dev} from "./commands/dev/Dev";
+import { exec } from "child_process";
+import { Dev } from "./commands/dev/Dev";
 import deepmerge from "deepmerge";
+import { Build } from "./commands/build/Build";
 
 terminal.log("Nitrex CLI v" + packageJson.version);
 const application = new Cli();
@@ -68,8 +69,52 @@ function getNitrexConfig(configPath: string, useDefaultConfig: boolean = false):
     });
 }
 
-application.addCommand("dev", { ...defaultTaskFlags as any }, (args, flags) => {
+application.useCustomHelperRenderer((helpList, commandName) => {
+    if (commandName) {
+        let matched = false;
+
+        helpList.forEach(helpPage => {
+            if (helpPage.commandName == commandName) {
+                matched = true;
+
+                terminal.log(` -- ${helpPage.usage} --`);
+                terminal.log("");
+
+                terminal.log("Options:");
+                for (const flag in helpPage.flags) {
+                    terminal.log(` -  ${flag}  -  ${helpPage.flags[flag].description}`);
+                }
+            }
+        });
+
+        if (!matched) {
+            terminal.error(`That command does not exist, use "help" for a list of commands`);
+        }
+        return;
+    }
+
+    terminal.log(`Help List | Type "help [ Command Name ] for a detailed view"`);
+    helpList.forEach(helpPage => {
+        terminal.log(` -  ${helpPage.commandName}  -  ${helpPage.description}`);
+    });
+});
+
+application.addCommand("dev", {...defaultTaskFlags as any}, (args, flags) => {
     getNitrexConfig(flags.config, (flags.useDefaultConfig == "true" || flags.useDefaultConfig as any == true)).then(config => new Dev(args, flags, config));
+}, {
+    description: "Start your application in development mode"
+});
+
+application.addCommand("build", {
+    ...defaultTaskFlags as any,
+    platform: {
+        type: "string",
+        description: "The platform type to build for"
+    }
+}, (args, flags) => {
+    getNitrexConfig(flags.config, (flags.useDefaultConfig == "true" || flags.useDefaultConfig as any == true)).then(config => new Build(args, flags, config));
+}, {
+    description: "Build your application"
 });
 
 application.execute(application.processSplice(process.argv));
