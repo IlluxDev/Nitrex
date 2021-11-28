@@ -15,6 +15,7 @@
     "@illuxdev/exolix-cli": "^0.1.0-dev",
     "@illuxdev/exolix-terminal": "^0.1.0-dev",
     "chalk": "^5.0.0",
+    "chokidar": "^3.5.2",
     "deepmerge": "^4.2.2",
     "fs-extra": "^10.0.0",
     "ts-node": "^10.4.0"

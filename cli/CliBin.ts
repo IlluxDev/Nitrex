@@ -1,6 +1,6 @@
-import { terminal } from "@illuxdev/exolix-terminal/Terminal";
+import { terminal } from "@illuxdev/exolix-terminal";
 import packageJson from "./package.json";
-import { Cli } from "@illuxdev/exolix-cli/Cli";
+import { Cli } from "@illuxdev/exolix-cli";
 import { NitrexAppConfig } from "./NitrexAppConfig";
 import fs from "fs-extra";
 import path from "path";

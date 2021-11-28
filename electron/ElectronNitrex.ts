@@ -1,6 +1,6 @@
 import { ElectronNitrexOptions } from "./ElectronNitrexOptions";
 import deepmerge from "deepmerge";
-import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
 
@@ -62,6 +62,10 @@ export class ElectronNitrex {
                     this.browserWindow!.show();
                     this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {});
                     console.log("[_atron][window]-ready");
+
+                    this.browserWindow?.on("close", () => {
+                        console.log("[_atron][app]-stop");
+                    });
 
                     this.events.ready.forEach(event => event());
                 });

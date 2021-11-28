@@ -1,7 +1,10 @@
 import { ElectronNitrex } from "../../electron/ElectronNitrex";
 
 const nitrex = new ElectronNitrex({
-    title: "Nitrex App"
+    title: "Nitrex App",
+    browserWindowOptions: {
+        frame: false
+    }
 });
 
 nitrex.on("ready", () => {

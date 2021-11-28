@@ -1,12 +1,12 @@
 import { DevFlags } from "./DevFlags";
 import { NitrexAppConfig } from "../../NitrexAppConfig";
-import { terminal } from "@illuxdev/exolix-terminal/Terminal";
-import { spawn } from "child_process";
+import { terminal } from "@illuxdev/exolix-terminal";
+import {ChildProcess, spawn} from "child_process";
 import path from "path";
+import chokidar from "chokidar";
 
 export class Dev {
     private readonly settings: NitrexAppConfig;
-    private onStopEvents = [] as any[];
 
     public constructor(args: string[], flags: DevFlags, config: NitrexAppConfig) {
         terminal.log("Starting development server");
@@ -27,10 +27,6 @@ export class Dev {
             const reactServer = spawn(process.platform == "win32" ? "npx.cmd" : "npx", [
                 "vite"
             ]);
-
-            this.onStopEvents.push(() => {
-                reactServer.kill(0);
-            });
 
             const serverReadyRegexp = /> Local: http:\/\/localhost:(.*?)\/\n/;
 
@@ -62,10 +58,6 @@ export class Dev {
                         cwd: path.join(process.cwd(), path.dirname(config.electronMainFile!))
                     });
 
-                    this.onStopEvents.push(() => {
-                        typeScriptWatcher.kill();
-                    });
-
                     typeScriptWatcher.stdout.on("data", d => {
                         if (d.toString().includes("Watching for file changes.")) {
                             resolve();
@@ -83,25 +75,51 @@ export class Dev {
                     electronMainFile = electronMainFile?.slice(0, -1).slice(0, -1) + "js";
                 }
 
-                const electronWindow = spawn(process.platform == "win32" ? "npx.cmd" : "npx", [
-                    "electron",
-                    electronMainFile
-                ], {
-                    cwd: process.cwd()
-                });
+                let electronWindow: ChildProcess;
 
                 let initialReady = false;
 
-                electronWindow.stdout.on("data", d => {
+                const onData = (d: Buffer) => {
                     if (!initialReady && d.toString().replace("\n", "").startsWith("[_atron][window]-ready")) {
                         initialReady = true;
                         resolve();
                     }
 
                     if (d.toString().replace("\n", "").startsWith("[_atron][debug][log]-")) {
-                        terminal.log("[ APP ] "+ d.toString().replace("\n", "").slice("[_atron][debug][log]-".length));
+                        terminal.log("[ APP ] " + d.toString().replace("\n", "").slice("[_atron][debug][log]-".length));
+                    }
+
+                    if (d.toString().replace("\n", "").startsWith("[_atron][app]-stop")) {
+                        terminal.log("Stopping development server");
+                        process.exit();
+                    }
+                }
+
+                const spawnElectron = () => {
+                    electronWindow = spawn(process.platform == "win32" ? "npx.cmd" : "npx", [
+                        "electron",
+                        electronMainFile
+                    ], {
+                        cwd: process.cwd()
+                    });
+
+                    electronWindow!.stdout!.on("data", onData);
+                }
+
+                const restartElectron = () => {
+                    electronWindow!.kill("SIGTERM");
+                    spawnElectron();
+                }
+
+                const fileWatcher = chokidar.watch(path.dirname(path.join(process.cwd(), config.electronMainFile!)));
+
+                fileWatcher.on("all", (event, path) => {
+                    if (path.endsWith(".js")) {
+                        restartElectron();
                     }
                 });
+
+                spawnElectron();
             });
         });
     }
