@@ -9,6 +9,7 @@
     border: 1px solid $elevation_control_border;
     border-bottom-color: $elevation_control_borderBottom;
     transition: 100ms;
+    user-select: none;
 
     &:hover {
         background: $fill_control_secondary;
@@ -31,5 +32,17 @@
         &:active {
             background: $fill_accent_tertiary;
         }
+    }
+}
+
+.disabledMode {
+    background: $fill_control_disabled;
+    color: $fill_text_disabled;
+    pointer-events: none;
+
+    &.primaryMode {
+        background: $fill_accent_disabled;
+        color: $fill_textOnAccent_disabled;
+        pointer-events: none;
     }
 }

@@ -4,7 +4,7 @@ import { Props } from "../../shared/Button/Props";
 
 export function Button(props: Props) {
     return (
-        <button className={`${styles.root} ${props.primary ? styles.primaryMode : {}}`}>
+        <button className={`${styles.root} ${props.primary ? styles.primaryMode : {}} ${props.disabled ? styles.disabledMode : {}}`}>
             {props.children}
         </button>
     )
