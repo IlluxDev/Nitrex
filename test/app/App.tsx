@@ -8,9 +8,9 @@ function App() {
     themeManager.installTheme({
         ...defaultDarkTheme,
         ...{
-            fill_accent_default: "#c9a5fc",
-            fill_accent_secondary: "#c9a5fcab",
-            fill_accent_tertiary: "#c9a5fc90"
+            fill_accent_default: "#dd9de7",
+            fill_accent_secondary: "rgba(221,157,231,0.88)",
+            fill_accent_tertiary: "rgba(221,157,231,0.79)"
         }
     });
 
