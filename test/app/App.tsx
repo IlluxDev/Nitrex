@@ -4,6 +4,7 @@ import { Button, defaultDarkTheme, FlexPanel, renderer, themeManager, TitleBar }
 
 function App() {
     const [count, setCount] = useState(0);
+    const [extendTB, setExtend] = useState(false);
 
     themeManager.installTheme({
         ...defaultDarkTheme,
@@ -18,10 +19,14 @@ function App() {
 
     return (
         <FlexPanel>
-            <TitleBar extendIntoView={false}/>
+            <TitleBar extendIntoView={extendTB}/>
 
-            <FlexPanel direction={"horizontal"} padding={20}>
-                <Button>Test Button</Button>
+            <FlexPanel direction={"horizontal"} spacing={20} padding={20}>
+                <Button disabled={true}>Test Button</Button>
+                <Button primary disabled={true}>Test Button</Button>
+
+                <Button onClick={() => extendTB ? setExtend(false) : setExtend(true)}>Toggle (Extend TitleBar Into
+                    View</Button>
             </FlexPanel>
         </FlexPanel>
     )

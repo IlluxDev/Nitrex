@@ -48,3 +48,34 @@
         }
     }
 }
+
+.titleArea {
+    display: flex;
+    flex-direction: row;
+    height: 32px;
+    align-items: center;
+    padding-left: 16px;
+
+    button {
+        width: 44px;
+        height: 32px;
+        background: $fill_control_transparent;
+        color: $fill_text_primary;
+        border: none;
+        -webkit-app-region: no-drag;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -16px;
+        margin-right: 10px;
+
+        &:hover {
+            background: $fill_control_default;
+        }
+    }
+}
+
+.titleText {
+    color: $fill_text_primary;
+    font-size: 12px;
+}

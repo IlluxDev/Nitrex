@@ -28,8 +28,14 @@ export function TitleBar(props: Props) {
 
     return (
         <div className={`${styles.root} ${props.extendIntoView ? styles.extendIntoViewMode : {}}`}>
-            <div>
-                <span>{title}</span>
+            <div className={styles.titleArea}>
+                {!props.disableAutoBackButton && !props.extendIntoView ? <button>
+                    <Icon style={{
+                        fontSize: "15px"
+                    }} icon="fluent:arrow-left-16-regular"/>
+                </button> : null}
+
+                {!props.extendIntoView ? <span className={styles.titleText}>{title}</span> : null}
             </div>
 
             <div className={styles.buttons}>
