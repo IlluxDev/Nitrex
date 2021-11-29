@@ -1,4 +1,4 @@
-import { ThemeProps } from "./windows/ThemeProps";
+import { ThemeProps } from "./ThemeProps";
 
 const defaultDarkTheme = {
     fill_text_primary: "#FFFFFF",
@@ -85,8 +85,12 @@ const defaultDarkTheme = {
     background_solidBackground_quarternary: "#2C2C2C",
     background_micaBackground_base: "#202020",
     background_micaBackground_baseActive: "#20202080",
-    background_acrylicBackground_default: "",
-    background_acrylicBackground_base: ""
+    background_acrylicBackground_default: "linear-gradient(rgba(44, 44, 44, 15%), rgba(44, 44, 44, 15%)), linear-gradient(rgba(44, 44, 44, 96%), rgba(44, 44, 44, 96%));",
+    background_acrylicBackground_base: "linear-gradient(rgba(32, 32, 32, 50%), rgba(32, 32, 32, 50%)), linear-gradient(rgba(32, 32, 32, 96%), rgba(32, 32, 32, 96%));",
+    background_layer_default: "#3A3A3A30",
+    background_layer_alt: "rgba(255, 255, 255, 5.38%)",
+    background_layerOnAcrylic_default: "rgba(255, 255, 255, 3.59%)",
+    background_layerOnAccentAcrylic_default: "rgba(255, 255, 255, 3.59%)"
 } as ThemeProps;
 
 export { defaultDarkTheme };

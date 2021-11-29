@@ -1,6 +1,6 @@
 import { Button } from "./controls/shared/Button";
 import { themeManager } from "./controls/ThemeManager";
-import { defaultDarkTheme } from "./controls/DefaultDarkTheme";
+import { defaultDarkTheme } from "./controls/windows/DefaultDarkTheme";
 
 export {
     Button,
