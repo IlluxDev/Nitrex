@@ -45,10 +45,15 @@ const defaultDarkTheme = {
     fill_system_cautionBackground: "#433519",
     fill_system_criticalBackground: "#442726",
     fill_system_neutral: "rgba(255, 255, 255, 54.42%)",
-    fill_system_neutralBackground: "#",
-    fill_system_solidAttentionBackground: "#",
-    fill_system_solidNeutral: "#",
-    fill_system_solidNeutralBackground: "#"
+    fill_system_neutralBackground: "rgba(255, 255, 255, 3.26%)",
+    fill_system_solidAttentionBackground: "#2E2E2E",
+    fill_system_solidNeutral: "#9D9D9D",
+    fill_system_solidNeutralBackground: "#2E2E2E",
+    fill_controlOnImage_default: "rgba(28, 28, 28, 70%)",
+    fill_controlOnImage_secondary: "#1A1A1A",
+    fill_controlOnImage_tertiary: "#131313",
+    fill_controlOnImage_disabled: "#1E1E1E00",
+
 } as ThemeProps;
 
 export { defaultDarkTheme };
