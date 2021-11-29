@@ -53,7 +53,29 @@ const defaultDarkTheme = {
     fill_controlOnImage_secondary: "#1A1A1A",
     fill_controlOnImage_tertiary: "#131313",
     fill_controlOnImage_disabled: "#1E1E1E00",
-
+    elevation_control_border: "rgba(255, 255, 255, 6.98%)",
+    elevation_control_borderBottom: "rgba(255, 255, 255, 9.3%)",
+    elevation_circle_border: "rgba(255, 255, 255, 6.98%)",
+    elevation_circle_borderBottom: "rgba(255, 255, 255, 9.3%)",
+    elevation_textControl_border: "rgba(255, 255, 255, 54.42%)",
+    elevation_textControl_borderFocused: "rgba(255, 255, 255, 54.42%)",
+    elevation_accentControl_border: "rgba(255, 255, 255, 8%)",
+    elevation_strokeColor_controlStroke_default: "rgba(255, 255, 255, 6.98%)",
+    elevation_strokeColor_controlStroke_onAccentDefault: "rgba(255, 255, 255, 8%)",
+    elevation_strokeColor_controlStroke_secondary: "rgba(255, 255, 255, 9.3%)",
+    elevation_strokeColor_controlStroke_onAccentSecondary: "rgba(255, 255, 255, 14%)",
+    elevation_strokeColor_controlStroke_onAccentTertiary: "rgba(255, 255, 255, 21.69%)",
+    elevation_strokeColor_controlStroke_onAccentDisabled: "rgba(255, 255, 255, 20%)",
+    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: "rgba(0, 0, 0, 42%)",
+    elevation_strokeColor_controlStrongStroke_default: "rgba(255, 255, 255, 54,42%)",
+    elevation_strokeColor_controlStrongStroke_disabled: "rgba(255, 255, 255, 15.81%)",
+    elevation_strokeColor_dividerStroke_default: "rgba(255, 255, 255, 8.37%)",
+    elevation_strokeColor_surfaceStroke_default: "rgba(255, 255, 255, 40%)",
+    elevation_strokeColor_surfaceStroke_flyout: "rgba(255, 255, 255, 20%)",
+    elevation_strokeColor_cardStroke_default: "rgba(0, 0, 0, 10%)",
+    elevation_strokeColor_cardStroke_defaultSolid: "#1C1C1C",
+    elevation_strokeColor_focusStroke_inner: "#FFFFFF",
+    elevation_strokeColor_focusStroke_outer: "rgba(0, 0, 0, 70%)"
 } as ThemeProps;
 
 export { defaultDarkTheme };
