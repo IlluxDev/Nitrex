@@ -9,6 +9,7 @@
         "serve": "vite preview"
     },
     "dependencies": {
+        "@illuxdev/nitrex-components": "file:../components",
         "@illuxdev/nitrex-electron": "file:../electron",
         "react": "^17.0.0",
         "react-dom": "^17.0.0"

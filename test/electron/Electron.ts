@@ -4,7 +4,7 @@ import * as path from "path";
 const nitrex = new ElectronNitrex({
     title: "Nitrex Demo",
     browserWindowOptions: {
-        frame: true
+        frame: false
     },
     projectRoot: path.join(__dirname, "../")
 });
@@ -18,7 +18,7 @@ nitrex.onCommand<string>("main", (msg) => {
 });
 
 nitrex.onCommand<string>("main", (msg) => {
-    nitrex.log(msg + "< Second listener");
+    nitrex.log(msg + " < Second listener");
 });
 
 nitrex.start();

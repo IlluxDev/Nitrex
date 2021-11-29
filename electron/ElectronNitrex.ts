@@ -3,6 +3,7 @@ import deepmerge from "deepmerge";
 import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
+import { Window } from "./events/Window";
 
 export class ElectronNitrex {
     private settings: ElectronNitrexOptions;
@@ -60,9 +61,12 @@ export class ElectronNitrex {
 
             const onWindowLoad = () => {
                 this.browserWindow!.show();
+                this.events.ready.forEach(event => event());
                 this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {
                 });
             }
+
+            this.registerInternalEvents();
 
             if (electronIsDev) {
                 this.browserWindow.loadURL("http://localhost:3000").then(() => {
@@ -72,8 +76,6 @@ export class ElectronNitrex {
                     this.browserWindow?.on("close", () => {
                         console.log("[_atron][app]-stop");
                     });
-
-                    this.events.ready.forEach(event => event());
                 });
             } else {
                 this.browserWindow.loadFile(path.join(this.settings.projectRoot, "dist/renderer/index.html")).then(() => {
@@ -103,5 +105,13 @@ export class ElectronNitrex {
 
     public on(event: any, listener: any) {
         (this.events as any)[event].push(listener);
+    }
+
+    public registerInternalEvents() {
+        new Window(this);
+    }
+
+    public getBrowserWindow(): BrowserWindow {
+        return this.browserWindow!;
     }
 }
