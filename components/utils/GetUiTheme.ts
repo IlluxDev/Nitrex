@@ -69,6 +69,89 @@ const config = {
             solidAttentionBackground: "",
             solidNeutral: "",
             solidNeutralBackground: ""
+        },
+        controlOnImage: {
+            default: "",
+            secondary: "",
+            tertiary: "",
+            disabled: ""
+        }
+    },
+    elevation: {
+        control: {
+            border: ""
+        },
+        circle: {
+            border: ""
+        },
+        textControl: {
+            border: "",
+            borderFocused: ""
+        },
+        accentControl: {
+            border: ""
+        }
+    },
+    strokeColor: {
+        controlStroke: {
+            default: "",
+            onAccentDefault: "",
+            secondary: "",
+            onAccentSecondary: "",
+            onAccentTertiary: "",
+            onAccentDisabled: "",
+            forStrongFillWhenOnImage: ""
+        },
+        controlStrongStroke: {
+            default: "",
+            disabled: ""
+        },
+        dividerStroke: {
+            default: ""
+        },
+        surfaceStroke: {
+            default: "",
+            flyout: ""
+        },
+        cardStroke: {
+            default: "",
+            defaultSolid: ""
+        },
+        focusStroke: {
+            outer: "",
+            inner: ""
+        }
+    },
+    background: {
+        cardBackground: {
+            default: "",
+            secondary: ""
+        },
+        smoke: {
+            default: ""
+        },
+        solidBackground: {
+            base: "",
+            secondary: "",
+            tertiary: "",
+            quarternary: ""
+        },
+        micaBackground: {
+            base: ""
+        },
+        acrylicBackground: {
+            default: "",
+            base: ""
+        },
+        layer: {
+            default: "",
+            alt: ""
+        },
+        layerOnAcrylic: {
+            default: ""
+        },
+        layerOnAccentAcrylic: {
+            default: ""
         }
     }
 }
