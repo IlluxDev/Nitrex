@@ -1,0 +1,50 @@
+@import "../Theme";
+
+.root {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: $background_solidBackground_base;
+    -webkit-app-region: drag;
+}
+
+.buttons {
+    display: flex;
+
+    button {
+        width: 46px;
+        height: 32px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $fill_control_transparent;
+        color: $fill_text_primary;
+        -webkit-app-region: no-drag;
+        outline: none;
+
+        &:hover {
+            background: $background_solidBackground_tertiary;
+        }
+    }
+}
+
+.extendIntoViewMode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $fill_control_transparent;
+}
+
+.closeButton {
+    &:hover {
+        background: #C42B1C !important;
+
+        &:active {
+            color: $fill_text_tertiary;
+        }
+    }
+}

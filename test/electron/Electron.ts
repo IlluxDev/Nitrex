@@ -3,10 +3,10 @@ import * as path from "path";
 
 const nitrex = new ElectronNitrex({
     title: "Nitrex Demo",
+    projectRoot: path.join(__dirname, "../"),
     browserWindowOptions: {
-        frame: false
-    },
-    projectRoot: path.join(__dirname, "../")
+        vibrancy: "dark"
+    }
 });
 
 nitrex.on("ready", () => {

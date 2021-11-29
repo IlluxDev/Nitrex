@@ -1,5 +1,6 @@
 import { ElectronNitrex } from "../ElectronNitrex";
 import { WindowButtonActionMessage } from "../WindowButtonActionMessage";
+import { WindowOnTitleUpdateMessage } from "./WindowOnTitleUpdateMessage";
 
 export class Window {
     public constructor(nitrexApp: ElectronNitrex) {
@@ -21,6 +22,16 @@ export class Window {
                     nitrexApp.getBrowserWindow().maximize();
                     break;
             }
+        });
+
+        nitrexApp.onCommand("_internal:window:applyTitle", () => {
+            nitrexApp.applyTitle();
+        });
+
+        nitrexApp.onCommand("_internal:window:fetchTitle", () => {
+            nitrexApp.send<WindowOnTitleUpdateMessage>("_internal:window:titleOnUpdate _client", {
+                title: nitrexApp.getCurrentTitle()
+            });
         });
     }
 }

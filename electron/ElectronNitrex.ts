@@ -4,12 +4,14 @@ import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain } 
 import electronIsDev from "electron-is-dev";
 import path from "path";
 import { Window } from "./events/Window";
+import { WindowOnTitleUpdateMessage } from "./events/WindowOnTitleUpdateMessage";
 
 export class ElectronNitrex {
     private settings: ElectronNitrexOptions;
     private electronAppReady: boolean;
     private started = false;
     private browserWindow?: BrowserWindow;
+    private currentTitle = "";
     private events = {
         ready: [] as any[],
         command: [] as any[]
@@ -38,6 +40,8 @@ export class ElectronNitrex {
             title: "Nitrex App",
             icon: null
         }, options);
+
+        this.currentTitle = this.settings.title!;
     }
 
     public log(debugText: string) {
@@ -62,8 +66,6 @@ export class ElectronNitrex {
             const onWindowLoad = () => {
                 this.browserWindow!.show();
                 this.events.ready.forEach(event => event());
-                this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.settings.title}"`).then(() => {
-                });
             }
 
             this.registerInternalEvents();
@@ -113,5 +115,22 @@ export class ElectronNitrex {
 
     public getBrowserWindow(): BrowserWindow {
         return this.browserWindow!;
+    }
+
+    public applyTitle() {
+        this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.currentTitle}"`).then(() => {
+        });
+
+        this.send<WindowOnTitleUpdateMessage>("_internal:window:titleOnUpdate _client", {
+            title: this.getCurrentTitle()
+        });
+    }
+
+    public send<MessageType>(channel: string, message: MessageType) {
+        this.browserWindow?.webContents.send(channel, message);
+    }
+
+    public getCurrentTitle(): string {
+        return this.currentTitle;
     }
 }

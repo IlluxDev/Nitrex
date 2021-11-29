@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Button, defaultDarkTheme, FlexPanel, themeManager } from "@illuxdev/nitrex-components";
+import { Button, defaultDarkTheme, FlexPanel, renderer, themeManager, TitleBar } from "@illuxdev/nitrex-components";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -14,12 +14,15 @@ function App() {
         }
     });
 
+    renderer.setPageZoom(1);
+
     return (
-        <FlexPanel direction={"horizontal"} spacing={10} padding={10}>
-            <Button>Button</Button>
-            <Button primary disabled>Button</Button>
-            <Button primary>Button</Button>
-            <Button disabled>Button</Button>
+        <FlexPanel>
+            <TitleBar extendIntoView={false}/>
+
+            <FlexPanel direction={"horizontal"} padding={20}>
+                <Button>Test Button</Button>
+            </FlexPanel>
         </FlexPanel>
     )
 }
