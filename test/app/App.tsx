@@ -22,8 +22,8 @@ function App() {
             <TitleBar extendIntoView={extendTB}/>
 
             <FlexPanel direction={"horizontal"} spacing={20} padding={20}>
-                <Button disabled={true}>Test Button</Button>
-                <Button primary disabled={true}>Test Button</Button>
+                <Button disabled={false}>Test Button</Button>
+                <Button primary disabled={false}>Test Button</Button>
 
                 <Button onClick={() => extendTB ? setExtend(false) : setExtend(true)}>Toggle (Extend TitleBar Into
                     View</Button>
