@@ -75,7 +75,18 @@ const defaultDarkTheme = {
     elevation_strokeColor_cardStroke_default: "rgba(0, 0, 0, 10%)",
     elevation_strokeColor_cardStroke_defaultSolid: "#1C1C1C",
     elevation_strokeColor_focusStroke_inner: "#FFFFFF",
-    elevation_strokeColor_focusStroke_outer: "rgba(0, 0, 0, 70%)"
+    elevation_strokeColor_focusStroke_outer: "rgba(0, 0, 0, 70%)",
+    background_cardBackground_default: "rgba(255, 255, 255, 5.12%)",
+    background_cardBackground_secondary: "rgba(255, 255, 255, 3.26%)",
+    background_smoke_default: "rgba(0, 0, 0, 30%)",
+    background_solidBackground_base: "#202020",
+    background_solidBackground_secondary: "#1C1C1C",
+    background_solidBackground_tertiary: "#282828",
+    background_solidBackground_quarternary: "#2C2C2C",
+    background_micaBackground_base: "#202020",
+    background_micaBackground_baseActive: "#20202080",
+    background_acrylicBackground_default: "",
+    background_acrylicBackground_base: ""
 } as ThemeProps;
 
 export { defaultDarkTheme };

@@ -82,6 +82,7 @@ export interface ThemeProps {
     background_solidBackground_tertiary?: string,
     background_solidBackground_quarternary?: string,
     background_micaBackground_base?: string,
+    background_micaBackground_baseActive?: string;
     background_acrylicBackground_default?: string,
     background_acrylicBackground_base?: string,
     background_layer_default?: string,
