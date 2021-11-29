@@ -1,3 +1,7 @@
-.root {
+@import "../Theme";
 
+.root {
+    border: none;
+    //outline: 1px solid
+    background: $fill_control_default;
 }

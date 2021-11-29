@@ -19,7 +19,7 @@ export interface ThemeProps {
     fill_control_inputActive?: string,
     fill_controlStrong_default?: string,
     fill_controlStrong_disabled?: string,
-    fill_controlAlt_primary?: string,
+    fill_controlAlt_transparent?: string,
     fill_controlAlt_secondary?: string,
     fill_controlAlt_tertiary?: string,
     fill_controlAlt_quarternary?: string,
