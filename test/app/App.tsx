@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import { Button, defaultDarkTheme, FlexPanel, renderer, themeManager, TitleBar } from "@illuxdev/nitrex-components";
+import {
+    Button,
+    defaultDarkTheme,
+    FlexPanel,
+    renderer,
+    themeManager,
+    TitleBar,
+    ToggleButton
+} from "@illuxdev/nitrex-components";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -25,8 +33,8 @@ function App() {
                 <Button disabled={false}>Test Button</Button>
                 <Button primary disabled={false}>Test Button</Button>
 
-                <Button onClick={() => extendTB ? setExtend(false) : setExtend(true)}>Toggle (Extend TitleBar Into
-                    View</Button>
+                <ToggleButton onToggle={value => setExtend(!value)}>Toggle (Extend TitleBar Into
+                    View</ToggleButton>
             </FlexPanel>
         </FlexPanel>
     )
