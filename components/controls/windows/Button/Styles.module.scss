@@ -1,7 +1,35 @@
 @import "../Theme";
 
 .root {
-    border: none;
-    //outline: 1px solid
+    color: $fill_text_primary;
     background: $fill_control_default;
+    padding: 8px 10px;
+    min-width: 100px;
+    border-radius: 4px;
+    border: 1px solid $elevation_control_border;
+    border-bottom-color: $elevation_control_borderBottom;
+    transition: 100ms;
+
+    &:hover {
+        background: $fill_control_secondary;
+        border-color: $elevation_strokeColor_controlStroke_default;
+
+        &:active {
+            background: $fill_control_tertiary;
+        }
+    }
+}
+
+.primaryMode {
+    border: none;
+    background: $fill_accent_default;
+    color: $fill_textOnAccent_primary;
+
+    &:hover {
+        background: $fill_accent_secondary;
+
+        &:active {
+            background: $fill_accent_tertiary;
+        }
+    }
 }
