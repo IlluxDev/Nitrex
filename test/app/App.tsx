@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import { Button, themeManager } from "@illuxdev/nitrex-components";
+import { Button, defaultDarkTheme, themeManager } from "@illuxdev/nitrex-components";
 
 function App() {
     const [count, setCount] = useState(0);
 
-    themeManager.installTheme({
-        background_acrylicBackground_base: "aosdjioajd",
-        background_cardBackground_secondary: "asdasdas",
-        background_acrylicBackground_default: "sdfsdf"
-    });
+    themeManager.installTheme(defaultDarkTheme);
 
     return (
         <div>
