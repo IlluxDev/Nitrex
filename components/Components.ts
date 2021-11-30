@@ -10,6 +10,7 @@ import { App } from "./controls/shared/App";
 import { ContentRouter } from "./controls/shared/ContentRouter";
 import { RouteLink } from "./controls/shared/RouteLink";
 import { Glass } from "./controls/shared/Glass";
+import { TextBlock } from "./controls/shared/TextBlock";
 
 if (location.pathname != "/") {
     location.href = "/";
@@ -24,6 +25,7 @@ export {
     ContentRouter,
     RouteLink,
     Glass,
+    TextBlock,
     themeManager,
     ipcController,
     renderer,

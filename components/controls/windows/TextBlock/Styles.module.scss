@@ -1,0 +1,34 @@
+@import "../Theme";
+
+.root {
+    color: $fill_text_primary;
+    user-select: none;
+}
+
+.header-1-mode {
+    font-size: 35px;
+}
+
+.header-2-mode {
+    font-size: 30px;
+}
+
+.header-3-mode {
+    font-size: 28px;
+    color: $fill_text_secondary;
+}
+
+.header-4-mode {
+    font-size: 24px;
+    color: $fill_text_secondary;
+}
+
+.header-5-mode {
+    font-size: 22px;
+    color: $fill_text_secondary;
+}
+
+.header-6-mode {
+    font-size: 20px;
+    color: $fill_text_secondary;
+}

@@ -7,14 +7,23 @@ import {
     ContentRouter,
     defaultDarkTheme,
     FlexPanel,
-    Glass,
-    renderer, RouteLink,
+    renderer,
+    RouteLink,
+    TextBlock,
     themeManager,
     TitleBar,
     ToggleButton
 } from "@illuxdev/nitrex-components";
 
-themeManager.installTheme(defaultDarkTheme);
+themeManager.installTheme({
+    ...defaultDarkTheme,
+    ...{
+        fill_accent_default: "#dd9de7",
+        fill_accent_secondary: "rgba(221,157,231,0.93)",
+        fill_accent_tertiary: "rgba(221,157,231,0.89)"
+    }
+});
+
 renderer.setPageZoom(1);
 
 function View() {
@@ -23,16 +32,12 @@ function View() {
 
     return (
         <FlexPanel spacing={20}>
-            <Glass style={{
-                width: "calc(100vw / 1.2)",
-                height: "calc(100vh / 1.2)",
-                position: "fixed",
-                top: "50vh",
-                left: "50vw",
-                resize: "both",
-                transform: "translate(-50%, -50%)",
-                borderRadius: "8px"
-            }}/>
+            <TextBlock header={1}>Button Tests</TextBlock>
+            <TextBlock header={2}>Button Tests</TextBlock>
+            <TextBlock header={3}>Button Tests</TextBlock>
+            <TextBlock header={4}>Button Tests</TextBlock>
+            <TextBlock header={5}>Button Tests</TextBlock>
+            <TextBlock header={6}>Button Tests</TextBlock>
 
             <Button disabled={disableButtons} primary>Button</Button>
             <ToggleButton disabled={toggleDisabled} onToggle={setDisableButtonsState}>Disable All Buttons</ToggleButton>
