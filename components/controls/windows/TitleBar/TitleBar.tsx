@@ -19,7 +19,7 @@ export function TitleBar(props: Props) {
     const [canGoBack, setCanGoBackState] = useState(false);
     const location = useLocation();
 
-    useEffect(() => setCanGoBackState(document.referrer == document.location.href), [location]);
+    useEffect(() => setCanGoBackState(document.location.pathname != "/"), [location]);
 
     ipcController.send("_internal:window:applyTitle", {});
     ipcController.send("_internal:window:fetchTitle", {});

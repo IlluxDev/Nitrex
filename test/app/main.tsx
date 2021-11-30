@@ -8,7 +8,7 @@ import {
     defaultDarkTheme,
     FlexPanel,
     Glass,
-    renderer,
+    renderer, RouteLink,
     themeManager,
     TitleBar,
     ToggleButton
@@ -58,7 +58,11 @@ ReactDOM.render(
             ]}/>
 
             <FlexPanel direction={"horizontal"} padding={20} spacing={20}>
-                <View></View>
+                <View />
+                <FlexPanel spacing={10}>
+                    <RouteLink href={"/"}>Home</RouteLink>
+                    <RouteLink href={"/cats"}>Cute Kitties</RouteLink>
+                </FlexPanel>
             </FlexPanel>
         </App>
     </React.StrictMode>,

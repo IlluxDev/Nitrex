@@ -11,6 +11,10 @@ import { ContentRouter } from "./controls/shared/ContentRouter";
 import { RouteLink } from "./controls/shared/RouteLink";
 import { Glass } from "./controls/shared/Glass";
 
+if (location.pathname != "/") {
+    location.href = "/";
+}
+
 export {
     Button,
     FlexPanel,
