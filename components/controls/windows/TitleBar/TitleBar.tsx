@@ -113,6 +113,7 @@ export function TitleBar(props: Props) {
                 </button>}
 
                 <button
+                    onClick={() => window.close()}
                     style={{
                         fontSize: "16px",
                     }}
