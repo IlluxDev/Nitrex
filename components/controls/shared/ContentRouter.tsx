@@ -1,14 +1,8 @@
 import { Props } from "./ContentRouter/Props";
-import { Route, Routes, useLocation } from "react-router-dom";
-import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
 
 export function ContentRouter(props: Props) {
-    const location = useLocation();
-
-    useEffect(() => {
-        alert("E")
-    }, [location]);
-
     return (
         <Routes>
             {props.routes.map((route) => {

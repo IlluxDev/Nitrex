@@ -1,10 +1,11 @@
 import { Props } from "../../shared/TitleBar/Props";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Styles.module.scss";
 import { Icon } from "@iconify/react";
 import { ipcController } from "../../IpcController";
 import { WindowButtonActionMessage } from "./WindowButtonActionMessage";
 import { WindowOnTitleUpdateMessage } from "./WindowOnTitleUpdateMessage";
+import { useLocation } from "react-router-dom";
 
 let onTitleUpdated = (title: string) => {
 };
@@ -15,6 +16,10 @@ ipcController.onCommand<WindowOnTitleUpdateMessage>(
 
 export function TitleBar(props: Props) {
     const [title, setTitleState] = useState(document.title);
+    const [canGoBack, setCanGoBackState] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => setCanGoBackState(document.referrer == document.location.href), [location]);
 
     ipcController.send("_internal:window:applyTitle", {});
     ipcController.send("_internal:window:fetchTitle", {});
@@ -39,8 +44,8 @@ export function TitleBar(props: Props) {
             }`}
         >
             <div className={styles.titleArea}>
-                {!props.disableAutoBackButton && !props.extendIntoView ? (
-                    <button>
+                {!props.disableAutoBackButton && !props.extendIntoView && canGoBack ? (
+                    <button onClick={() => history.go(-1)}>
                         <Icon
                             style={{
                                 fontSize: "15px",
