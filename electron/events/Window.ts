@@ -39,5 +39,13 @@ export class Window {
                 }
             );
         });
+
+        nitrexApp.getBrowserWindow().on(("un" + "maximize") as any, () => {
+            nitrexApp.send("_internal:window:unMaximized", {});
+        });
+
+        nitrexApp.getBrowserWindow().on("maximize", () => {
+            nitrexApp.send("_internal:window:maximized", {});
+        });
     }
 }

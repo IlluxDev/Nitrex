@@ -6,6 +6,8 @@ import path from "path";
 import { Window } from "./events/Window";
 import { WindowOnTitleUpdateMessage } from "./events/WindowOnTitleUpdateMessage";
 
+// TODO: Support only the development port from process argv, right now it is hard coded
+
 export class ElectronNitrex {
     private settings: ElectronNitrexOptions;
     private electronAppReady: boolean;

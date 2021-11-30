@@ -9,6 +9,15 @@ import { useLocation } from "react-router-dom";
 
 let onTitleUpdated = (title: string) => {
 };
+
+let onMaximized = () => {
+};
+let onRestored = () => {
+}
+
+ipcController.onCommand("_internal:window:maximized", () => onMaximized());
+ipcController.onCommand("_internal:window:unMaximized", () => onRestored());
+
 ipcController.onCommand<WindowOnTitleUpdateMessage>(
     "_internal:window:titleOnUpdate _client",
     (message) => onTitleUpdated(message.title)
@@ -18,6 +27,7 @@ export function TitleBar(props: Props) {
     const [title, setTitleState] = useState(document.title);
     const [canGoBack, setCanGoBackState] = useState(false);
     const location = useLocation();
+    const [maximized, setMaximizedState] = useState(false);
 
     useEffect(() => setCanGoBackState(document.location.pathname != "/"), [location]);
 
@@ -28,6 +38,9 @@ export function TitleBar(props: Props) {
         setTitleState(title);
     };
 
+    onMaximized = () => setMaximizedState(true);
+    onRestored = () => setMaximizedState(false);
+
     function minimizeWindow() {
         ipcController.send<WindowButtonActionMessage>(
             "_internal:window:buttonAction",
@@ -35,6 +48,19 @@ export function TitleBar(props: Props) {
                 action: "minimize",
             }
         );
+    }
+
+    function maximizeRestoreWindow() {
+        if (maximized) {
+            ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
+                action: "restore"
+            });
+            return;
+        }
+
+        ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
+            action: "maximize"
+        });
     }
 
     return (
@@ -70,13 +96,21 @@ export function TitleBar(props: Props) {
                     />
                 </button>
 
-                <button
+                {maximized ? <button
+                    onClick={() => maximizeRestoreWindow()}
+                    style={{
+                        fontSize: "16px",
+                    }}
+                >
+                    <Icon icon={"fluent:restore-16-regular"}/>
+                </button> : <button
+                    onClick={() => maximizeRestoreWindow()}
                     style={{
                         fontSize: "16px",
                     }}
                 >
                     <Icon icon={"fluent:maximize-16-regular"}/>
-                </button>
+                </button>}
 
                 <button
                     style={{
