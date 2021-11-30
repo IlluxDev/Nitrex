@@ -5,8 +5,8 @@ const nitrex = new ElectronNitrex({
     title: "Nitrex Demo",
     projectRoot: path.join(__dirname, "../"),
     browserWindowOptions: {
-        vibrancy: "dark"
-    }
+        vibrancy: "dark",
+    },
 });
 
 nitrex.on("ready", () => {

@@ -1,7 +1,10 @@
 import { ThemeProps as WindowsThemeProps } from "./windows/ThemeProps";
 
 class ThemeManager {
-    public generateThemeCss(theme: WindowsThemeProps, format: boolean = false): string {
+    public generateThemeCss(
+        theme: WindowsThemeProps,
+        format: boolean = false
+    ): string {
         let result = `:root${format ? " { \n" : "{"}`;
 
         for (const key in theme) {
@@ -20,7 +23,9 @@ class ThemeManager {
             throw new Error("Document is not ready");
         }
 
-        const oldStyle = document.querySelectorAll("head > ._nitrex_installedTheme")[0] as HTMLStyleElement;
+        const oldStyle = document.querySelectorAll(
+            "head > ._nitrex_installedTheme"
+        )[0] as HTMLStyleElement;
 
         if (oldStyle) {
             oldStyle.remove();

@@ -8,7 +8,10 @@ import { WindowOnTitleUpdateMessage } from "./WindowOnTitleUpdateMessage";
 
 let onTitleUpdated = (title: string) => {
 };
-ipcController.onCommand<WindowOnTitleUpdateMessage>("_internal:window:titleOnUpdate _client", message => onTitleUpdated(message.title));
+ipcController.onCommand<WindowOnTitleUpdateMessage>(
+    "_internal:window:titleOnUpdate _client",
+    (message) => onTitleUpdated(message.title)
+);
 
 export function TitleBar(props: Props) {
     const [title, setTitleState] = useState(document.title);
@@ -18,42 +21,64 @@ export function TitleBar(props: Props) {
 
     onTitleUpdated = (title) => {
         setTitleState(title);
-    }
+    };
 
     function minimizeWindow() {
-        ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-            action: "minimize"
-        });
+        ipcController.send<WindowButtonActionMessage>(
+            "_internal:window:buttonAction",
+            {
+                action: "minimize",
+            }
+        );
     }
 
     return (
-        <div className={`${styles.root} ${props.extendIntoView ? styles.extendIntoViewMode : {}}`}>
+        <div
+            className={`${styles.root} ${
+                props.extendIntoView ? styles.extendIntoViewMode : {}
+            }`}
+        >
             <div className={styles.titleArea}>
-                {!props.disableAutoBackButton && !props.extendIntoView ? <button>
-                    <Icon style={{
-                        fontSize: "15px"
-                    }} icon="fluent:arrow-left-16-regular"/>
-                </button> : null}
+                {!props.disableAutoBackButton && !props.extendIntoView ? (
+                    <button>
+                        <Icon
+                            style={{
+                                fontSize: "15px",
+                            }}
+                            icon="fluent:arrow-left-16-regular"
+                        />
+                    </button>
+                ) : null}
 
-                {!props.extendIntoView ? <span className={styles.titleText}>{title}</span> : null}
+                {!props.extendIntoView ? (
+                    <span className={styles.titleText}>{title}</span>
+                ) : null}
             </div>
 
             <div className={styles.buttons}>
                 <button onClick={() => minimizeWindow()}>
-                    <Icon style={{
-                        fontSize: "17px"
-                    }} icon={"fluent:subtract-16-regular"}/>
+                    <Icon
+                        style={{
+                            fontSize: "17px",
+                        }}
+                        icon={"fluent:subtract-16-regular"}
+                    />
                 </button>
 
-                <button style={{
-                    fontSize: "16px"
-                }}>
+                <button
+                    style={{
+                        fontSize: "16px",
+                    }}
+                >
                     <Icon icon={"fluent:maximize-16-regular"}/>
                 </button>
 
-                <button style={{
-                    fontSize: "16px"
-                }} className={styles.closeButton}>
+                <button
+                    style={{
+                        fontSize: "16px",
+                    }}
+                    className={styles.closeButton}
+                >
                     <Icon icon={"fluent:dismiss-16-regular"}/>
                 </button>
             </div>

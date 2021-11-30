@@ -61,14 +61,21 @@ const defaultDarkTheme = {
     elevation_textControl_borderFocused: "rgba(255, 255, 255, 54.42%)",
     elevation_accentControl_border: "rgba(255, 255, 255, 8%)",
     elevation_strokeColor_controlStroke_default: "rgba(255, 255, 255, 6.98%)",
-    elevation_strokeColor_controlStroke_onAccentDefault: "rgba(255, 255, 255, 8%)",
+    elevation_strokeColor_controlStroke_onAccentDefault:
+        "rgba(255, 255, 255, 8%)",
     elevation_strokeColor_controlStroke_secondary: "rgba(255, 255, 255, 9.3%)",
-    elevation_strokeColor_controlStroke_onAccentSecondary: "rgba(255, 255, 255, 14%)",
-    elevation_strokeColor_controlStroke_onAccentTertiary: "rgba(255, 255, 255, 21.69%)",
-    elevation_strokeColor_controlStroke_onAccentDisabled: "rgba(255, 255, 255, 20%)",
-    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: "rgba(0, 0, 0, 42%)",
-    elevation_strokeColor_controlStrongStroke_default: "rgba(255, 255, 255, 54,42%)",
-    elevation_strokeColor_controlStrongStroke_disabled: "rgba(255, 255, 255, 15.81%)",
+    elevation_strokeColor_controlStroke_onAccentSecondary:
+        "rgba(255, 255, 255, 14%)",
+    elevation_strokeColor_controlStroke_onAccentTertiary:
+        "rgba(255, 255, 255, 21.69%)",
+    elevation_strokeColor_controlStroke_onAccentDisabled:
+        "rgba(255, 255, 255, 20%)",
+    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage:
+        "rgba(0, 0, 0, 42%)",
+    elevation_strokeColor_controlStrongStroke_default:
+        "rgba(255, 255, 255, 54,42%)",
+    elevation_strokeColor_controlStrongStroke_disabled:
+        "rgba(255, 255, 255, 15.81%)",
     elevation_strokeColor_dividerStroke_default: "rgba(255, 255, 255, 8.37%)",
     elevation_strokeColor_surfaceStroke_default: "rgba(255, 255, 255, 40%)",
     elevation_strokeColor_surfaceStroke_flyout: "rgba(255, 255, 255, 20%)",
@@ -85,12 +92,14 @@ const defaultDarkTheme = {
     background_solidBackground_quarternary: "#2C2C2C",
     background_micaBackground_base: "#202020",
     background_micaBackground_baseActive: "#20202080",
-    background_acrylicBackground_default: "linear-gradient(rgba(44, 44, 44, 15%), rgba(44, 44, 44, 15%)), linear-gradient(rgba(44, 44, 44, 96%), rgba(44, 44, 44, 96%));",
-    background_acrylicBackground_base: "linear-gradient(rgba(32, 32, 32, 50%), rgba(32, 32, 32, 50%)), linear-gradient(rgba(32, 32, 32, 96%), rgba(32, 32, 32, 96%));",
+    background_acrylicBackground_default:
+        "linear-gradient(rgba(44, 44, 44, 15%), rgba(44, 44, 44, 15%)), linear-gradient(rgba(44, 44, 44, 96%), rgba(44, 44, 44, 96%));",
+    background_acrylicBackground_base:
+        "linear-gradient(rgba(32, 32, 32, 50%), rgba(32, 32, 32, 50%)), linear-gradient(rgba(32, 32, 32, 96%), rgba(32, 32, 32, 96%));",
     background_layer_default: "#3A3A3A30",
     background_layer_alt: "rgba(255, 255, 255, 5.38%)",
     background_layerOnAcrylic_default: "rgba(255, 255, 255, 3.59%)",
-    background_layerOnAccentAcrylic_default: "rgba(255, 255, 255, 3.59%)"
+    background_layerOnAccentAcrylic_default: "rgba(255, 255, 255, 3.59%)",
 } as ThemeProps;
 
 export { defaultDarkTheme };

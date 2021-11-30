@@ -1,6 +1,6 @@
 import { ElectronNitrexOptions } from "./ElectronNitrexOptions";
 import deepmerge from "deepmerge";
-import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain, } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
 import { Window } from "./events/Window";
@@ -14,32 +14,35 @@ export class ElectronNitrex {
     private currentTitle = "";
     private events = {
         ready: [] as any[],
-        command: [] as any[]
+        command: [] as any[],
     };
 
     public constructor(options: ElectronNitrexOptions) {
         this.electronAppReady = app.isReady();
 
         if (!this.electronAppReady) {
-            app.on("ready", () => this.electronAppReady = true);
+            app.on("ready", () => (this.electronAppReady = true));
         }
 
-        this.settings = deepmerge<ElectronNitrexOptions>({
-            browserWindowOptions: {
-                frame: false,
-                show: false,
-                webPreferences: {
-                    nodeIntegration: true,
-                    contextIsolation: false,
-                    webSecurity: false,
-                    webviewTag: true
-                }
+        this.settings = deepmerge<ElectronNitrexOptions>(
+            {
+                browserWindowOptions: {
+                    frame: false,
+                    show: false,
+                    webPreferences: {
+                        nodeIntegration: true,
+                        contextIsolation: false,
+                        webSecurity: false,
+                        webviewTag: true,
+                    },
+                },
+                width: 1200,
+                height: 800,
+                title: "Nitrex App",
+                icon: null,
             },
-            width: 1200,
-            height: 800,
-            title: "Nitrex App",
-            icon: null
-        }, options);
+            options
+        );
 
         this.currentTitle = this.settings.title!;
     }
@@ -56,17 +59,24 @@ export class ElectronNitrex {
         this.started = true;
 
         const onceElectronAppReady = () => {
-            this.browserWindow = new BrowserWindow(deepmerge<BrowserWindowConstructorOptions>({
-                title: this.settings.title,
-                width: this.settings.width,
-                height: this.settings.height,
-                icon: this.settings.icon ?? path.join(__dirname, "assets/DefaultIcon.png")
-            }, this.settings.browserWindowOptions!));
+            this.browserWindow = new BrowserWindow(
+                deepmerge<BrowserWindowConstructorOptions>(
+                    {
+                        title: this.settings.title,
+                        width: this.settings.width,
+                        height: this.settings.height,
+                        icon:
+                            this.settings.icon ??
+                            path.join(__dirname, "assets/DefaultIcon.png"),
+                    },
+                    this.settings.browserWindowOptions!
+                )
+            );
 
             const onWindowLoad = () => {
                 this.browserWindow!.show();
-                this.events.ready.forEach(event => event());
-            }
+                this.events.ready.forEach((event) => event());
+            };
 
             this.registerInternalEvents();
 
@@ -80,14 +90,25 @@ export class ElectronNitrex {
                     });
                 });
             } else {
-                this.browserWindow.loadFile(path.join(this.settings.projectRoot, "dist/renderer/index.html")).then(() => {
-                    onWindowLoad();
-                }).catch(() => {
-                    dialog.showErrorBox("Failed to start", "Could not find renderer view");
-                    app.exit(0);
-                });
+                this.browserWindow
+                    .loadFile(
+                        path.join(
+                            this.settings.projectRoot,
+                            "dist/renderer/index.html"
+                        )
+                    )
+                    .then(() => {
+                        onWindowLoad();
+                    })
+                    .catch(() => {
+                        dialog.showErrorBox(
+                            "Failed to start",
+                            "Could not find renderer view"
+                        );
+                        app.exit(0);
+                    });
             }
-        }
+        };
 
         if (!this.electronAppReady) {
             app.on("ready", () => onceElectronAppReady());
@@ -97,7 +118,10 @@ export class ElectronNitrex {
         onceElectronAppReady();
     }
 
-    public onCommand<MessageType>(channel: string, listener: (message: MessageType) => void) {
+    public onCommand<MessageType>(
+        channel: string,
+        listener: (message: MessageType) => void
+    ) {
         ipcMain.on(channel, (event, message) => {
             listener(message);
         });
@@ -118,12 +142,17 @@ export class ElectronNitrex {
     }
 
     public applyTitle() {
-        this.browserWindow!.webContents.executeJavaScript(`document.title = "${this.currentTitle}"`).then(() => {
+        this.browserWindow!.webContents.executeJavaScript(
+            `document.title = "${this.currentTitle}"`
+        ).then(() => {
         });
 
-        this.send<WindowOnTitleUpdateMessage>("_internal:window:titleOnUpdate _client", {
-            title: this.getCurrentTitle()
-        });
+        this.send<WindowOnTitleUpdateMessage>(
+            "_internal:window:titleOnUpdate _client",
+            {
+                title: this.getCurrentTitle(),
+            }
+        );
     }
 
     public send<MessageType>(channel: string, message: MessageType) {

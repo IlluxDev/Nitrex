@@ -3,7 +3,5 @@ import { Props } from "./ToggleButton/Props";
 import React from "react";
 
 export function ToggleButton(props: Props) {
-    return (
-        <WindowsToggleButton {...props} />
-    )
+    return <WindowsToggleButton {...props} />;
 }

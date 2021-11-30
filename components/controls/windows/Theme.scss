@@ -47,7 +47,9 @@ $fill_system_cautionBackground: var(--fill_system_cautionBackground);
 $fill_system_criticalBackground: var(--fill_system_criticalBackground);
 $fill_system_neutral: var(--fill_system_neutral);
 $fill_system_neutralBackground: var(--fill_system_neutralBackground);
-$fill_system_solidAttentionBackground: var(--fill_system_solidAttentionBackground);
+$fill_system_solidAttentionBackground: var(
+                --fill_system_solidAttentionBackground
+);
 $fill_system_solidNeutral: var(--fill_system_solidNeutral);
 $fill_system_solidNeutralBackground: var(--fill_system_solidNeutralBackground);
 $fill_controlOnImage_default: var(--fill_controlOnImage_default);
@@ -59,36 +61,84 @@ $elevation_control_borderBottom: var(--elevation_control_borderBottom);
 $elevation_circle_border: var(--elevation_circle_border);
 $elevation_circle_borderBottom: var(--elevation_circle_borderBottom);
 $elevation_textControl_border: var(--elevation_textControl_border);
-$elevation_textControl_borderFocused: var(--elevation_textControl_borderFocused);
+$elevation_textControl_borderFocused: var(
+                --elevation_textControl_borderFocused
+);
 $elevation_accentControl_border: var(--elevation_accentControl_border);
-$elevation_strokeColor_controlStroke_default: var(--elevation_strokeColor_controlStroke_default);
-$elevation_strokeColor_controlStroke_onAccentDefault: var(--elevation_strokeColor_controlStroke_onAccentDefault);
-$elevation_strokeColor_controlStroke_secondary: var(--elevation_strokeColor_controlStroke_secondary);
-$elevation_strokeColor_controlStroke_onAccentSecondary: var(--elevation_strokeColor_controlStroke_onAccentSecondary);
-$elevation_strokeColor_controlStroke_onAccentTertiary: var(--elevation_strokeColor_controlStroke_onAccentTertiary);
-$elevation_strokeColor_controlStroke_onAccentDisabled: var(--elevation_strokeColor_controlStroke_onAccentDisabled);
-$elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: var(--elevation_strokeColor_controlStroke_forStrongFillWhenOnImage);
-$elevation_strokeColor_controlStrongStroke_default: var(--elevation_strokeColor_controlStrongStroke_default);
-$elevation_strokeColor_controlStrongStroke_disabled: var(--elevation_strokeColor_controlStrongStroke_disabled);
-$elevation_strokeColor_dividerStroke_default: var(--elevation_strokeColor_dividerStroke_default);
-$elevation_strokeColor_surfaceStroke_default: var(--elevation_strokeColor_surfaceStroke_default);
-$elevation_strokeColor_surfaceStroke_flyout: var(--elevation_strokeColor_surfaceStroke_flyout);
-$elevation_strokeColor_cardStroke_default: var(--elevation_strokeColor_cardStroke_default);
-$elevation_strokeColor_cardStroke_defaultSolid: var(--elevation_strokeColor_cardStroke_defaultSolid);
-$elevation_strokeColor_focusStroke_outer: var(--elevation_strokeColor_focusStroke_outer);
-$elevation_strokeColor_focusStroke_inner: var(--elevation_strokeColor_focusStroke_inner);
+$elevation_strokeColor_controlStroke_default: var(
+                --elevation_strokeColor_controlStroke_default
+);
+$elevation_strokeColor_controlStroke_onAccentDefault: var(
+                --elevation_strokeColor_controlStroke_onAccentDefault
+);
+$elevation_strokeColor_controlStroke_secondary: var(
+                --elevation_strokeColor_controlStroke_secondary
+);
+$elevation_strokeColor_controlStroke_onAccentSecondary: var(
+                --elevation_strokeColor_controlStroke_onAccentSecondary
+);
+$elevation_strokeColor_controlStroke_onAccentTertiary: var(
+                --elevation_strokeColor_controlStroke_onAccentTertiary
+);
+$elevation_strokeColor_controlStroke_onAccentDisabled: var(
+                --elevation_strokeColor_controlStroke_onAccentDisabled
+);
+$elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: var(
+                --elevation_strokeColor_controlStroke_forStrongFillWhenOnImage
+);
+$elevation_strokeColor_controlStrongStroke_default: var(
+                --elevation_strokeColor_controlStrongStroke_default
+);
+$elevation_strokeColor_controlStrongStroke_disabled: var(
+                --elevation_strokeColor_controlStrongStroke_disabled
+);
+$elevation_strokeColor_dividerStroke_default: var(
+                --elevation_strokeColor_dividerStroke_default
+);
+$elevation_strokeColor_surfaceStroke_default: var(
+                --elevation_strokeColor_surfaceStroke_default
+);
+$elevation_strokeColor_surfaceStroke_flyout: var(
+                --elevation_strokeColor_surfaceStroke_flyout
+);
+$elevation_strokeColor_cardStroke_default: var(
+                --elevation_strokeColor_cardStroke_default
+);
+$elevation_strokeColor_cardStroke_defaultSolid: var(
+                --elevation_strokeColor_cardStroke_defaultSolid
+);
+$elevation_strokeColor_focusStroke_outer: var(
+                --elevation_strokeColor_focusStroke_outer
+);
+$elevation_strokeColor_focusStroke_inner: var(
+                --elevation_strokeColor_focusStroke_inner
+);
 $background_cardBackground_default: var(--background_cardBackground_default);
-$background_cardBackground_secondary: var(--background_cardBackground_secondary);
+$background_cardBackground_secondary: var(
+                --background_cardBackground_secondary
+);
 $background_smoke_default: var(--background_smoke_default);
 $background_solidBackground_base: var(--background_solidBackground_base);
-$background_solidBackground_secondary: var(--background_solidBackground_secondary);
-$background_solidBackground_tertiary: var(--background_solidBackground_tertiary);
-$background_solidBackground_quarternary: var(--background_solidBackground_quarternary);
+$background_solidBackground_secondary: var(
+                --background_solidBackground_secondary
+);
+$background_solidBackground_tertiary: var(
+                --background_solidBackground_tertiary
+);
+$background_solidBackground_quarternary: var(
+                --background_solidBackground_quarternary
+);
 $background_micaBackground_base: var(--background_micaBackground_base);
-$background_micaBackground_baseActive: var(--background_micaBackground_baseActive);
-$background_acrylicBackground_default: var(--background_acrylicBackground_default);
+$background_micaBackground_baseActive: var(
+                --background_micaBackground_baseActive
+);
+$background_acrylicBackground_default: var(
+                --background_acrylicBackground_default
+);
 $background_acrylicBackground_base: var(--background_acrylicBackground_base);
 $background_layer_default: var(--background_layer_default);
 $background_layer_alt: var(--background_layer_alt);
 $background_layerOnAcrylic_default: var(--background_layerOnAcrylic_default);
-$background_layerOnAccentAcrylic_default: var(--background_layerOnAccentAcrylic_default);
+$background_layerOnAccentAcrylic_default: var(
+                --background_layerOnAccentAcrylic_default
+);

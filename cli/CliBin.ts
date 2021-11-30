@@ -17,21 +17,25 @@ const application = new Cli();
 const defaultTaskFlags = {
     config: {
         type: "string",
-        description: "The location of the Nitrex configuration"
+        description: "The location of the Nitrex configuration",
     },
     useDefaultConfig: {
         type: "boolean",
-        description: "Ignore the project configuration and use the default config"
-    }
-}
+        description:
+            "Ignore the project configuration and use the default config",
+    },
+};
 
 const defaultNitrexConfig = {
-    electronMainFile: "./electron/Electron.ts"
+    electronMainFile: "./electron/Electron.ts",
 } as NitrexAppConfig;
 
-function getNitrexConfig(configPath: string, useDefaultConfig: boolean = false): Promise<NitrexAppConfig> {
+function getNitrexConfig(
+    configPath: string,
+    useDefaultConfig: boolean = false
+): Promise<NitrexAppConfig> {
     if (configPath == undefined) {
-        configPath = "nitrex.config.ts"
+        configPath = "nitrex.config.ts";
     }
 
     return new Promise((resolve, reject) => {
@@ -47,20 +51,28 @@ function getNitrexConfig(configPath: string, useDefaultConfig: boolean = false):
                 const jsonConfig = JSON.parse(data);
                 resolve(deepmerge(defaultNitrexConfig, jsonConfig));
             } catch (error: any) {
-                terminal.warning("There seems to be an error in your config, using default config now");
+                terminal.warning(
+                    "There seems to be an error in your config, using default config now"
+                );
             }
-        }
+        };
 
         if (fs.existsSync(path.join(process.cwd(), configPath))) {
-            const configType = configPath.endsWith(".ts") ? "typescript" : "javascript";
+            const configType = configPath.endsWith(".ts")
+                ? "typescript"
+                : "javascript";
 
             if (configType == "typescript") {
-                const configProcess = exec(`npx ts-node "${path.join(process.cwd(), configPath)}"`);
+                const configProcess = exec(
+                    `npx ts-node "${path.join(process.cwd(), configPath)}"`
+                );
                 configProcess.stdout?.on("data", resolveWithJson);
             }
 
-            const configProcess = exec(`node "${path.join(process.cwd(), configPath)}"`);
-            configProcess.stdout?.on("data", data => resolveWithJson);
+            const configProcess = exec(
+                `node "${path.join(process.cwd(), configPath)}"`
+            );
+            configProcess.stdout?.on("data", (data) => resolveWithJson);
             return;
         }
 
@@ -73,7 +85,7 @@ application.useCustomHelperRenderer((helpList, commandName) => {
     if (commandName) {
         let matched = false;
 
-        helpList.forEach(helpPage => {
+        helpList.forEach((helpPage) => {
             if (helpPage.commandName == commandName) {
                 matched = true;
 
@@ -82,39 +94,63 @@ application.useCustomHelperRenderer((helpList, commandName) => {
 
                 terminal.log("Options:");
                 for (const flag in helpPage.flags) {
-                    terminal.log(` -  ${flag}  -  ${helpPage.flags[flag].description}`);
+                    terminal.log(
+                        ` -  ${flag}  -  ${helpPage.flags[flag].description}`
+                    );
                 }
             }
         });
 
         if (!matched) {
-            terminal.error(`That command does not exist, use "help" for a list of commands`);
+            terminal.error(
+                `That command does not exist, use "help" for a list of commands`
+            );
         }
         return;
     }
 
-    terminal.log(`Help List | Type "help [ Command Name ] for a detailed view"`);
-    helpList.forEach(helpPage => {
+    terminal.log(
+        `Help List | Type "help [ Command Name ] for a detailed view"`
+    );
+    helpList.forEach((helpPage) => {
         terminal.log(` -  ${helpPage.commandName}  -  ${helpPage.description}`);
     });
 });
 
-application.addCommand("dev", {...defaultTaskFlags as any}, (args, flags) => {
-    getNitrexConfig(flags.config, (flags.useDefaultConfig == "true" || flags.useDefaultConfig as any == true)).then(config => new Dev(args, flags, config));
-}, {
-    description: "Start your application in development mode"
-});
-
-application.addCommand("build", {
-    ...defaultTaskFlags as any,
-    platform: {
-        type: "string",
-        description: "The platform type to build for"
+application.addCommand(
+    "dev",
+    {...(defaultTaskFlags as any)},
+    (args, flags) => {
+        getNitrexConfig(
+            flags.config,
+            flags.useDefaultConfig == "true" ||
+            (flags.useDefaultConfig as any) == true
+        ).then((config) => new Dev(args, flags, config));
+    },
+    {
+        description: "Start your application in development mode",
     }
-}, (args, flags) => {
-    getNitrexConfig(flags.config, (flags.useDefaultConfig == "true" || flags.useDefaultConfig as any == true)).then(config => new Build(args, flags, config));
-}, {
-    description: "Build your application"
-});
+);
+
+application.addCommand(
+    "build",
+    {
+        ...(defaultTaskFlags as any),
+        platform: {
+            type: "string",
+            description: "The platform type to build for",
+        },
+    },
+    (args, flags) => {
+        getNitrexConfig(
+            flags.config,
+            flags.useDefaultConfig == "true" ||
+            (flags.useDefaultConfig as any) == true
+        ).then((config) => new Build(args, flags, config));
+    },
+    {
+        description: "Build your application",
+    }
+);
 
 application.execute(application.processSplice(process.argv));

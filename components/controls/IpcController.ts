@@ -9,7 +9,10 @@ class IpcController {
         ipcRenderer?.send(channel, message);
     }
 
-    public onCommand<MessageType>(channel: string, listener: (message: MessageType) => void) {
+    public onCommand<MessageType>(
+        channel: string,
+        listener: (message: MessageType) => void
+    ) {
         ipcRenderer?.on(channel, (event, message) => {
             listener(message);
         });

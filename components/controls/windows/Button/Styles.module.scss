@@ -9,11 +9,17 @@
     border-radius: 4px;
     transition: 100ms;
     user-select: none;
-    box-shadow: 0 -1px 0 $elevation_control_border, 1px 0 0 $elevation_control_border, 0 2px 0 -1px $elevation_control_borderBottom, -1px 0 0 $elevation_control_border;
+    box-shadow: 0 -1px 0 $elevation_control_border,
+    1px 0 0 $elevation_control_border,
+    0 2px 0 -1px $elevation_control_borderBottom,
+    -1px 0 0 $elevation_control_border;
 
     &:hover {
         background: $fill_control_secondary;
-        box-shadow: 0 -1px 0 $elevation_strokeColor_controlStroke_default, 1px 0 0 $elevation_strokeColor_controlStroke_default, 0 2px 0 -1px $elevation_strokeColor_controlStroke_default, -1px 0 0 $elevation_strokeColor_controlStroke_default;
+        box-shadow: 0 -1px 0 $elevation_strokeColor_controlStroke_default,
+        1px 0 0 $elevation_strokeColor_controlStroke_default,
+        0 2px 0 -1px $elevation_strokeColor_controlStroke_default,
+        -1px 0 0 $elevation_strokeColor_controlStroke_default;
 
         &:active {
             background: $fill_control_tertiary;
