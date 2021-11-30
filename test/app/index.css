@@ -1,4 +1,5 @@
 body {
     background: var(--background_solidBackground_base);
     margin: 0;
+    font-family: "Segoe UI", sans-serif;
 }

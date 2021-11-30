@@ -9,6 +9,7 @@ import { ToggleButton } from "./controls/shared/ToggleButton";
 import { App } from "./controls/shared/App";
 import { ContentRouter } from "./controls/shared/ContentRouter";
 import { RouteLink } from "./controls/shared/RouteLink";
+import { Glass } from "./controls/shared/Glass";
 
 export {
     Button,
@@ -18,6 +19,7 @@ export {
     App,
     ContentRouter,
     RouteLink,
+    Glass,
     themeManager,
     ipcController,
     renderer,
