@@ -11,6 +11,8 @@ import { ContentRouter } from "./controls/shared/ContentRouter";
 import { RouteLink } from "./controls/shared/RouteLink";
 import { Glass } from "./controls/shared/Glass";
 import { TextBlock } from "./controls/shared/TextBlock";
+import { TextBox } from "./controls/shared/TextBox";
+import { defaultLightTheme } from "./controls/windows/DefaultLightTheme";
 
 if (location.pathname != "/") {
     location.href = "/";
@@ -26,8 +28,10 @@ export {
     RouteLink,
     Glass,
     TextBlock,
+    TextBox,
     themeManager,
     ipcController,
     renderer,
     defaultDarkTheme,
+    defaultLightTheme
 };

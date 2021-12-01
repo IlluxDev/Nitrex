@@ -1,0 +1,42 @@
+@import "../Theme";
+
+.root {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    background: $fill_control_default;
+    min-height: 32px;
+    border: 1px solid transparent;
+    border-bottom-color: $fill_text_tertiary;
+
+    input {
+        outline: none;
+        background: transparent;
+        color: $fill_text_primary;
+        border: none;
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+        border-bottom: 1px solid transparent;
+    }
+
+    &:hover {
+        background: $fill_control_secondary;
+    }
+
+    &:focus-within {
+        border-color: $fill_control_default;
+        border-bottom-color: $fill_accent_default;
+        background: $background_solidBackground_base;
+
+        input {
+            border-color: $fill_accent_default;
+        }
+    }
+}

@@ -4,6 +4,6 @@ import React from "react";
 
 export function RouteLink(props: Props) {
     return (
-        <Link to={props.href}>{props.children}</Link>
+        <Link style={props.styles ?? {}} className={props.className ?? ""} to={props.href}>{props.children}</Link>
     )
 }

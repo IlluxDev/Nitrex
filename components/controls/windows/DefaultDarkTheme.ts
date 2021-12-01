@@ -1,6 +1,6 @@
 import { ThemeProps } from "./ThemeProps";
 
-const defaultDarkTheme = {
+const defaultDarkTheme: ThemeProps = {
     fill_text_primary: "#FFFFFF",
     fill_text_secondary: "rgba(255, 255, 255, 78.6%)",
     fill_text_tertiary: "rgba(255, 255, 255, 54.42%)",
@@ -100,6 +100,6 @@ const defaultDarkTheme = {
     background_layer_alt: "rgba(255, 255, 255, 5.38%)",
     background_layerOnAcrylic_default: "rgba(255, 255, 255, 3.59%)",
     background_layerOnAccentAcrylic_default: "rgba(255, 255, 255, 3.59%)",
-} as ThemeProps;
+};
 
 export { defaultDarkTheme };

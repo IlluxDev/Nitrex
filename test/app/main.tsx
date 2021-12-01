@@ -5,18 +5,19 @@ import {
     App,
     Button,
     ContentRouter,
-    defaultDarkTheme,
+    defaultLightTheme,
     FlexPanel,
     renderer,
     RouteLink,
     TextBlock,
+    TextBox,
     themeManager,
     TitleBar,
     ToggleButton
 } from "@illuxdev/nitrex-components";
 
 themeManager.installTheme({
-    ...defaultDarkTheme,
+    ...defaultLightTheme,
     ...{
         fill_accent_default: "#dd9de7",
         fill_accent_secondary: "rgba(221,157,231,0.93)",
@@ -38,6 +39,7 @@ function View() {
             <TextBlock header={4}>Button Tests</TextBlock>
             <TextBlock header={5}>Button Tests</TextBlock>
             <TextBlock header={6}>Button Tests</TextBlock>
+            <TextBlock>Button Tests</TextBlock>
 
             <Button disabled={disableButtons} primary>Button</Button>
             <ToggleButton disabled={toggleDisabled} onToggle={setDisableButtonsState}>Disable All Buttons</ToggleButton>
@@ -58,7 +60,7 @@ ReactDOM.render(
                 },
                 {
                     path: "/",
-                    element: <span>Home</span>
+                    element: <TextBlock header={4}>Home</TextBlock>
                 }
             ]}/>
 
@@ -67,6 +69,7 @@ ReactDOM.render(
                 <FlexPanel spacing={10}>
                     <RouteLink href={"/"}>Home</RouteLink>
                     <RouteLink href={"/cats"}>Cute Kitties</RouteLink>
+                    <TextBox placeholder={"Some Place Holder"}/>
                 </FlexPanel>
             </FlexPanel>
         </App>
