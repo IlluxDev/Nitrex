@@ -31,8 +31,8 @@ const defaultLightTheme: ThemeProps = {
     fill_controlAlt_quarternary: "rgba(0, 0, 0, 0.0924)",
     fill_controlAlt_disabled: "#FFFFFF00",
     fill_accent_default: "#005FB8",
-    fill_accent_secondary: "#005FB890",
-    fill_accent_tertiary: "#005FB880",
+    fill_accent_secondary: "rgba(0, 95, 184, 90%)",
+    fill_accent_tertiary: "rgba(0, 95, 184, 80%)",
     fill_accent_disabled: "rgba(0, 0, 0, 21.69%)",
     fill_accent_selectedTextBackground: "#0078D4",
     fill_controlOnImage_default: "rgba(255, 255, 255, 79%)",
@@ -47,26 +47,34 @@ const defaultLightTheme: ThemeProps = {
     elevation_textControl_borderFocused: "rgba(0, 0, 0, 5.78%)",
     elevation_accentControl_border: "#FFFFFF08",
 
+    elevation_strokeColor_controlStroke_default: "rgba(0, 0, 0, 5.78%)",
+    elevation_strokeColor_controlStroke_secondary: "rgba(0, 0, 0, 16.22%)",
+    elevation_strokeColor_controlStroke_onAccentDefault: "rgba(255, 255, 255, 8%)",
+    elevation_strokeColor_controlStroke_onAccentSecondary: "rgba(0, 0, 0, 40%)",
+    elevation_strokeColor_controlStroke_onAccentTertiary: "rgba(0, 0, 0, 21.69%)",
+    elevation_strokeColor_controlStroke_onAccentDisabled: "rgba(0, 0, 0, 5.78%)",
+    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: "rgba(255, 255, 255, 35%)",
+
     /**
      * XFAON SKIPPING STROKE COLOR FOR NOW
      */
-    background_cardBackground_default: "",
-    background_cardBackground_secondary: "",
+    background_cardBackground_default: "rgba(255, 255, 255, 70%)",
+    background_cardBackground_secondary: "rgba(246, 246, 246, 50%)",
 
-    background_smoke_default: "",
+    background_smoke_default: "rgba(0, 0, 0, 30%)",
 
-    background_layer_default: "",
-    background_layer_alt: "",
+    background_layer_default: "rgba(255, 255, 255, 50%)",
+    background_layer_alt: "#FFFFFF",
 
-    background_layerOnAcrylic_default: "",
+    background_layerOnAcrylic_default: "rgba(255, 255, 255, 25%)",
 
-    background_layerOnAccentAcrylic_default: "",
+    background_layerOnAccentAcrylic_default: "rgba(255, 255, 255, 25%)",
 
-    background_acrylicBackground_base: "",
-    background_acrylicBackground_default: "",
+    background_acrylicBackground_base: "#F3F3F3",
+    background_acrylicBackground_default: "#FCFCFC",
 
-    background_micaBackground_base: "",
-    background_micaBackground_baseActive: "",
+    background_micaBackground_base: "#F9F9F9",
+    background_micaBackground_baseActive: "#F3F3F3",
 
     background_solidBackground_base: "#F3F3F3",
     background_solidBackground_secondary: "#EEEEEE",

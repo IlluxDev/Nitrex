@@ -28,7 +28,7 @@
         outline: none;
 
         &:hover {
-            background: $background_solidBackground_tertiary;
+            background: $fill_control_default;
         }
     }
 }
@@ -42,10 +42,11 @@
 
 .closeButton {
     &:hover {
-        background: #c42b1c !important;
+        background: #c82c1c !important;
+        color: #fff;
 
         &:active {
-            color: $fill_text_tertiary;
+            color: #ffffff90;
         }
     }
 }

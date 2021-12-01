@@ -5,8 +5,10 @@ import {
     App,
     Button,
     ContentRouter,
+    defaultDarkTheme,
     defaultLightTheme,
     FlexPanel,
+    Glass,
     renderer,
     RouteLink,
     TextBlock,
@@ -18,11 +20,6 @@ import {
 
 themeManager.installTheme({
     ...defaultLightTheme,
-    ...{
-        fill_accent_default: "#dd9de7",
-        fill_accent_secondary: "rgba(221,157,231,0.93)",
-        fill_accent_tertiary: "rgba(221,157,231,0.89)"
-    }
 });
 
 renderer.setPageZoom(1);
@@ -44,6 +41,9 @@ function View() {
             <Button disabled={disableButtons} primary>Button</Button>
             <ToggleButton disabled={toggleDisabled} onToggle={setDisableButtonsState}>Disable All Buttons</ToggleButton>
             <ToggleButton onToggle={setToggle}>Disable Toggle Button</ToggleButton>
+            <ToggleButton
+                onToggle={value => value ? themeManager.installTheme(defaultDarkTheme) : themeManager.installTheme(defaultLightTheme)}>Dark
+                Theme</ToggleButton>
         </FlexPanel>
     )
 }
@@ -65,13 +65,21 @@ ReactDOM.render(
             ]}/>
 
             <FlexPanel direction={"horizontal"} padding={20} spacing={20}>
-                <View />
+                <View/>
                 <FlexPanel spacing={10}>
                     <RouteLink href={"/"}>Home</RouteLink>
                     <RouteLink href={"/cats"}>Cute Kitties</RouteLink>
                     <TextBox placeholder={"Some Place Holder"}/>
                 </FlexPanel>
             </FlexPanel>
+
+            <Glass style={{
+                position: "fixed",
+                top: "0px",
+                left: "0px",
+                width: "500px",
+                height: "500px"
+            }}/>
         </App>
     </React.StrictMode>,
     document.getElementById("root")
