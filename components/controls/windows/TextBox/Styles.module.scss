@@ -33,7 +33,7 @@
     &:focus-within {
         border-color: $fill_control_default;
         border-bottom-color: $fill_accent_default;
-        background: $background_solidBackground_base;
+        background: $background_solidBackground_quarternary;
 
         input {
             border-color: $fill_accent_default;

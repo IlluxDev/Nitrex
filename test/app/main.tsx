@@ -8,7 +8,6 @@ import {
     defaultDarkTheme,
     defaultLightTheme,
     FlexPanel,
-    Glass,
     renderer,
     RouteLink,
     TextBlock,
@@ -72,14 +71,6 @@ ReactDOM.render(
                     <TextBox placeholder={"Some Place Holder"}/>
                 </FlexPanel>
             </FlexPanel>
-
-            <Glass style={{
-                position: "fixed",
-                top: "0px",
-                left: "0px",
-                width: "500px",
-                height: "500px"
-            }}/>
         </App>
     </React.StrictMode>,
     document.getElementById("root")
