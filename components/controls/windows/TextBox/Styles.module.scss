@@ -12,7 +12,7 @@
     border-radius: 4px;
     background: $fill_control_default;
     min-height: 32px;
-    border: 1px solid transparent;
+    border: 1px solid $elevation_strokeColor_controlStroke_default;
     border-bottom-color: $fill_text_tertiary;
 
     input {
@@ -31,7 +31,7 @@
     }
 
     &:focus-within {
-        border-color: $fill_control_default;
+        border-color: $elevation_strokeColor_controlStroke_default;
         border-bottom-color: $fill_accent_default;
         background: $background_solidBackground_quarternary;
 

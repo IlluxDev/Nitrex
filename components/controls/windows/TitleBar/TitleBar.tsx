@@ -68,6 +68,9 @@ export function TitleBar(props: Props) {
             className={`${styles.root} ${
                 props.extendIntoView ? styles.extendIntoViewMode : {}
             }`}
+            style={props.transparent ? {
+                background: "transparent"
+            } : {}}
         >
             <div className={styles.titleArea}>
                 {!props.disableAutoBackButton && !props.extendIntoView && canGoBack ? (

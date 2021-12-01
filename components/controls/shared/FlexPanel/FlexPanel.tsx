@@ -11,6 +11,7 @@ export function FlexPanel(props: FlexPanelProps) {
 					props.direction == "horizontal" ? "row" : "column",
 				gap: (props.spacing ?? 0) + "px",
 				padding: (props.padding ?? 0) + "px",
+				...props.style ?? {}
 			}}
 		>
 			{props.children}

@@ -13,10 +13,7 @@ import { Glass } from "./controls/shared/Glass";
 import { TextBlock } from "./controls/shared/TextBlock";
 import { TextBox } from "./controls/shared/TextBox";
 import { defaultLightTheme } from "./controls/windows/DefaultLightTheme";
-
-if (location.pathname != "/") {
-    location.href = "/";
-}
+import { windowEffects as windowsWindowEffects } from "./utils/windows/WindowEffects";
 
 export {
     Button,
@@ -33,5 +30,6 @@ export {
     ipcController,
     renderer,
     defaultDarkTheme,
-    defaultLightTheme
+    defaultLightTheme,
+    windowsWindowEffects
 };

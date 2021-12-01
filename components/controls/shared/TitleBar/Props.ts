@@ -8,4 +8,9 @@ export interface Props {
      * @supported Windows
      */
     disableAutoBackButton?: boolean;
+
+    /**
+     * @supported Windows
+     */
+    transparent?: boolean;
 }
