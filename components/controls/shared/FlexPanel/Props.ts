@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-export interface FlexPanelProps {
+export interface Props {
     children?: JSX.Element[] | JSX.Element;
     direction?: "horizontal" | "vertical";
     spacing?: number;

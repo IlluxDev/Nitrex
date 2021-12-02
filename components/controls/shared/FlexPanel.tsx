@@ -1,8 +1,8 @@
-import { FlexPanelProps } from "./FlexPanelProps";
-import styles from "./Styles.module.scss";
+import { Props } from "./FlexPanel/Props";
+import styles from "./FlexPanel/Styles.module.scss";
 import React from "react";
 
-export function FlexPanel(props: FlexPanelProps) {
+export function FlexPanel(props: Props) {
 	return (
 		<div
 			className={`${styles.root}`}

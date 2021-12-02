@@ -1,5 +1,5 @@
 import React from "react";
-import { Props } from "../../shared/Glass/Glass";
+import { Props } from "../../shared/Glass/Props";
 import styles from "./Styles.module.scss";
 import sheet from "./sheet.png";
 
