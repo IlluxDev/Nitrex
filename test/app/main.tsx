@@ -6,12 +6,11 @@ import {
     defaultDarkTheme,
     defaultLightTheme,
     FlexPanel,
+    NavigationView,
     renderer,
-    RouteLink,
     TextBlock,
     TextBox,
     themeManager,
-    TitleBar,
     ToggleButton
 } from "@illuxdev/nitrex-components";
 import "./index.css";
@@ -61,7 +60,7 @@ function Settings() {
                     return;
                 }
 
-                windowEffects.applyEffect("acrylic");
+                windowEffects.applyEffect(false);
             }}>Mica Effect</ToggleButton>
 
             <br/>
@@ -74,7 +73,7 @@ function Settings() {
             }}>
                 {Object.keys(defaultLightTheme).map(themeItem => {
                     return (
-                        <div style={{
+                        <div key={themeItem} style={{
                             display: "flex",
                             gap: "10px",
                             color: "var(--fill_text_primary)"
@@ -105,17 +104,7 @@ const navLinkStyle: CSSProperties = {
 ReactDOM.render(
     <React.StrictMode>
         <App baseBackground={false}>
-            <TitleBar/>
-
-            <FlexPanel padding={10}>
-                <FlexPanel direction={"horizontal"} spacing={10}>
-                    <RouteLink style={navLinkStyle} href={"/"}>Home</RouteLink>
-                    <RouteLink style={navLinkStyle} href={"/cats"}>Cats</RouteLink>
-                    <RouteLink style={navLinkStyle} href={"/settings"}>Settings</RouteLink>
-                </FlexPanel>
-
-                <br/>
-
+            <NavigationView displayMode={"top"}>
                 <ContentRouter routes={[
                     {
                         path: "/cats",
@@ -130,7 +119,7 @@ ReactDOM.render(
                         element: <Home/>
                     }
                 ]}/>
-            </FlexPanel>
+            </NavigationView>
         </App>
     </React.StrictMode>,
     document.getElementById("root")

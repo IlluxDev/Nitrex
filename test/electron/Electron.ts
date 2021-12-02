@@ -6,6 +6,8 @@ const nitrex = new ElectronNitrex({
     projectRoot: path.join(__dirname, "../")
 });
 
+nitrex.getBrowserWindow()
+
 nitrex.on("ready", () => {
     nitrex.log("App is ready");
 });

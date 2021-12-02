@@ -14,6 +14,7 @@ import { TextBlock } from "./controls/shared/TextBlock";
 import { TextBox } from "./controls/shared/TextBox";
 import { defaultLightTheme } from "./controls/windows/DefaultLightTheme";
 import { windowEffects as windowsWindowEffects } from "./utils/windows/WindowEffects";
+import { NavigationView } from "./controls/shared/NavigationView";
 
 export {
     Button,
@@ -26,6 +27,7 @@ export {
     Glass,
     TextBlock,
     TextBox,
+    NavigationView,
     themeManager,
     ipcController,
     renderer,
