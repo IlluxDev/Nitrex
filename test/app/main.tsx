@@ -104,7 +104,7 @@ const navLinkStyle: CSSProperties = {
 ReactDOM.render(
     <React.StrictMode>
         <App baseBackground={false}>
-            <NavigationView displayMode={"top"}>
+            <NavigationView displayMode={"left"}>
                 <ContentRouter routes={[
                     {
                         path: "/cats",

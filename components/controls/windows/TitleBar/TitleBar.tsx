@@ -1,5 +1,5 @@
 import { Props } from "../../shared/TitleBar/Props";
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import styles from "./Styles.module.scss";
 import { Icon } from "@iconify/react";
 import { ipcController } from "../../IpcController";
@@ -63,14 +63,22 @@ export function TitleBar(props: Props) {
         });
     }
 
+    const jsStyles: CSSProperties = {};
+
+    if (props.transparent) {
+        jsStyles.background = "transparent";
+    }
+
+    if (props.noDrag) {
+        jsStyles["WebkitAppRegion"] = "no-drag";
+    }
+
     return (
         <div
             className={`${styles.root} ${
                 props.extendIntoView ? styles.extendIntoViewMode : {}
             }`}
-            style={props.transparent ? {
-                background: "transparent"
-            } : {}}
+            style={jsStyles}
         >
             <div className={styles.titleArea}>
                 {!props.disableAutoBackButton && !props.extendIntoView && canGoBack ? (

@@ -12,5 +12,7 @@ export interface Props {
     /**
      * @supported Windows
      */
-    transparent?: boolean;
+    transparent?: boolean
+
+    noDrag?: boolean;
 }
