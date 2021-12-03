@@ -54,6 +54,15 @@ const defaultLightTheme: ThemeProps = {
     elevation_strokeColor_controlStroke_onAccentTertiary: "rgba(0, 0, 0, 21.69%)",
     elevation_strokeColor_controlStroke_onAccentDisabled: "rgba(0, 0, 0, 5.78%)",
     elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: "rgba(255, 255, 255, 35%)",
+    elevation_strokeColor_controlStrongStroke_default: "rgba(0, 0, 0, 44.58%)",
+    elevation_strokeColor_controlStrongStroke_disabled: "rgba(0, 0, 0, 21.69%)",
+    elevation_strokeColor_cardStroke_default: "rgba(0, 0, 0, 05.78%)",
+    elevation_strokeColor_cardStroke_defaultSolid: "#EBEBEB",
+    elevation_strokeColor_dividerStroke_default: "rgba(0, 0, 0, 8.03%)",
+    elevation_strokeColor_surfaceStroke_default: "rgba(117, 117, 117, 40%)",
+    elevation_strokeColor_surfaceStroke_flyout: "rgba(0, 0, 0, 5.78%)",
+    elevation_strokeColor_focusStroke_outer: "rgba(0, 0, 0, 89.56%)",
+    elevation_strokeColor_focusStroke_inner: "#FFFFFF",
 
     /**
      * XFAON SKIPPING STROKE COLOR FOR NOW

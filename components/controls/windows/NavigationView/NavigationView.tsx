@@ -1,11 +1,16 @@
 import { Props } from "../../shared/NavigationView/Props";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Styles.module.scss";
 import defaultIcon from "./DefaultIcon.svg";
 import { TitleBar } from "../TitleBar/TitleBar";
 import { Button } from "../Button/Button";
+import { Icon } from "@iconify/react";
+
+let loop: any = null;
 
 export function NavigationView(props: Props) {
+    const [canGoBack, setCanGoBackState] = useState(true);
+
     return (
         <div className={styles.root}>
             <TitleBar noDrag={true} transparent={props.displayMode == "top"}
@@ -18,6 +23,16 @@ export function NavigationView(props: Props) {
                         ?
                         <div className={styles.leftModeTitleBar}>
                             <div className={styles.leftModeTitleBarTitle}>
+                                <button onClick={() => setCanGoBackState(false)}
+                                        className={`${!canGoBack ? styles.leftModeTitleBarTitleButtonHide : {}}`}>
+                                    <Icon
+                                        style={{
+                                            fontSize: "15px",
+                                        }}
+                                        icon="fluent:arrow-left-16-regular"
+                                    />
+                                </button>
+
                                 <div className={styles.leftModeTitleBarTitleIcon}>
                                     <img src={defaultIcon}/>
                                 </div>
@@ -30,8 +45,19 @@ export function NavigationView(props: Props) {
                             <Button>Not Finished</Button>
                         </div>
                 }
+            </div>
 
+            <div
+                className={`${!props.displayMode || props.displayMode == "left" ? styles.leftModeContentArea : styles.topModeContentArea}`}>
+                {!props.displayMode || props.displayMode == "left"
+                    ?
+                    <div>
+                        Side
+                    </div>
+                    : null
+                }
 
+                <div className={styles.contentInner}>{props.children}</div>
             </div>
         </div>
     )

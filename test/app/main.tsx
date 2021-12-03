@@ -9,7 +9,6 @@ import {
     NavigationView,
     renderer,
     TextBlock,
-    TextBox,
     themeManager,
     ToggleButton
 } from "@illuxdev/nitrex-components";
@@ -29,10 +28,17 @@ function Cats() {
 
 function Home() {
     return (
-        <div>
-            <TextBlock header={4}>Welcome To The Nitrex Demo App</TextBlock>
-            <TextBox/>
-        </div>
+        <FlexPanel padding={20}>
+            <TextBlock header={6}>Enable Dark Theme</TextBlock>
+            <ToggleButton onToggle={useDark => {
+                if (useDark) {
+                    themeManager.installTheme(defaultDarkTheme);
+                    return;
+                }
+
+                themeManager.installTheme(defaultLightTheme);
+            }}>Dark Theme</ToggleButton>
+        </FlexPanel>
     )
 }
 

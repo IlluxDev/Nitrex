@@ -13,6 +13,18 @@
     align-items: center;
     justify-content: space-between;
     -webkit-app-region: drag;
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc(48px * 3);
+        height: 32px;
+        -webkit-app-region: no-drag;
+        pointer-events: none;
+    }
 }
 
 .leftModeTitleBarTitle {
@@ -20,6 +32,38 @@
     display: flex;
     gap: 20px;
     padding-left: 10px;
+    align-items: center;
+
+    button {
+        -webkit-app-region: no-drag;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        border: none;
+        background: $fill_control_transparent;
+        transition: 100ms;
+        z-index: 1;
+        color: $fill_text_primary;
+        align-items: center;
+        justify-content: center;
+        margin-right: -20px;
+        overflow: hidden;
+
+        &:hover {
+            background: $fill_subtle_secondary;
+
+            &:active {
+                background: $fill_subtle_tertiary;
+            }
+        }
+    }
+}
+
+.leftModeTitleBarTitleButtonHide {
+    margin-left: -30px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .leftModeTitleBarTitleIcon {
@@ -45,7 +89,19 @@
 }
 
 .leftModeContentArea {
+    display: flex;
+    height: calc(100% - 50px);
+    overflow: hidden;
+    background: $background_solidBackground_secondary;
+}
 
+.contentInner {
+    width: 100%;
+    background: $background_layer_default;
+    overflow-y: auto;
+    border-radius: 8px 0 0 0;
+    outline: 1px solid $elevation_strokeColor_cardStroke_default;
+    margin: 1px 0 0 1px;
 }
 
 .topModeContentArea {
