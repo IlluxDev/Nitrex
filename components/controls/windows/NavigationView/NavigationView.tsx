@@ -8,13 +8,14 @@ import { Icon } from "@iconify/react";
 import { ToggleButton } from "../../shared/ToggleButton";
 import { TextBox } from "../TextBox/TextBox";
 import { NavigationItem } from "./NavigationItem";
+import { FlexPanel } from "../../../Components";
 
 let loop: any = null;
 let setInitBack = false;
 
 export function NavigationView(props: Props) {
-    const [canGoBack, setCanGoBackState] = useState(true);
-    const [sideBarOpened, setSideBarOpenedState] = useState(false);
+    const [canGoBack, setCanGoBackState] = useState(document.location.pathname != "/");
+    const [sideBarOpened, setSideBarOpenedState] = useState(localStorage.getItem("_Nitrex_NavigationView_opened") == "true");
 
     if (!setInitBack && document.location.pathname == "/") {
         setCanGoBackState(false);
@@ -64,9 +65,20 @@ export function NavigationView(props: Props) {
                     <div className={`${styles.leftModeSideBar} ${!sideBarOpened ? styles.leftModeSideBarClosed : {}}`}>
                         <div>
                             {/*<h1>Head</h1>*/}
-                            <button className={styles.leftModeSideBarIconButton} onClick={() => sideBarOpened ? setSideBarOpenedState(false) : setSideBarOpenedState(true)}>
+                            <button className={styles.leftModeSideBarIconButton} onClick={() => {
+                                sideBarOpened ? setSideBarOpenedState(false) : setSideBarOpenedState(true);
+                                localStorage.setItem("_Nitrex_NavigationView_opened", !sideBarOpened + "");
+                            }}>
                                 <Icon icon={"fluent:navigation-16-regular"} />
                             </button>
+
+                            { !sideBarOpened ? <button onClick={() => {
+                                setSideBarOpenedState(true);
+                            }} className={styles.leftModeSideBarIconButton}>
+                                <Icon icon={"fluent:search-16-regular"} />
+                            </button> : <FlexPanel padding={[4, 20]}>
+                                <TextBox />
+                            </FlexPanel> }
                             {/*<TextBox />*/}
                         </div>
 
@@ -86,7 +98,12 @@ export function NavigationView(props: Props) {
                                     items: [
                                         {
                                             label: "Zen",
-                                            inset: 2
+                                            inset: 2,
+                                            items: [
+                                                {
+                                                    label: "The Better Theme"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }

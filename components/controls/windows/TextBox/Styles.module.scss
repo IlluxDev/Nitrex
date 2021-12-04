@@ -21,9 +21,8 @@
         color: $fill_text_primary;
         border: none;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 1px);
         padding: 0 10px;
-        border-bottom: 1px solid transparent;
     }
 
     &:hover {
@@ -33,10 +32,10 @@
     &:focus-within {
         border-color: $elevation_strokeColor_controlStroke_default;
         border-bottom-color: $fill_accent_default;
-        background: $background_solidBackground_quarternary;
+        background: $fill_control_inputActive;
 
         input {
-            border-color: $fill_accent_default;
+            box-shadow: 0 1px 0px $fill_accent_default;;
         }
     }
 }

@@ -1,12 +1,10 @@
 import { Icon } from "@iconify/react";
 import { NavigationItemProps } from "./NavigationItemProps";
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
+import React, { CSSProperties, forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./NavigationItem.module.scss";
 
-export function NavigationItem(props: NavigationItemProps) {
+function NavigationItem(props: NavigationItemProps) {
     const [opened, setOpenedState] = useState(false);
-    const [dropDownHeight, setDropDownHeightState] = useState(0);
-    const dropDownRef = useRef(null);
 
     const mainItemStyles: CSSProperties = {};
     if (props.inset) {
@@ -39,7 +37,7 @@ export function NavigationItem(props: NavigationItemProps) {
                 <span className={`${styles.mainItemLabel} ${!props.sideBarOpened ? styles.mainItemLabelHidden : {}}`}>{props.label}</span>
             </div>
 
-            <div className={`${styles.itemsDropDown} ${!props.sideBarOpened || opened ? styles.itemsDropDownHide : {}}`}>
+            <div className={`${styles.itemsDropDown} ${props.sideBarOpened && opened ? {} : styles.itemsDropDownHide}`}>
                 {props.items?.map(item => {
                     return <NavigationItem key={"NavigationView_NavigationItem_item_" + item.label + new Date()} {...item} sideBarOpened={props.sideBarOpened} inset={props.inset + 1} />
                 })}
@@ -47,3 +45,6 @@ export function NavigationItem(props: NavigationItemProps) {
         </div>
     )
 }
+
+const _NavigationItem = React.forwardRef(NavigationItem);
+export { _NavigationItem as NavigationItem };

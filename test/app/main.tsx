@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import {
     App,
@@ -115,25 +115,31 @@ const navLinkStyle: CSSProperties = {
     borderBottom: "1px solid var(--fill_accent_default)"
 };
 
+function Com() {
+    return (
+        <NavigationView displayMode={"left"}>
+            <ContentRouter routes={[
+                {
+                    path: "/cats",
+                    element: <Cats/>
+                },
+                {
+                    path: "/settings",
+                    element: <Settings/>
+                },
+                {
+                    path: "/",
+                    element: <Home/>
+                }
+            ]}/>
+        </NavigationView>
+    )
+}
+
 ReactDOM.render(
     <React.StrictMode>
         <App baseBackground={false}>
-            <NavigationView displayMode={"left"}>
-                <ContentRouter routes={[
-                    {
-                        path: "/cats",
-                        element: <Cats/>
-                    },
-                    {
-                        path: "/settings",
-                        element: <Settings/>
-                    },
-                    {
-                        path: "/",
-                        element: <Home/>
-                    }
-                ]}/>
-            </NavigationView>
+            <Com />
         </App>
     </React.StrictMode>,
     document.getElementById("root")
