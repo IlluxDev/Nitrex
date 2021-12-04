@@ -63,11 +63,11 @@ export function NavigationView(props: Props) {
                     ?
                     <div className={`${styles.leftModeSideBar} ${!sideBarOpened ? styles.leftModeSideBarClosed : {}}`}>
                         <div>
-                            <h1>Head</h1>
+                            {/*<h1>Head</h1>*/}
                             <button onClick={() => sideBarOpened ? setSideBarOpenedState(false) : setSideBarOpenedState(true)}>
                                 =
                             </button>
-                            <TextBox />
+                            {/*<TextBox />*/}
                         </div>
 
                         <div>
@@ -108,8 +108,8 @@ export function NavigationView(props: Props) {
                         </div>
 
                         <div>
-                            Settings<br />
-                            <h1>Footer</h1>
+                            <NavigationItem sideBarOpened={sideBarOpened} label={"Settings"} />
+                            {/*<h1>Footer</h1>*/}
                         </div>
                     </div>
                     : null

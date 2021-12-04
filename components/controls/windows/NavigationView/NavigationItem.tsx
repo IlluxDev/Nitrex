@@ -7,7 +7,7 @@ export function NavigationItem(props: NavigationItemProps) {
     return (
         <div className={styles.root}>
             <div className={`${styles.mainItem} ${!props.sideBarOpened ? styles.mainItemCompact : {}}`} style={{
-                paddingLeft: props.sideBarOpened ? (props.inset ? props.inset * 50 : 1) : 0
+                paddingLeft: props.sideBarOpened ? (props.inset ? props.inset * 20 : 1) : 0
             }}>
                 <div className={styles.mainItemIcon}>
                     <Icon icon="fluent:search-16-regular" />

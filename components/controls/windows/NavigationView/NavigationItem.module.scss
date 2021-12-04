@@ -9,8 +9,9 @@
     width: calc(100% - 10px);
     margin-left: 5px;
     border-radius: 4px;
-    height: 40px;
-    transition: 100ms;
+    height: 35px;
+    display: flex;
+    align-items: center;
 
     &:hover {
         background: $fill_subtle_secondary;
@@ -22,15 +23,19 @@
 } 
 
 .mainItemIcon {
-    background: red;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    max-width: 20px;
     border-radius: 4px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px 0 0 5px;
+    margin: 0 0 0 10px;
+    color: $fill_text_primary;
 }
 
 .mainItemCompact {
@@ -41,6 +46,9 @@
     transition: 100ms;
     overflow: hidden;
     display: flex;
+    color: $fill_text_primary;
+    font-size: 13px;
+    margin-left: 10px;
 }
 
 .mainItemLabelHidden {
