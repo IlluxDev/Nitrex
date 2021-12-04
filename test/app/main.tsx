@@ -100,13 +100,6 @@ function Settings() {
     )
 }
 
-const navLinkStyle: CSSProperties = {
-    color: "var(--fill_accent_default)",
-    textDecoration: "none",
-    paddingBottom: "5px",
-    borderBottom: "1px solid var(--fill_accent_default)"
-};
-
 ReactDOM.render(
     <React.StrictMode>
         <App baseBackground={false}>
