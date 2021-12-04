@@ -12,6 +12,7 @@
     height: 35px;
     display: flex;
     align-items: center;
+    transition: padding 100ms;
 
     &:hover {
         background: $fill_subtle_secondary;
@@ -44,16 +45,14 @@
 
 .mainItemLabel {
     transition: 100ms;
-    overflow: hidden;
     display: flex;
     color: $fill_text_primary;
     font-size: 13px;
-    margin-left: 10px;
+    margin-left: 15px;
+    white-space: nowrap;
+    user-select: none;
 }
 
 .mainItemLabelHidden {
-    width: 0px;
-    padding: 0;
-    margin: 0;
-    height: 0px;
+    opacity: 0;
 }

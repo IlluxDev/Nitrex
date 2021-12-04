@@ -10,14 +10,22 @@ export function NavigationItem(props: NavigationItemProps) {
                 paddingLeft: props.sideBarOpened ? (props.inset ? props.inset * 20 : 1) : 0
             }}>
                 <div className={styles.mainItemIcon}>
-                    <Icon icon="fluent:search-16-regular" />
+                    {
+                        props.icon && !props.image
+                            ? <Icon icon="fluent:search-16-regular"/>
+                            : (
+                                props.image && !props.icon
+                                    ? <img src={props.image} />
+                                    : <Icon icon="fluent:paint-brush-16-regular" />
+                            )
+                    }
                 </div>
 
                 <span className={`${styles.mainItemLabel} ${!props.sideBarOpened ? styles.mainItemLabelHidden : {}}`}>{props.label}</span>
             </div>
 
             {props.items?.map(item => {
-                return <NavigationItem {...item} sideBarOpened={props.sideBarOpened} inset={props.inset + 1} />
+                return <NavigationItem key={"NavigationView_NavigationItem_item_" + item.label + new Date()} {...item} sideBarOpened={props.sideBarOpened} inset={props.inset + 1} />
             })}
         </div>
     )

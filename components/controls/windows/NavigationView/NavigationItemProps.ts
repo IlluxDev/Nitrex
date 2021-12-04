@@ -4,4 +4,6 @@ export interface NavigationItemProps {
     action?: (() => void) | string;
     inset?: number;
     sideBarOpened?: boolean;
+    icon?: string;
+    image?: string;
 }

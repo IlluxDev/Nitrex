@@ -111,8 +111,10 @@
 .leftModeSideBar {
     min-width: 300px;
     transition: 100ms;
+    overflow: auto;
 }
 
 .leftModeSideBarClosed {
     min-width: 48px;
+    overflow-x: hidden;
 }
