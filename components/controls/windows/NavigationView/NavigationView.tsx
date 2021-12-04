@@ -64,13 +64,13 @@ export function NavigationView(props: Props) {
                     <div className={`${styles.leftModeSideBar} ${!sideBarOpened ? styles.leftModeSideBarClosed : {}}`}>
                         <div>
                             {/*<h1>Head</h1>*/}
-                            <button onClick={() => sideBarOpened ? setSideBarOpenedState(false) : setSideBarOpenedState(true)}>
-                                =
+                            <button className={styles.leftModeSideBarIconButton} onClick={() => sideBarOpened ? setSideBarOpenedState(false) : setSideBarOpenedState(true)}>
+                                <Icon icon={"fluent:navigation-16-regular"} />
                             </button>
                             {/*<TextBox />*/}
                         </div>
 
-                        <div>
+                        <div className={`${styles.leftModeSideBarContent} ${!sideBarOpened ? styles.leftModeSideBarContentClosed : {}}`}>
                             <NavigationItem sideBarOpened={sideBarOpened} items={[
                                 {
                                     label: "Dark Theme [ NITREX ]",
@@ -90,7 +90,7 @@ export function NavigationView(props: Props) {
                                         }
                                     ]
                                 }
-                            ]} label="UI Themes" inset={0} />
+                            ]} label="UI Themes" image={"https://swimburger.net/media/ppnn3pcl/azure.png"} inset={0} />
 
                             <NavigationItem sideBarOpened={sideBarOpened} items={[
                                 {
@@ -108,7 +108,7 @@ export function NavigationView(props: Props) {
                         </div>
 
                         <div>
-                            <NavigationItem sideBarOpened={sideBarOpened} label={"Settings"} />
+                            <NavigationItem icon={"fluent:settings-16-regular"} sideBarOpened={sideBarOpened} label={"Settings"} />
                             {/*<h1>Footer</h1>*/}
                         </div>
                     </div>

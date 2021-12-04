@@ -142,3 +142,8 @@ $background_layerOnAcrylic_default: var(--background_layerOnAcrylic_default);
 $background_layerOnAccentAcrylic_default: var(
                 --background_layerOnAccentAcrylic_default
 );
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
