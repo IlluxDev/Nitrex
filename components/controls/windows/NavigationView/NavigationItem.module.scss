@@ -65,11 +65,15 @@
 }
 
 .itemsDropDown {
-    transition: 100ms;
+    transition: 1000ms;
     overflow: hidden;
+    max-height: none;
+    transition-delay: 0ms;
+    opacity: 1;
 }
 
 .itemsDropDownHide {
-    height: 0px !important;
+    max-height: 0;
+    transition: 1000ms;
     opacity: 0;
 }

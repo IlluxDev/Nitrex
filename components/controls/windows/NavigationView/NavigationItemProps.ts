@@ -6,4 +6,5 @@ export interface NavigationItemProps {
     sideBarOpened?: boolean;
     icon?: string;
     image?: string;
+    _onUse?: () => void;
 }
