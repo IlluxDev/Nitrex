@@ -1,0 +1,14 @@
+@import "../Theme";
+
+.root {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    backdrop-filter: blur(50px);
+    overflow: hidden;
+
+    div {
+        width: 100%;
+        height: 100%;
+    }
+}

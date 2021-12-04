@@ -1,1 +1,3 @@
-console.log("CLI cannot be used, Exolix has not been released");
+import { defineConfig } from "./DefineConfig";
+
+export { defineConfig };

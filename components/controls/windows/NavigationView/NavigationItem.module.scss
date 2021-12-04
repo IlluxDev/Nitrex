@@ -1,0 +1,51 @@
+@import "../Theme";
+
+.root {
+
+}
+
+.mainItem {
+    display: flex;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    border-radius: 4px;
+    height: 40px;
+    transition: 100ms;
+
+    &:hover {
+        background: $fill_subtle_secondary;
+
+        &:active {
+            background: $fill_subtle_tertiary;
+        }
+    }
+} 
+
+.mainItemIcon {
+    background: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0 0 5px;
+}
+
+.mainItemCompact {
+    width: 40px;
+}
+
+.mainItemLabel {
+    transition: 100ms;
+    overflow: hidden;
+    display: flex;
+}
+
+.mainItemLabelHidden {
+    width: 0px;
+    padding: 0;
+    margin: 0;
+    height: 0px;
+}

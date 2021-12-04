@@ -1,0 +1,55 @@
+@import "../Theme";
+
+.root {
+    color: $fill_text_primary;
+    border: none;
+    background: $fill_control_default;
+    padding: 8px 10px;
+    min-width: 100px;
+    border-radius: 4px;
+    transition: 100ms;
+    user-select: none;
+    box-shadow: 0 -1px 0 $elevation_control_border,
+    1px 0 0 $elevation_control_border,
+    0 2px 0 -1px $elevation_control_borderBottom,
+    -1px 0 0 $elevation_control_border;
+
+    &:hover {
+        background: $fill_control_secondary;
+        box-shadow: 0 -1px 0 $elevation_strokeColor_controlStroke_default,
+        1px 0 0 $elevation_strokeColor_controlStroke_default,
+        0 2px 0 -1px $elevation_strokeColor_controlStroke_default,
+        -1px 0 0 $elevation_strokeColor_controlStroke_default;
+
+        &:active {
+            background: $fill_control_tertiary;
+        }
+    }
+}
+
+.primaryMode {
+    box-shadow: none;
+    background: $fill_accent_default;
+    color: $fill_textOnAccent_primary;
+
+    &:hover {
+        background: $fill_accent_secondary;
+
+        &:active {
+            background: $fill_accent_tertiary;
+            color: $fill_textOnAccent_secondary;
+        }
+    }
+}
+
+.disabledMode {
+    background: $fill_control_disabled;
+    color: $fill_text_disabled;
+    pointer-events: none;
+
+    &.primaryMode {
+        background: $fill_accent_disabled;
+        color: $fill_textOnAccent_disabled;
+        pointer-events: none;
+    }
+}
