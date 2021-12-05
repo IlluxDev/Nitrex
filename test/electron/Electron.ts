@@ -9,7 +9,7 @@ const nitrex = new ElectronNitrex({
 nitrex.getBrowserWindow()
 
 nitrex.on("ready", () => {
-    nitrex.log("App is ready");
+    nitrex.log("App is ready for use");
 });
 
 nitrex.onCommand<string>("main", (msg) => {

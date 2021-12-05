@@ -93,7 +93,6 @@ export class Dev {
                 }
 
                 let electronWindow: ChildProcess;
-
                 let initialReady = false;
 
                 const onData = (d: Buffer) => {
@@ -159,7 +158,7 @@ export class Dev {
                 );
 
                 fileWatcher.on("all", (event, path) => {
-                    if (path.endsWith(".js")) {
+                    if (initialReady && path.endsWith(".js")) {
                         restartElectron();
                     }
                 });
