@@ -5,6 +5,11 @@ import styles from "./Styles.module.scss";
 export function TextBlock(props: Props) {
     return (
         <div
-            className={`${styles.root} ${props.header ? styles["header-" + props.header + "-mode"] : {}}`}>{props.children}</div>
+            className={`${styles.root} ${
+                props.header ? styles["header-" + props.header + "-mode"] : {}
+            }`}
+        >
+            {props.children}
+        </div>
     );
 }

@@ -49,11 +49,15 @@ const defaultLightTheme: ThemeProps = {
 
     elevation_strokeColor_controlStroke_default: "rgba(0, 0, 0, 5.78%)",
     elevation_strokeColor_controlStroke_secondary: "rgba(0, 0, 0, 16.22%)",
-    elevation_strokeColor_controlStroke_onAccentDefault: "rgba(255, 255, 255, 8%)",
+    elevation_strokeColor_controlStroke_onAccentDefault:
+        "rgba(255, 255, 255, 8%)",
     elevation_strokeColor_controlStroke_onAccentSecondary: "rgba(0, 0, 0, 40%)",
-    elevation_strokeColor_controlStroke_onAccentTertiary: "rgba(0, 0, 0, 21.69%)",
-    elevation_strokeColor_controlStroke_onAccentDisabled: "rgba(0, 0, 0, 5.78%)",
-    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage: "rgba(255, 255, 255, 35%)",
+    elevation_strokeColor_controlStroke_onAccentTertiary:
+        "rgba(0, 0, 0, 21.69%)",
+    elevation_strokeColor_controlStroke_onAccentDisabled:
+        "rgba(0, 0, 0, 5.78%)",
+    elevation_strokeColor_controlStroke_forStrongFillWhenOnImage:
+        "rgba(255, 255, 255, 35%)",
     elevation_strokeColor_controlStrongStroke_default: "rgba(0, 0, 0, 44.58%)",
     elevation_strokeColor_controlStrongStroke_disabled: "rgba(0, 0, 0, 21.69%)",
     elevation_strokeColor_cardStroke_default: "rgba(0, 0, 0, 05.78%)",
@@ -88,7 +92,7 @@ const defaultLightTheme: ThemeProps = {
     background_solidBackground_base: "#F3F3F3",
     background_solidBackground_secondary: "#EEEEEE",
     background_solidBackground_tertiary: "#F9F9F9",
-    background_solidBackground_quarternary: "#FFFFFF"
+    background_solidBackground_quarternary: "#FFFFFF",
 };
 
 export { defaultLightTheme };

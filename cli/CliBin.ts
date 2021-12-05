@@ -119,12 +119,12 @@ application.useCustomHelperRenderer((helpList, commandName) => {
 
 application.addCommand(
     "dev",
-    {...(defaultTaskFlags as any)},
+    { ...(defaultTaskFlags as any) },
     (args, flags) => {
         getNitrexConfig(
             flags.config,
             flags.useDefaultConfig == "true" ||
-            (flags.useDefaultConfig as any) == true
+                (flags.useDefaultConfig as any) == true
         ).then((config) => new Dev(args, flags, config));
     },
     {
@@ -145,7 +145,7 @@ application.addCommand(
         getNitrexConfig(
             flags.config,
             flags.useDefaultConfig == "true" ||
-            (flags.useDefaultConfig as any) == true
+                (flags.useDefaultConfig as any) == true
         ).then((config) => new Build(args, flags, config));
     },
     {

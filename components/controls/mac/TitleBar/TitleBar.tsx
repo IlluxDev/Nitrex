@@ -6,12 +6,9 @@ import { ipcController } from "../../IpcController";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
 import { WindowButtonActionMessage } from "../../shared/TitleBar/WindowButtonActionMessage";
 
-let onTitleUpdated = (title: string) => {
-};
-let onMaximized = () => {
-};
-let onRestored = () => {
-}
+let onTitleUpdated = (title: string) => {};
+let onMaximized = () => {};
+let onRestored = () => {};
 
 ipcController.onCommand("_internal:window:maximized", () => onMaximized());
 ipcController.onCommand("_internal:window:unMaximized", () => onRestored());
@@ -26,10 +23,10 @@ export function TitleBar(props: Props) {
     const [title, setTitleState] = useState("...");
 
     // TODO: Fix
-    onTitleUpdated = title => {
+    onTitleUpdated = (title) => {
         setTitleState(title);
-        console.log(title)
-    }
+        console.log(title);
+    };
 
     onMaximized = () => setMaximizedState(true);
     onRestored = () => setMaximizedState(false);
@@ -40,34 +37,52 @@ export function TitleBar(props: Props) {
     return (
         <div className={styles.root}>
             <div className={styles.buttonsArea}>
-                <button onClick={() => {
-                    ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-                        action: "close"
-                    });
-                }}>
+                <button
+                    onClick={() => {
+                        ipcController.send<WindowButtonActionMessage>(
+                            "_internal:window:buttonAction",
+                            {
+                                action: "close",
+                            }
+                        );
+                    }}
+                >
                     <Icon icon={"fluent:dismiss-16-regular"} />
                 </button>
 
-                <button onClick={() => {
-                    ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-                        action: "minimize"
-                    });
-                }}>
+                <button
+                    onClick={() => {
+                        ipcController.send<WindowButtonActionMessage>(
+                            "_internal:window:buttonAction",
+                            {
+                                action: "minimize",
+                            }
+                        );
+                    }}
+                >
                     <Icon icon={"fluent:subtract-16-regular"} />
                 </button>
 
-                <button onClick={() => {
-                    if (maximized) {
-                        ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-                            action: "restore"
-                        });
-                        return;
-                    }
+                <button
+                    onClick={() => {
+                        if (maximized) {
+                            ipcController.send<WindowButtonActionMessage>(
+                                "_internal:window:buttonAction",
+                                {
+                                    action: "restore",
+                                }
+                            );
+                            return;
+                        }
 
-                    ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-                        action: "maximize"
-                    });
-                }}>
+                        ipcController.send<WindowButtonActionMessage>(
+                            "_internal:window:buttonAction",
+                            {
+                                action: "maximize",
+                            }
+                        );
+                    }}
+                >
                     <Icon icon="eva:expand-fill" />
                 </button>
             </div>
@@ -75,5 +90,5 @@ export function TitleBar(props: Props) {
             <span className={styles.title}>{title}</span>
             <div />
         </div>
-    )
+    );
 }

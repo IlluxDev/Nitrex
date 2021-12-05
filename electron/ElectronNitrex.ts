@@ -1,6 +1,12 @@
 import { ElectronNitrexOptions } from "./ElectronNitrexOptions";
 import deepmerge from "deepmerge";
-import { app, BrowserWindow, BrowserWindowConstructorOptions, dialog, ipcMain, } from "electron";
+import {
+    app,
+    BrowserWindow,
+    BrowserWindowConstructorOptions,
+    dialog,
+    ipcMain,
+} from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
 import { Window } from "./events/Window";
@@ -146,8 +152,7 @@ export class ElectronNitrex {
     public applyTitle() {
         this.browserWindow!.webContents.executeJavaScript(
             `document.title = "${this.currentTitle}"`
-        ).then(() => {
-        });
+        ).then(() => {});
 
         this.send<WindowOnTitleUpdateMessage>(
             "_internal:window:titleOnUpdate _client",

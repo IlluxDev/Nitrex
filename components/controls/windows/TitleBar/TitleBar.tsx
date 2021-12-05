@@ -7,12 +7,9 @@ import { useLocation } from "react-router-dom";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
 import { WindowButtonActionMessage } from "../../shared/TitleBar/WindowButtonActionMessage";
 
-let onTitleUpdated = (title: string) => {
-};
-let onMaximized = () => {
-};
-let onRestored = () => {
-}
+let onTitleUpdated = (title: string) => {};
+let onMaximized = () => {};
+let onRestored = () => {};
 
 ipcController.onCommand("_internal:window:maximized", () => onMaximized());
 ipcController.onCommand("_internal:window:unMaximized", () => onRestored());
@@ -28,7 +25,10 @@ export function TitleBar(props: Props) {
     const location = useLocation();
     const [maximized, setMaximizedState] = useState(false);
 
-    useEffect(() => setCanGoBackState(document.location.pathname != "/"), [location]);
+    useEffect(
+        () => setCanGoBackState(document.location.pathname != "/"),
+        [location]
+    );
 
     ipcController.send("_internal:window:applyTitle", {});
     ipcController.send("_internal:window:fetchTitle", {});
@@ -51,15 +51,21 @@ export function TitleBar(props: Props) {
 
     function maximizeRestoreWindow() {
         if (maximized) {
-            ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-                action: "restore"
-            });
+            ipcController.send<WindowButtonActionMessage>(
+                "_internal:window:buttonAction",
+                {
+                    action: "restore",
+                }
+            );
             return;
         }
 
-        ipcController.send<WindowButtonActionMessage>("_internal:window:buttonAction", {
-            action: "maximize"
-        });
+        ipcController.send<WindowButtonActionMessage>(
+            "_internal:window:buttonAction",
+            {
+                action: "maximize",
+            }
+        );
     }
 
     const jsStyles: CSSProperties = {};
@@ -80,7 +86,9 @@ export function TitleBar(props: Props) {
             style={jsStyles}
         >
             <div className={styles.titleArea}>
-                {!props.disableAutoBackButton && !props.extendIntoView && canGoBack ? (
+                {!props.disableAutoBackButton &&
+                !props.extendIntoView &&
+                canGoBack ? (
                     <button onClick={() => history.go(-1)}>
                         <Icon
                             style={{
@@ -106,21 +114,25 @@ export function TitleBar(props: Props) {
                     />
                 </button>
 
-                {maximized ? <button
-                    onClick={() => maximizeRestoreWindow()}
-                    style={{
-                        fontSize: "16px",
-                    }}
-                >
-                    <Icon icon={"fluent:restore-16-regular"}/>
-                </button> : <button
-                    onClick={() => maximizeRestoreWindow()}
-                    style={{
-                        fontSize: "16px",
-                    }}
-                >
-                    <Icon icon={"fluent:maximize-16-regular"}/>
-                </button>}
+                {maximized ? (
+                    <button
+                        onClick={() => maximizeRestoreWindow()}
+                        style={{
+                            fontSize: "16px",
+                        }}
+                    >
+                        <Icon icon={"fluent:restore-16-regular"} />
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => maximizeRestoreWindow()}
+                        style={{
+                            fontSize: "16px",
+                        }}
+                    >
+                        <Icon icon={"fluent:maximize-16-regular"} />
+                    </button>
+                )}
 
                 <button
                     onClick={() => window.close()}
@@ -129,7 +141,7 @@ export function TitleBar(props: Props) {
                     }}
                     className={styles.closeButton}
                 >
-                    <Icon icon={"fluent:dismiss-16-regular"}/>
+                    <Icon icon={"fluent:dismiss-16-regular"} />
                 </button>
             </div>
         </div>

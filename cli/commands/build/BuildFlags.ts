@@ -1,2 +1,1 @@
-export interface BuildFlags {
-}
+export interface BuildFlags {}

@@ -6,7 +6,13 @@ export function ContentRouter(props: Props) {
     return (
         <Routes>
             {props.routes.map((route) => {
-                return <Route key={"_router_" + route.path} path={route.path} element={route.element}/>;
+                return (
+                    <Route
+                        key={"_router_" + route.path}
+                        path={route.path}
+                        element={route.element}
+                    />
+                );
             })}
         </Routes>
     );

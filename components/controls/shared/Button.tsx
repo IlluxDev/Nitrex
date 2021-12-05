@@ -7,7 +7,7 @@ import { Props } from "./Button/Props";
 export function Button(props: Props): JSX.Element {
     switch (themeManager.getOs()) {
         case "windows":
-            return <WindowsButton {...props} />
+            return <WindowsButton {...props} />;
 
         case "linux":
             return null;

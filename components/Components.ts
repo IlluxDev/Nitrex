@@ -33,5 +33,5 @@ export {
     renderer,
     defaultDarkTheme,
     defaultLightTheme,
-    windowsWindowEffects
+    windowsWindowEffects,
 };

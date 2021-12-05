@@ -1,5 +1,5 @@
 export interface NavigationItemProps {
-    label: string;
+    label?: string;
     items?: NavigationItemProps[];
     action?: (() => void) | string;
     inset?: number;
@@ -7,4 +7,6 @@ export interface NavigationItemProps {
     icon?: string;
     image?: string;
     _onUse?: () => void;
+    divider?: boolean;
+    hideDivider?: boolean;
 }

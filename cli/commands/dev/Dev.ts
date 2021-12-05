@@ -115,10 +115,10 @@ export class Dev {
                     ) {
                         terminal.log(
                             "[ APP ] " +
-                            d
-                                .toString()
-                                .replace("\n", "")
-                                .slice("[_atron][debug][log]-".length)
+                                d
+                                    .toString()
+                                    .replace("\n", "")
+                                    .slice("[_atron][debug][log]-".length)
                         );
                     }
 

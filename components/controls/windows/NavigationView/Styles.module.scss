@@ -105,7 +105,6 @@
 }
 
 .topModeContentArea {
-
 }
 
 .leftModeSideBar {
@@ -154,4 +153,12 @@
             background: $fill_subtle_tertiary;
         }
     }
+}
+
+.leftModeSideBarHeader {
+    margin-bottom: 10px;
+}
+
+.leftModeSideBarFooter {
+    margin: 10px 0;
 }

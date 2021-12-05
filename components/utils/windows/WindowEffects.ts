@@ -1,12 +1,12 @@
 class WindowEffects {
     private effect: "mica" | "acrylic" | false = false;
     private events = {
-        modeChange: [] as any[]
-    }
+        modeChange: [] as any[],
+    };
 
     public applyEffect(effect: "mica" | "acrylic" | false) {
         this.effect = effect;
-        this.events.modeChange.forEach(event => event());
+        this.events.modeChange.forEach((event) => event());
     }
 
     public getEffect(): "mica" | "acrylic" | false {

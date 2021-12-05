@@ -5,7 +5,13 @@
     height: 22px;
     -webkit-app-region: drag;
     position: relative;
-    background-image: -webkit-linear-gradient(top, #ededed 0, #ededed 1px, #e7e7e7 2px, #d1d1d1 100%);
+    background-image: -webkit-linear-gradient(
+        top,
+        #ededed 0,
+        #ededed 1px,
+        #e7e7e7 2px,
+        #d1d1d1 100%
+    );
 }
 
 .buttonsArea {
@@ -35,7 +41,7 @@
         }
 
         &:nth-child(2) {
-            background: rgb(255,189, 46);
+            background: rgb(255, 189, 46);
             border-color: rgb(255, 161, 44);
         }
 

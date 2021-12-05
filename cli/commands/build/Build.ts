@@ -6,6 +6,5 @@ export class Build {
         args: string[],
         flags: BuildFlags,
         config: NitrexAppConfig
-    ) {
-    }
+    ) {}
 }

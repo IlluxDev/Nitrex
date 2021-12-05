@@ -3,5 +3,5 @@ import React from "react";
 import { TextBox as WindowsTextBox } from "../windows/TextBox/TextBox";
 
 export function TextBox(props: Props) {
-    return (<WindowsTextBox {...props} />)
+    return <WindowsTextBox {...props} />;
 }

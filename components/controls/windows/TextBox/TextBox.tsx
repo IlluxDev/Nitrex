@@ -6,7 +6,10 @@ export function TextBox(props: Props) {
     return (
         <div className={styles.root}>
             <div className={styles.input}>
-                <input placeholder={props.placeholder} type={props.type == "password" ? "password" : "text"}/>
+                <input
+                    placeholder={props.placeholder}
+                    type={props.type == "password" ? "password" : "text"}
+                />
             </div>
         </div>
     );

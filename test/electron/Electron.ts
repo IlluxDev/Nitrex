@@ -3,10 +3,10 @@ import * as path from "path";
 
 const nitrex = new ElectronNitrex({
     title: "Nitrex Demo",
-    projectRoot: path.join(__dirname, "../")
+    projectRoot: path.join(__dirname, "../"),
 });
 
-nitrex.getBrowserWindow()
+nitrex.getBrowserWindow();
 
 nitrex.on("ready", () => {
     nitrex.log("App is ready for use");
