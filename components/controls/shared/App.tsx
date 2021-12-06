@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Props } from "./App/Props";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { windowsWindowEffects } from "../../Components";
 
 let onMicaModeChange: any | null = null;
@@ -46,7 +46,7 @@ export function App(props: Props) {
                 width: "100vw",
             }}
         >
-            <BrowserRouter>{props.children}</BrowserRouter>
+            <HashRouter>{props.children}</HashRouter>
         </div>
     );
 }

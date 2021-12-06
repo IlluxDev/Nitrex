@@ -14,6 +14,9 @@
     min-height: 32px;
     border: 1px solid $elevation_strokeColor_cardStroke_defaultSolid;
     border-bottom-color: $fill_text_tertiary;
+    display: flex;
+    align-items: center;
+    position: relative;
 
     input {
         outline: none;
@@ -21,8 +24,37 @@
         color: $fill_text_primary;
         border: none;
         width: 100%;
-        height: calc(100% - 1px);
+        height: 100%;
         padding: 0 10px;
+    }
+
+    button {
+        height: calc(100% - 10px);
+        border: none;
+        background: $fill_control_transparent;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        color: $fill_text_secondary;
+        font-size: 16px;
+        width: 30px;
+        min-width: 30px;
+        max-width: 30px;
+        display: none;
+        margin-right: 4px;
+
+        & > * {
+            transform: scale(0.8);
+        }
+
+        &:hover {
+            background: $fill_subtle_secondary;
+
+            &:active {
+                background: $fill_subtle_tertiary;
+                color: $fill_text_tertiary;
+            }
+        }
     }
 
     &:hover {
@@ -34,8 +66,18 @@
         border-bottom-color: $fill_accent_default;
         background: $fill_control_inputActive;
 
-        input {
-            box-shadow: 0 1px 0px $fill_accent_default;
+        &:after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: $fill_accent_default;
+        }
+
+        button {
+            display: flex;
         }
     }
 }

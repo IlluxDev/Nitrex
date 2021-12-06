@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import {
     App,
@@ -25,10 +25,46 @@ if (!localStorage.getItem("os")) {
     localStorage.setItem("os", "windows");
 }
 
+let initRender = false;
+
 function Cats() {
+    const [catSource, setCat] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    function renderNewCat() {
+        console.log("[KITTY ENGINE] Rendering a new cat!! Meoww");
+        const fetchRes = fetch("https://api.mythicalkitten.com/cats");
+        setLoading(true);
+
+        fetchRes.then(res => {
+            res.json().then(newRes => {
+                setCat(newRes.url);
+                setLoading(false);
+            });
+        }).catch(() => {
+            setCat("err");
+        });
+    }
+
+    if (!initRender) {
+        initRender = true;
+        renderNewCat();
+    }
+
     return (
         <div>
             <TextBlock header={4}>Here Are Some Cat Pictures</TextBlock>
+            <br />
+            <FlexPanel spacing={20}>
+                <FlexPanel direction={"horizontal"}>
+                    <Button onClick={renderNewCat}>Show Me a Cat</Button>
+                </FlexPanel>
+
+                { !loading ? <img style={{
+                    borderRadius: "8px",
+                    maxWidth: "500px"
+                }} alt={"Nuuu: I couldn't get that cat, try again"} src={catSource} /> : <TextBlock>Loading Kitty Cat...</TextBlock> }
+            </FlexPanel>
         </div>
     );
 }

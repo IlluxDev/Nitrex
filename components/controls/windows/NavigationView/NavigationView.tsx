@@ -122,7 +122,7 @@ export function NavigationView(props: Props) {
                                     <Icon icon={"fluent:search-16-regular"} />
                                 </button>
                             ) : props.search ? (
-                                <FlexPanel padding={[4, 20]}>
+                                <FlexPanel padding={[5, 20]}>
                                     <TextBox placeholder={"Search"} />
                                 </FlexPanel>
                             ) : null}
