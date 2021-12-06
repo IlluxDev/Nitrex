@@ -1,6 +1,6 @@
 @import "../Theme";
 
-.root {
+.button {
     color: $fill_text_primary;
     border: none;
     background: $fill_control_default;
@@ -9,6 +9,9 @@
     border-radius: 4px;
     transition: 100ms;
     user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 -1px 0 $elevation_control_border,
         1px 0 0 $elevation_control_border,
         0 2px 0 -1px $elevation_control_borderBottom,

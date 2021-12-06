@@ -25,7 +25,7 @@ export function NavigationItem(props: NavigationItemProps) {
     }
 
     return (
-        <div className={`${styles.root} ${props.divider ? styles.dividerMode : {}} ${(!props.label && props.divider) || (props.sideBarOpened != true && props.divider && !props.label) ? styles.dividerNoLabel : {}} ${props.hideDivider ? styles.hideDividerLine : {}}`}>
+        <div className={`${styles.root} ${props.divider ? styles.dividerMode : {}} ${(!props.label && props.divider) || (props.sideBarOpened != true && props.divider) ? styles.dividerNoLabel : {}} ${props.hideDivider ? styles.hideDividerLine : {}}`}>
             {props.divider && props.sideBarOpened ? <span className={styles.dividerLabel}>{props.label}</span> : null}
             {props.divider && !props.hideDivider ? <hr className={styles.divider} /> : null}
 

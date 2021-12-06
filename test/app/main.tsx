@@ -19,7 +19,7 @@ import "./index.css";
 
 renderer.setPageZoom(1);
 themeManager.setOs((localStorage.getItem("os") as any) ?? "windows");
-themeManager.installTheme(defaultDarkTheme);
+themeManager.installTheme(localStorage.getItem("theme") == "light" ? defaultLightTheme : defaultDarkTheme);
 
 if (!localStorage.getItem("os")) {
     localStorage.setItem("os", "windows");
@@ -74,7 +74,10 @@ function Home() {
         <FlexPanel padding={20} spacing={10}>
             <TextBlock header={6}>Enable Dark Theme</TextBlock>
             <ToggleButton
+                default={localStorage.getItem("theme") == "dark" || !localStorage.getItem("theme")}
                 onToggle={(useDark) => {
+                    localStorage.setItem("theme", useDark ? "dark" : "light")
+
                     if (useDark) {
                         themeManager.installTheme(defaultDarkTheme);
                         return;
@@ -101,7 +104,10 @@ function Settings() {
         >
             <TextBlock header={6}>Enable Dark Theme</TextBlock>
             <ToggleButton
+                default={localStorage.getItem("theme") == "dark" || !localStorage.getItem("theme")}
                 onToggle={(useDark) => {
+                    localStorage.setItem("theme", useDark ? "dark" : "light")
+
                     if (useDark) {
                         themeManager.installTheme(defaultDarkTheme);
                         return;
@@ -194,7 +200,7 @@ function Com() {
                 {
                     divider: true,
                     label: "Misc",
-                    hideDivider: true
+                    hideDivider: false
                 },
                 {
                     label: "Illux GitHub",

@@ -16,7 +16,7 @@ export function ToggleButton(props: Props) {
                 }
 
                 if (props.onToggle) {
-                    props.onToggle(toggled);
+                    props.onToggle(!toggled);
                 }
             }}
             primary={toggled}
