@@ -1,5 +1,5 @@
 import { Props } from "../../shared/NavigationView/Props";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Styles.module.scss";
 import defaultIcon from "./DefaultIcon.svg";
 import { TitleBar } from "../TitleBar/TitleBar";
@@ -7,11 +7,22 @@ import { Button } from "../Button/Button";
 import { Icon } from "@iconify/react";
 import { TextBox } from "../TextBox/TextBox";
 import { NavigationItem } from "./NavigationItem";
-import { FlexPanel } from "../../../Components";
+import { FlexPanel, ipcController } from "../../../Components";
+import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
+import { useLocation } from "react-router-dom";
 
 let setInitBack = false;
+let onTitleUpdated = (title: string) => {};
+
+ipcController.onCommand<WindowOnTitleUpdateMessage>(
+    "_internal:window:titleOnUpdate _client",
+    (message) => onTitleUpdated(message.title)
+);
 
 export function NavigationView(props: Props) {
+    const [title, setTitleState] = useState(document.title);
+    const location = useLocation();
+    const [maximized, setMaximizedState] = useState(false);
     const [canGoBack, setCanGoBackState] = useState(
         document.location.pathname != "/"
     );
@@ -23,6 +34,18 @@ export function NavigationView(props: Props) {
         setCanGoBackState(false);
         setInitBack = true;
     }
+
+    useEffect(
+        () => setCanGoBackState(document.location.pathname != "/"),
+        [location]
+    );
+
+    ipcController.send("_internal:window:applyTitle", {});
+    ipcController.send("_internal:window:fetchTitle", {});
+
+    onTitleUpdated = (title) => {
+        setTitleState(title);
+    };
 
     return (
         <div className={styles.root}>
@@ -67,9 +90,7 @@ export function NavigationView(props: Props) {
                                 />
                             </div>
 
-                            <span className={styles.leftModeTitleBarTitleText}>
-                                Nitrex App [HARD CODED]
-                            </span>
+                            <span className={styles.leftModeTitleBarTitleText}>{title}</span>
                         </div>
                     </div>
                 ) : (
