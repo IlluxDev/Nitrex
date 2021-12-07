@@ -65,7 +65,7 @@ export function NavigationView(props: Props) {
                 }
             >
                 {props.displayMode != "top" ? (
-                    <div className={styles.leftModeTitleBar}>
+                    <div className={`${styles.leftModeTitleBar} ${sideBarOpened ? styles.leftModeTitleBarOpenSideBar : {}}`}>
                         <div className={styles.leftModeTitleBarTitle}>
                             <button
                                 onClick={() => routeManager.back()}

@@ -25,6 +25,28 @@
         -webkit-app-region: no-drag;
         pointer-events: none;
     }
+
+    &:before {
+        @media (max-width: 1000px) {
+            position: absolute;
+            width: 0;
+            height: 50px;
+            content: "";
+            display: flex;
+            transition: 100ms;
+            border-radius: 0 8px 0 0;
+            border-right: 1px solid $elevation_strokeColor_controlStroke_default;
+            opacity: 0;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.leftModeTitleBarOpenSideBar {
+    &:before {
+        width: 300px;
+        opacity: 1;
+    }
 }
 
 .leftModeTitleBarTitle {
@@ -93,6 +115,7 @@
     height: calc(100% - 50px);
     overflow: hidden;
     background: $background_solidBackground_secondary;
+    position: relative;
 }
 
 .contentInner {
@@ -103,6 +126,10 @@
     border-radius: 8px 0 0 0;
     outline: 1px solid $elevation_strokeColor_cardStroke_default;
     margin: 1px 0 0 1px;
+
+    @media (max-width: 1000px) {
+        margin-left: 48px;
+    }
 }
 
 .topModeContentArea {
@@ -114,11 +141,25 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1000px) {
+        position: absolute;
+        left: 0;
+        height: calc(100vh - 50px);
+        background: $background_solidBackground_secondary;
+        border-right: 1px solid $elevation_strokeColor_controlStroke_default;
+        border-radius: 0 0 8px 0;
+    }
 }
 
 .leftModeSideBarClosed {
     min-width: 48px;
     overflow-x: hidden;
+
+    @media (max-width: 1000px) {
+        border-color: transparent;
+        background: $fill_control_transparent;
+    }
 }
 
 .leftModeSideBarContent {

@@ -22,7 +22,6 @@ export function ContentRouter(props: Props) {
         routeResult = props.routes.find(route => route.name == "main");
     }
 
-    console.log(routeResult, routeName, props.routes);
     if (!routeResult) {
         routeResult = {
             name: "main",
