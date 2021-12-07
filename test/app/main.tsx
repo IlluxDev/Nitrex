@@ -270,17 +270,17 @@ function Com() {
             <ContentRouter
                 routes={[
                     {
+                        name: "main",
+                        builder: () => <Home />,
+                    },
+                    {
                         name: "/cats",
                         builder: () => <Cats />,
                     },
                     {
                         name: "/settings",
                         builder: () => <Settings />,
-                    },
-                    {
-                        name: "main",
-                        builder: () => <Home />,
-                    },
+                    }
                 ]}
             />
         </NavigationView>

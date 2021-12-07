@@ -1,6 +1,7 @@
 import { Props } from "./ContentRouter/Props";
 import React, { useState } from "react";
 import { routeManager } from "./ContentRouter/RouteManager";
+import { TextBlock } from "./TextBlock";
 
 let onRouteChange: (routeName: string) => void = null;
 
@@ -9,14 +10,27 @@ routeManager.on("routeChange", name => {
 });
 
 export function ContentRouter(props: Props) {
-    const [routeName, setRouteNameState] = useState("main");
+    const [routeName, setRouteNameState] = useState(routeManager.getCurrentRouteName());
 
     onRouteChange = (name) => {
         console.log(name);
         setRouteNameState(name);
     };
 
+    let routeResult = props.routes.find(route => route.name == routeName);
+    if (!routeResult) {
+        routeResult = props.routes.find(route => route.name == "main");
+    }
+
+    console.log(routeResult, routeName, props.routes);
+    if (!routeResult) {
+        routeResult = {
+            name: "main",
+            builder: props => <TextBlock>Failed to load "main" route</TextBlock>
+        }
+    }
+
     return (
-        <div>{routeName}{props.routes.find(route => route.name == routeName).builder({})}</div>
+        <div>{routeResult.builder({})}</div>
     );
 }

@@ -6,6 +6,12 @@ class RouteManager {
         routeChange: [] as any[]
     }
 
+    public constructor() {
+        if (localStorage.getItem("_routeName")) {
+            this.navigateRoute(localStorage.getItem("_routeName"));
+        }
+    }
+
     public back() {
         if (this.history.length != 1) {
             this.history.pop();
@@ -17,6 +23,7 @@ class RouteManager {
     }
 
     public navigateRoute(name: string) {
+        localStorage.setItem("_routeName", name);
         this.history.push(name);
         this.historyLocation++;
         this.currentRouteName = name;

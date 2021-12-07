@@ -1,6 +1,9 @@
 export interface Props {
-    routes: {
+    routes: [{
+        name: "main";
+        builder: (requestProps: any) => JSX.Element;
+    }, ...{
         name: string;
         builder: (requestProps: any) => JSX.Element;
-    }[];
+    }[]];
 }
