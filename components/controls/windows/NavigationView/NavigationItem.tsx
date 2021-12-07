@@ -8,12 +8,14 @@ import React, {
 } from "react";
 import styles from "./NavigationItem.module.scss";
 import { NavigationItemProps } from "../../shared/NavigationView/NavigationItemProps";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { renderer } from "../../Renderer";
+import { routeManager } from "../../shared/ContentRouter/RouteManager";
 
 export function NavigationItem(props: NavigationItemProps) {
     const [opened, setOpenedState] = useState(false);
-    const navigate = useNavigate();
+    const [currentUrl, setCurrentUrlState] = useState("/");
+    const location = useLocation();
 
     const mainItemStyles: CSSProperties = {};
     if (props.inset) {
@@ -23,6 +25,10 @@ export function NavigationItem(props: NavigationItemProps) {
                 : 1
             : 0;
     }
+
+    useEffect(() => {
+        setCurrentUrlState(document.location.hash.slice(1));
+    }, [location]);
 
     return (
         <div className={`${styles.root} ${props.divider ? styles.dividerMode : {}} ${(!props.label && props.divider) || (props.sideBarOpened != true && props.divider) ? styles.dividerNoLabel : {}} ${props.hideDivider ? styles.hideDividerLine : {}}`}>
@@ -43,11 +49,11 @@ export function NavigationItem(props: NavigationItemProps) {
                             if (props.action.startsWith("http") || props.action.startsWith("https")) {
                                 renderer.openExternal(props.action);
                             } else {
-                                navigate(props.action);
+                                routeManager.navigateRoute(props.action);
                             }
                         }
                     }}
-                    className={`${styles.mainItem} ${!props.sideBarOpened ? styles.mainItemCompact : {}}`}
+                    className={`${styles.mainItem} ${!props.sideBarOpened ? styles.mainItemCompact : {}} ${currentUrl == props.action ? styles.mainItemActive : {}}`}
                     style={mainItemStyles}
                 >
                     <div className={styles.mainItemIcon}>

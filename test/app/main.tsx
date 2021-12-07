@@ -30,6 +30,7 @@ let initRender = false;
 function Cats() {
     const [catSource, setCat] = useState("");
     const [loading, setLoading] = useState(false);
+    const [downloading, setDl] = useState(false);
 
     function renderNewCat() {
         console.log("[KITTY ENGINE] Rendering a new cat!! Meoww");
@@ -46,6 +47,23 @@ function Cats() {
         });
     }
 
+    function storeCat() {
+        setDl(true);
+        fetch(catSource).then(res => {
+            res.blob().then(rawBlob => {
+                const dataObj = URL.createObjectURL(rawBlob);
+
+                const link = document.createElement('a')
+                link.href = dataObj;
+                link.download = 'Cute Catz'
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+                setDl(false);
+            });
+        });
+    }
+
     if (!initRender) {
         initRender = true;
         renderNewCat();
@@ -56,8 +74,9 @@ function Cats() {
             <TextBlock header={4}>Here Are Some Cat Pictures</TextBlock>
             <br />
             <FlexPanel spacing={20}>
-                <FlexPanel direction={"horizontal"}>
+                <FlexPanel direction={"horizontal"} spacing={10}>
                     <Button onClick={renderNewCat}>Show Me a Cat</Button>
+                    <Button primary onClick={storeCat}>Download Cat</Button>
                 </FlexPanel>
 
                 { !loading ? <img style={{
@@ -71,7 +90,7 @@ function Cats() {
 
 function Home() {
     return (
-        <FlexPanel padding={20} spacing={10}>
+        <FlexPanel padding={0} spacing={10}>
             <TextBlock header={6}>Enable Dark Theme</TextBlock>
             <ToggleButton
                 default={localStorage.getItem("theme") == "dark" || !localStorage.getItem("theme")}
@@ -189,7 +208,7 @@ function Com() {
             content={[
                 {
                     label: "Home",
-                    action: "/",
+                    action: "main",
                     icon: "fluent:home-16-regular",
                 },
                 {
@@ -224,22 +243,43 @@ function Com() {
                         }
                     ]
                 },
+                {
+                    label: "Animals",
+                    items: [
+                        {
+                            label: "Cats",
+                            action: "/cats"
+                        },
+                        {
+                            label: "Fox",
+                            action: "/foxes"
+                        }
+                    ]
+                },
+                {
+                    label: "Tests",
+                    divider: true
+                },
+                {
+                    label: "Button",
+                    action: "/tests/button"
+                }
             ]}
             displayMode={"left"}
         >
             <ContentRouter
                 routes={[
                     {
-                        path: "/cats",
-                        element: <Cats />,
+                        name: "/cats",
+                        builder: () => <Cats />,
                     },
                     {
-                        path: "/settings",
-                        element: <Settings />,
+                        name: "/settings",
+                        builder: () => <Settings />,
                     },
                     {
-                        path: "/",
-                        element: <Home />,
+                        name: "main",
+                        builder: () => <Home />,
                     },
                 ]}
             />

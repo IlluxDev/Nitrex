@@ -7,11 +7,10 @@ import { Button } from "../Button/Button";
 import { Icon } from "@iconify/react";
 import { TextBox } from "../TextBox/TextBox";
 import { NavigationItem } from "./NavigationItem";
-import { FlexPanel, ipcController } from "../../../Components";
+import { FlexPanel, ipcController, routeManager } from "../../../Components";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
 import { useLocation } from "react-router-dom";
 
-let setInitBack = false;
 let onTitleUpdated = (title: string) => {};
 
 ipcController.onCommand<WindowOnTitleUpdateMessage>(
@@ -19,26 +18,27 @@ ipcController.onCommand<WindowOnTitleUpdateMessage>(
     (message) => onTitleUpdated(message.title)
 );
 
+let onRouteUpdated: (name: string) => void = null;
+
+routeManager.on("routeChange", name => {
+    onRouteUpdated ? onRouteUpdated(name) : null;
+});
+
 export function NavigationView(props: Props) {
     const [title, setTitleState] = useState(document.title);
-    const location = useLocation();
-    const [maximized, setMaximizedState] = useState(false);
-    const [canGoBack, setCanGoBackState] = useState(
-        document.location.pathname != "/"
-    );
+    const [canGoBack, setCanGoBackState] = useState(false);
     const [sideBarOpened, setSideBarOpenedState] = useState(
         localStorage.getItem("_Nitrex_NavigationView_opened") == "true"
     );
 
-    if (!setInitBack && document.location.pathname == "/") {
-        setCanGoBackState(false);
-        setInitBack = true;
-    }
+    onRouteUpdated = name => {
+        if (name == "main") {
+            setCanGoBackState(false);
+            return;
+        }
 
-    useEffect(
-        () => setCanGoBackState(document.location.pathname != "/"),
-        [location]
-    );
+        setCanGoBackState(true);
+    }
 
     ipcController.send("_internal:window:applyTitle", {});
     ipcController.send("_internal:window:fetchTitle", {});
@@ -144,7 +144,7 @@ export function NavigationView(props: Props) {
                                 </button>
                             ) : props.search ? (
                                 <FlexPanel padding={[5, 20]}>
-                                    <TextBox placeholder={"Search"} />
+                                    <TextBox type={"search"} placeholder={"Search"} />
                                 </FlexPanel>
                             ) : null}
                         </div>

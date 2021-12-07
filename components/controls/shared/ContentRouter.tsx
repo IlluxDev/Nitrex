@@ -1,19 +1,22 @@
 import { Props } from "./ContentRouter/Props";
-import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
+import { routeManager } from "./ContentRouter/RouteManager";
+
+let onRouteChange: (routeName: string) => void = null;
+
+routeManager.on("routeChange", name => {
+    onRouteChange ? onRouteChange(name) : null;
+});
 
 export function ContentRouter(props: Props) {
+    const [routeName, setRouteNameState] = useState("main");
+
+    onRouteChange = (name) => {
+        console.log(name);
+        setRouteNameState(name);
+    };
+
     return (
-        <Routes>
-            {props.routes.map((route) => {
-                return (
-                    <Route
-                        key={"_router_" + route.path}
-                        path={route.path}
-                        element={route.element}
-                    />
-                );
-            })}
-        </Routes>
+        <div>{routeName}{props.routes.find(route => route.name == routeName).builder({})}</div>
     );
 }

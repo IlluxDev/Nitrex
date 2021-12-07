@@ -15,6 +15,7 @@ import { TextBox } from "./controls/shared/TextBox";
 import { defaultLightTheme } from "./controls/windows/DefaultLightTheme";
 import { windowEffects as windowsWindowEffects } from "./utils/windows/WindowEffects";
 import { NavigationView } from "./controls/shared/NavigationView";
+import { routeManager } from "./controls/shared/ContentRouter/RouteManager";
 
 export {
     Button,
@@ -31,6 +32,7 @@ export {
     themeManager,
     ipcController,
     renderer,
+    routeManager,
     defaultDarkTheme,
     defaultLightTheme,
     windowsWindowEffects,
