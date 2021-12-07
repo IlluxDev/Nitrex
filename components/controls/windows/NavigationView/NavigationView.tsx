@@ -32,7 +32,7 @@ export function NavigationView(props: Props) {
     );
 
     onRouteUpdated = name => {
-        if (name == "main") {
+        if (routeManager.getHistoryPosition() == 0) {
             setCanGoBackState(false);
             return;
         }
@@ -68,7 +68,7 @@ export function NavigationView(props: Props) {
                     <div className={styles.leftModeTitleBar}>
                         <div className={styles.leftModeTitleBarTitle}>
                             <button
-                                onClick={() => setCanGoBackState(false)}
+                                onClick={() => routeManager.back()}
                                 className={`${
                                     !canGoBack
                                         ? styles.leftModeTitleBarTitleButtonHide
