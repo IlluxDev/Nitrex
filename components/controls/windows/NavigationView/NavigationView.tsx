@@ -1,7 +1,6 @@
 import { Props } from "../../shared/NavigationView/Props";
 import React, { useEffect, useState } from "react";
 import styles from "./Styles.module.scss";
-import defaultIcon from "./DefaultIcon.svg";
 import { TitleBar } from "../TitleBar/TitleBar";
 import { Button } from "../Button/Button";
 import { Icon } from "@iconify/react";
@@ -9,7 +8,9 @@ import { TextBox } from "../TextBox/TextBox";
 import { NavigationItem } from "./NavigationItem";
 import { FlexPanel, ipcController, routeManager } from "../../../Components";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
+import { NavigationItemProps } from "../../shared/NavigationView/NavigationItemProps";
 
+const defaultIcon = "https://raw.githubusercontent.com/IlluxDev/Illux/0d4714ae67a80223326aeb623e7d8aa21104744b/LogoDynamic.svg";
 let onTitleUpdated = (title: string) => {};
 
 ipcController.onCommand<WindowOnTitleUpdateMessage>(
@@ -26,10 +27,13 @@ routeManager.on("routeChange", name => {
 export function NavigationView(props: Props) {
     const [title, setTitleState] = useState(document.title);
     const [canGoBack, setCanGoBackState] = useState(false);
+    const [navigationSearchResults, setNavigationSearchResultsState] = useState([] as {
+        label: string;
+        action: string | CallableFunction;
+    }[]);
     const [sideBarOpened, setSideBarOpenedState] = useState(
         localStorage.getItem("_Nitrex_NavigationView_opened") == "true"
     );
-    const [inr, setinr] = useState("No Val");
 
     onRouteUpdated = name => {
         if (routeManager.getHistoryPosition() == 0) {
@@ -38,6 +42,54 @@ export function NavigationView(props: Props) {
         }
 
         setCanGoBackState(true);
+    }
+
+    function processSearchDropdown(query: string) {
+        if (query.length == 0 || new RegExp("^[ ]+$").test(query)) {
+            return [];
+        }
+
+        console.log(query, query.length)
+
+        const possibleResults = [] as NavigationItemProps[];
+        const searchResult = [] as {
+            label: string;
+            action: string | CallableFunction;
+        }[];
+
+        const buildPossibleResults = (items: NavigationItemProps[]) => {
+            items.forEach(item => {
+                if (!item.divider && item.action) {
+                    possibleResults.push(item);
+                }
+
+                if (item.items && item.items.length > 0) {
+                    buildPossibleResults(item.items);
+                }
+            });
+        }
+
+        buildPossibleResults(props.content);
+        let possibleResultIndex = -1;
+        let maxPossibleResults = possibleResults.length;
+
+        while (possibleResultIndex != maxPossibleResults - 1) {
+            possibleResultIndex++;
+            const possibleResult = possibleResults[possibleResultIndex];
+
+            if (possibleResult.label.toLowerCase().includes(query.toLowerCase())) {
+                searchResult.push({
+                    label: possibleResult.label,
+                    action: possibleResult.action
+                });
+
+                if (searchResult.length > 20) {
+                    return searchResult;
+                }
+            }
+        }
+
+        return searchResult;
     }
 
     ipcController.send("_internal:window:applyTitle", {});
@@ -118,8 +170,6 @@ export function NavigationView(props: Props) {
                                 <div>{props.headerContent}</div>
                             ) : null}
 
-<div>{inr}</div>    
-
                             <button
                                 className={styles.leftModeSideBarIconButton}
                                 onClick={() => {
@@ -146,8 +196,8 @@ export function NavigationView(props: Props) {
                                 </button>
                             ) : props.search ? (
                                 <FlexPanel padding={[5, 20]}>
-                                    <TextBox onInput={value => {
-                                        setinr(value);
+                                    <TextBox dropdown={navigationSearchResults} onInput={value => {
+                                        setNavigationSearchResultsState(processSearchDropdown(value));
                                     }} type={"search"} placeholder={"Search"} />
                                 </FlexPanel>
                             ) : null}

@@ -9,8 +9,9 @@ export interface Props {
               description?: string;
               icon?: string;
               image?: string;
+              action?: string | (() => void);
           }[];
     submit?: boolean;
     onSubmit?: (value: string) => void;
-    onInput?: (value: string) => {};
+    onInput?: (value: string) => void;
 }

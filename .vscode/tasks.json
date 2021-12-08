@@ -10,6 +10,16 @@
 			"runOptions": {
 				"runOn": "folderOpen"
 			}
+		},
+		{
+			"type": "npm",
+			"script": "test:dev",
+			"problemMatcher": [],
+			"label": "npm: test:dev",
+			"detail": "cd test && node ../cli/CliBin.js dev && cd ..",
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
 		}
 	]
 }
