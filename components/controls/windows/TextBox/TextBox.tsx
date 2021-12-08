@@ -11,6 +11,7 @@ export function TextBox(props: Props) {
     const [dropDownHeight, setDropDownHeightState] = useState("0px");
     const [inputWidth, setInputWidthState] = useState("0px");
     const [dropDownOpened, setDropDownOpenedState] = useState(false);
+    const [mouseOverDropDown, setMouseOverDropDownState] = useState(false);
     const inputRef = useRef(null);
     const dropDownInnerRef = useRef(null);
     const inputWrapperRef = useRef(null);
@@ -35,12 +36,7 @@ export function TextBox(props: Props) {
                         setDropDownOpenedState(true);  
                     }}
                     onBlur={e => {
-                        if (!dropDownOpened) {
-                            setDropDownOpenedState(false);
-                            return;
-                        }
-
-                        e.preventDefault();
+                        setDropDownOpenedState(false);
                     }}
                     onKeyUp={key => {
                         if (key.key == "Enter") {
@@ -84,7 +80,11 @@ export function TextBox(props: Props) {
             <div style={{
                 height: dropDownHeight,
                 width: inputWidth
-            }} onMouseDown={() => setDropDownOpenedState(true)} className={`${styles.dropDown} ${!dropDownOpened && props.dropdown ? styles.dropDownClosed : (!props.dropdown && styles.dropDownClosed)}`}>
+            }} onMouseEnter={() => {
+                inputRef.current.focus();
+            }} onMouseLeave={() => {
+                inputRef.current.focus();
+            }} onMouseDown={() => inputRef.current.focus()} className={`${styles.dropDown} ${!dropDownOpened && props.dropdown ? styles.dropDownClosed : (!props.dropdown && styles.dropDownClosed)}`}>
                 <Glass className={styles.dropDownGlass} />
                 <div className={styles.dropDownGlassTint}></div>
                 
@@ -101,7 +101,7 @@ export function TextBox(props: Props) {
                                 setDropDownOpenedState(false);
                             }} className={styles.dropDownItem}>
                                 <div className={styles.dropDownItemIcon}>
-                                    ICN
+                                    {mouseOverDropDown ? "1" : "0"}
                                 </div>
 
                                 <div className={styles.dropDownItemLabel}>
