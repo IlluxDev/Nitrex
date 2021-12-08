@@ -34,8 +34,13 @@ export function TextBox(props: Props) {
                     onFocus={() => {
                         setDropDownOpenedState(true);  
                     }}
-                    onBlur={() => {
-                        setDropDownOpenedState(false);
+                    onBlur={e => {
+                        if (!dropDownOpened) {
+                            setDropDownOpenedState(false);
+                            return;
+                        }
+
+                        e.preventDefault();
                     }}
                     onKeyUp={key => {
                         if (key.key == "Enter") {
@@ -92,6 +97,8 @@ export function TextBox(props: Props) {
                                 } else if (typeof item.action == "string") {
                                     routeManager.navigateRoute(item.action);
                                 }
+
+                                setDropDownOpenedState(false);
                             }} className={styles.dropDownItem}>
                                 <div className={styles.dropDownItemIcon}>
                                     ICN
