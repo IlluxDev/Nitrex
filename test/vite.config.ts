@@ -8,4 +8,3 @@ export default defineConfig({
     },
     base: "./" /* NOTICE: This path must never be changed or the app UI may never load */,
 });
-asdasdsadas
