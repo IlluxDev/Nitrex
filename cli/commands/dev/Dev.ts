@@ -39,12 +39,28 @@ export class Dev {
             );
 
             const serverReadyRegexp = /> Local: http:\/\/localhost:(.*?)\/\n/;
+            const errorIndicatorMessage = "error when starting dev server:\n";
+            let initStarted = false;
 
             const onData = (data: Buffer, type: "stdout" | "stderr") => {
-                const regexpResult = serverReadyRegexp.exec(data.toString());
+                if (!initStarted && data.toString().startsWith(errorIndicatorMessage)) {
+                    terminal.error("An error occurred while starting the development server");
 
-                if (regexpResult) {
-                    resolve((regexpResult as any)[1]);
+                    const errorLines = data.toString().substring(errorIndicatorMessage.length).split("\n");
+                    errorLines.forEach(errorLine => {
+                        terminal.error(errorLine);
+                    });
+
+                    terminal.error("An error occurred while starting the development server, see error output above");
+                }
+
+                if (!initStarted) {
+                    const regexpResult = serverReadyRegexp.exec(data.toString());
+
+                    if (regexpResult) {
+                        initStarted = true;
+                        resolve((regexpResult as any)[1]);
+                    }
                 }
             };
 

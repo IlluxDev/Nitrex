@@ -19,11 +19,13 @@
         display: flex;
         position: absolute;
         content: "";
-        width: 3px;
+        width: 6px;
         height: 15px;
         border-radius: 12px;
         margin-left: 2px;
-        transform: scaleY(0.5);
+        transform: scaleY(0) scaleX(0.5);
+        transition: 100ms;
+        opacity: 0;
     }
 
     &:hover {
@@ -40,7 +42,8 @@
 
     &:after {
         background: $fill_accent_default;
-        transform: scaleX(1);
+        transform: scaleY(1) scaleX(0.5); 
+        opacity: 1;
     }
 
     &:hover {

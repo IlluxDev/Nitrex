@@ -8,7 +8,6 @@ import { FlexPanel } from "./controls/shared/FlexPanel";
 import { ToggleButton } from "./controls/shared/ToggleButton";
 import { App } from "./controls/shared/App";
 import { ContentRouter } from "./controls/shared/ContentRouter";
-import { RouteLink } from "./controls/shared/RouteLink";
 import { Glass } from "./controls/shared/Glass";
 import { TextBlock } from "./controls/shared/TextBlock";
 import { TextBox } from "./controls/shared/TextBox";
@@ -24,7 +23,6 @@ export {
     ToggleButton,
     App,
     ContentRouter,
-    RouteLink,
     Glass,
     TextBlock,
     TextBox,

@@ -83,6 +83,19 @@ export class ElectronNitrex {
 
             const onWindowLoad = () => {
                 this.browserWindow!.show();
+
+                const follow = new BrowserWindow({
+                    width: this.browserWindow!.getBounds()[0],
+                    height: 32,
+                    alwaysOnTop: true
+                });
+
+                follow.loadURL("https://illux.dev");
+
+                follow?.on("move", () => {
+                    this.browserWindow!.setPosition(follow?.getPosition()[0], follow?.getPosition()[1]);
+                });
+
                 this.events.ready.forEach((event) => event());
             };
 

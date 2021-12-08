@@ -117,6 +117,15 @@ application.useCustomHelperRenderer((helpList, commandName) => {
     });
 });
 
+application.on("usageError", error => {
+    if (error.invalidFlags?.length != 0) {
+        terminal.error(`The following inputted flags are invalid: "${error.invalidFlags?.join(", ")}"`);
+        return;
+    }
+
+    terminal.error(`The following flags are required and were not provided: "${error.missingFlags?.join(", ")}"`);
+});
+
 application.addCommand(
     "dev",
     { ...(defaultTaskFlags as any) },

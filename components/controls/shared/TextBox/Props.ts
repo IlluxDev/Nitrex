@@ -10,4 +10,7 @@ export interface Props {
               icon?: string;
               image?: string;
           }[];
+    submit?: boolean;
+    onSubmit?: (value: string) => void;
+    onInput?: (value: string) => {};
 }

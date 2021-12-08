@@ -7,15 +7,12 @@ import React, {
     useState,
 } from "react";
 import styles from "./NavigationItem.module.scss";
-import { NavigationItemProps } from "../../shared/NavigationView/NavigationItemProps";
-import { useLocation, useNavigate } from "react-router-dom";
-import { renderer } from "../../Renderer";
+import { NavigationItemProps } from "../../shared/NavigationView/NavigationItemProps";import { renderer } from "../../Renderer";
 import { routeManager } from "../../shared/ContentRouter/RouteManager";
 
 export function NavigationItem(props: NavigationItemProps) {
     const [opened, setOpenedState] = useState(false);
-    const [currentUrl, setCurrentUrlState] = useState("/");
-    const location = useLocation();
+    const [currentRoute, setCurrentRouteState] = useState(routeManager.getCurrentRouteName());
 
     const mainItemStyles: CSSProperties = {};
     if (props.inset) {
@@ -26,9 +23,9 @@ export function NavigationItem(props: NavigationItemProps) {
             : 0;
     }
 
-    useEffect(() => {
-        setCurrentUrlState(document.location.hash.slice(1));
-    }, [location]);
+    routeManager.on("routeChange", () => {
+        setCurrentRouteState(routeManager.getCurrentRouteName());
+    });
 
     return (
         <div className={`${styles.root} ${props.divider ? styles.dividerMode : {}} ${(!props.label && props.divider) || (props.sideBarOpened != true && props.divider) ? styles.dividerNoLabel : {}} ${props.hideDivider ? styles.hideDividerLine : {}}`}>
@@ -53,7 +50,7 @@ export function NavigationItem(props: NavigationItemProps) {
                             }
                         }
                     }}
-                    className={`${styles.mainItem} ${!props.sideBarOpened ? styles.mainItemCompact : {}} ${currentUrl == props.action ? styles.mainItemActive : {}}`}
+                    className={`${styles.mainItem} ${!props.sideBarOpened ? styles.mainItemCompact : {}} ${currentRoute == props.action ? styles.mainItemActive : {}}`}
                     style={mainItemStyles}
                 >
                     <div className={styles.mainItemIcon}>

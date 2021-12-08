@@ -11,8 +11,19 @@ export function TextBox(props: Props) {
         <div className={styles.root}>
             <div className={styles.input}>
                 <input
+                    onKeyUp={key => {
+                        if (key.key == "Enter") {
+                            if (props.onSubmit && props.submit) {
+                                props.onSubmit(inputRef.current.value);
+                            }
+                        }
+                    }}
                     ref={inputRef}
                     onInput={e => {
+                        if (props.onInput) {
+                            props.onInput(inputRef.current.value);
+                        }
+
                         if ((e.target as HTMLInputElement).value.length != 0) {
                             setClearButtonVisibleState(true);
                             return;

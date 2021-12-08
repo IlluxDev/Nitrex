@@ -3,7 +3,6 @@ import React, { CSSProperties, useEffect, useState } from "react";
 import styles from "./Styles.module.scss";
 import { Icon } from "@iconify/react";
 import { ipcController } from "../../IpcController";
-import { useLocation } from "react-router-dom";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
 import { WindowButtonActionMessage } from "../../shared/TitleBar/WindowButtonActionMessage";
 
@@ -22,7 +21,6 @@ ipcController.onCommand<WindowOnTitleUpdateMessage>(
 export function TitleBar(props: Props) {
     const [title, setTitleState] = useState(document.title);
     const [canGoBack, setCanGoBackState] = useState(false);
-    const location = useLocation();
     const [maximized, setMaximizedState] = useState(false);
 
     useEffect(

@@ -23,6 +23,10 @@ class RouteManager {
     }
 
     public navigateRoute(name: string) {
+        if (this.history[this.historyLocation] == name) {
+            return;
+        }
+
         localStorage.setItem("_routeName", name);
         this.history.push(name);
         this.historyLocation++;

@@ -9,7 +9,6 @@ import { TextBox } from "../TextBox/TextBox";
 import { NavigationItem } from "./NavigationItem";
 import { FlexPanel, ipcController, routeManager } from "../../../Components";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
-import { useLocation } from "react-router-dom";
 
 let onTitleUpdated = (title: string) => {};
 
@@ -30,6 +29,7 @@ export function NavigationView(props: Props) {
     const [sideBarOpened, setSideBarOpenedState] = useState(
         localStorage.getItem("_Nitrex_NavigationView_opened") == "true"
     );
+    const [inr, setinr] = useState("No Val");
 
     onRouteUpdated = name => {
         if (routeManager.getHistoryPosition() == 0) {
@@ -118,6 +118,8 @@ export function NavigationView(props: Props) {
                                 <div>{props.headerContent}</div>
                             ) : null}
 
+<div>{inr}</div>    
+
                             <button
                                 className={styles.leftModeSideBarIconButton}
                                 onClick={() => {
@@ -144,7 +146,9 @@ export function NavigationView(props: Props) {
                                 </button>
                             ) : props.search ? (
                                 <FlexPanel padding={[5, 20]}>
-                                    <TextBox type={"search"} placeholder={"Search"} />
+                                    <TextBox onInput={value => {
+                                        setinr(value);
+                                    }} type={"search"} placeholder={"Search"} />
                                 </FlexPanel>
                             ) : null}
                         </div>
