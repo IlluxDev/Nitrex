@@ -18,6 +18,7 @@ import {
 } from "@illuxdev/nitrex-components";
 import "./index.css";
 import { ThemeProps } from "@illuxdev/nitrex-components/controls/windows/ThemeProps";
+import { Manager } from "@illuxdev/nitrex-components/controls/shared/ContextMenu/Manager";
 
 const dt = {
     ...defaultDarkTheme,
@@ -42,7 +43,6 @@ function Cats() {
     const [catSource, setCat] = useState("");
     const [loading, setLoading] = useState(false);
     const [downloading, setDl] = useState(false);
-
     function renderNewCat() {
         console.log("[KITTY ENGINE] Rendering a new cat!! Meoww");
         const fetchRes = fetch("https://api.mythicalkitten.com/cats");
@@ -100,6 +100,15 @@ function Cats() {
 }
 
 function Home() {
+    const [ctx, setCtx] = useState<Manager | null>(null);
+
+        useEffect(() => {
+            if (ctx) {
+                ctx.show();
+                ctx.moveTo(0, 0);
+            }
+        }, [ctx]);
+
     return (
         <FlexPanel padding={0} spacing={10}>
             <TextBlock header={6}>Enable Dark Theme</TextBlock>
@@ -120,7 +129,7 @@ function Home() {
             </ToggleButton>
             <Button>Test</Button>
 
-            <ContextMenu />
+            <ContextMenu onManagerReady={!ctx ? x => setCtx(x) : () => {}} />
         </FlexPanel>
     );
 }

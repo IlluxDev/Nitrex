@@ -1,12 +1,32 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useState } from "react";
+import { Manager } from "../../shared/ContextMenu/Manager";
 import { Props } from "../../shared/ContextMenu/Props";
 import { Glass } from "../Glass/Glass";
 import styles from "./Styles.module.scss";
 
 export function ContextMenu(props: Props) {
+    const [position, setPositionState] = useState({
+        left: 100,
+        top: 100
+    });
+    const [show, setShowState] = useState(props.show);
+    const manager = new Manager();
+
+    manager.on("open", () => setShowState(true));
+    manager.on("close", () => setShowState(false));
+    manager.on("move", (position) => setPositionState(position));
+    
+    if (props.onManagerReady) {
+        props.onManagerReady(manager);
+    }
+
     return (
-        <div className={styles.root}>
+        <div style={{
+            top: position.top,
+            left: position.left,
+            display: show ? "flex" : "none"
+        }} className={styles.root}>
             <Glass className={styles.glass}></Glass>
             <div className={styles.glassCover}></div>
 
