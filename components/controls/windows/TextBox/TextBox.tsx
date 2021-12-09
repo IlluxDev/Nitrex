@@ -11,7 +11,7 @@ export function TextBox(props: Props) {
     const [dropDownHeight, setDropDownHeightState] = useState("0px");
     const [inputWidth, setInputWidthState] = useState("0px");
     const [dropDownOpened, setDropDownOpenedState] = useState(false);
-    const [mouseOverDropDown, setMouseOverDropDownState] = useState(false);
+    const [currentDropDownItem, setCurrentDropDownItemState] = useState(-1);
     const inputRef = useRef(null);
     const dropDownInnerRef = useRef(null);
     const inputWrapperRef = useRef(null);
@@ -30,7 +30,7 @@ export function TextBox(props: Props) {
 
     return (
         <div className={styles.root}>
-            <div ref={inputWrapperRef} className={`${styles.input} ${styles.inputSearch}`}>
+            <div ref={inputWrapperRef} className={`${styles.input} ${props.type == "search" && dropDownOpened ? styles.inputSearch : {}}`}>
                 <input
                     onFocus={() => {
                         setDropDownOpenedState(true);  
@@ -40,9 +40,43 @@ export function TextBox(props: Props) {
                     }}
                     onKeyUp={key => {
                         if (key.key == "Enter") {
-                            if (props.onSubmit && props.submit) {
+                            if (currentDropDownItem == -1 && props.onSubmit && props.submit) {
                                 props.onSubmit(inputRef.current.value);
+                            } else if (currentDropDownItem != -1) {
+                                const itemAction = (props.dropdown as Props["dropdown"])[currentDropDownItem].action;
+                                
+                                if (typeof itemAction == "string") {
+                                    routeManager.navigateRoute(itemAction);
+                                } else if (typeof itemAction == "function") {
+                                    itemAction();
+                                }
+
+                                inputRef.current.blur();
                             }
+                        }
+
+                        if (key.key == "ArrowDown") {
+                            key.preventDefault();
+
+                            setCurrentDropDownItemState(state => {
+                                if (state + 1 > (props.dropdown as any).length - 1) {
+                                    return 0;
+                                }
+
+                                return state + 1;
+                            });
+                        }
+
+                        if (key.key == "ArrowUp") {
+                            key.preventDefault();
+
+                            setCurrentDropDownItemState(state => {
+                                if (state - 1 < 0) {
+                                    return (props.dropdown as any).length - 1;
+                                }
+
+                                return state - 1;
+                            });
                         }
                     }}
                     ref={inputRef}
@@ -89,7 +123,7 @@ export function TextBox(props: Props) {
                 <div className={styles.dropDownGlassTint}></div>
                 
                 <div ref={dropDownInnerRef} className={`${styles.dropDownInner} ${!dropDownOpened && props.dropdown ? styles.dropDownInnerClosed : (!props.dropdown ? styles.dropDownInnerClosed : {})}`}>
-                    {props.dropdown && props.dropdown?.map(item => {
+                    {props.dropdown && props.dropdown?.map((item, index) => {
                         return (
                             <div onClick={() => {
                                 if (typeof item.action == "function") {
@@ -99,9 +133,9 @@ export function TextBox(props: Props) {
                                 }
 
                                 setDropDownOpenedState(false);
-                            }} className={styles.dropDownItem}>
+                            }} className={`${styles.dropDownItem} ${currentDropDownItem == index ? styles.dropDownItemCurrent : {}}`}>
                                 <div className={styles.dropDownItemIcon}>
-                                    {mouseOverDropDown ? "1" : "0"}
+                                    {currentDropDownItem == index ? ">" : "0"}
                                 </div>
 
                                 <div className={styles.dropDownItemLabel}>

@@ -6,6 +6,7 @@
     display: flex;
     backdrop-filter: blur(50px);
     overflow: hidden;
+    background: $fill_controlAlt_secondary;
 
     div {
         width: 100%;

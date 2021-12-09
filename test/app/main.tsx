@@ -14,12 +14,23 @@ import {
     windowsWindowEffects as windowEffects,
     Button,
     TitleBar,
+    ContextMenu,
 } from "@illuxdev/nitrex-components";
 import "./index.css";
+import { ThemeProps } from "@illuxdev/nitrex-components/controls/windows/ThemeProps";
+
+const dt = {
+    ...defaultDarkTheme,
+    ...{
+        fill_accent_default: "#FEB2BF",
+        fill_accent_secondary: "#FEB2BFAB",
+        fill_accent_tertiary: "#FEB2BFAA"
+    } as ThemeProps
+}
 
 renderer.setPageZoom(1);
 themeManager.setOs((localStorage.getItem("os") as any) ?? "windows");
-themeManager.installTheme(localStorage.getItem("theme") == "light" ? defaultLightTheme : defaultDarkTheme);
+themeManager.installTheme(localStorage.getItem("theme") == "light" ? defaultLightTheme : dt);
 
 if (!localStorage.getItem("os")) {
     localStorage.setItem("os", "windows");
@@ -98,7 +109,7 @@ function Home() {
                     localStorage.setItem("theme", useDark ? "dark" : "light")
 
                     if (useDark) {
-                        themeManager.installTheme(defaultDarkTheme);
+                        themeManager.installTheme(dt);
                         return;
                     }
 
@@ -108,6 +119,8 @@ function Home() {
                 Dark Theme
             </ToggleButton>
             <Button>Test</Button>
+
+            <ContextMenu />
         </FlexPanel>
     );
 }
