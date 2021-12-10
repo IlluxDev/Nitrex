@@ -21,6 +21,8 @@ export function ContextMenu(props: Props) {
     const clickListener = e => {
         const target = e.target as HTMLDivElement;
         const rootElement = rootRef.current;
+
+        console.log(target, rootElement)
     
         if (target.parentElement == rootElement) {
         } else if (target.parentElement.parentElement == rootElement) {    
@@ -34,13 +36,8 @@ export function ContextMenu(props: Props) {
         }
     }
 
+    window.removeEventListener("mousedown", clickListener);
     window.addEventListener("mousedown", clickListener);
-
-    useEffect(() => {
-        return () => {
-            window.removeEventListener("mousedown", clickListener);
-        }
-    });
 
     useEffect(() => {
         if (innerRef.current) {
@@ -61,8 +58,8 @@ export function ContextMenu(props: Props) {
     }
 
     manager.on("open", () => {
-        console.log("Please wait...");
-        setShowState(true)
+        setShowState(true);
+        manager.moveTo(renderer.getMousePosition().left, renderer.getMousePosition().top);
     });
     manager.on("close", () => setShowState(false));
     manager.on("move", (position) => setPositionState(position));
