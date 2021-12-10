@@ -2,7 +2,6 @@ import { Props } from "../../shared/TextBox/Props";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Styles.module.scss";
 import { Icon } from "@iconify/react";
-import { TextBlock } from "../TextBlock/TextBlock";
 import { Glass } from "../Glass/Glass";
 import { routeManager } from "../../../Components";
 

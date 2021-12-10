@@ -1,10 +1,6 @@
 import { Icon } from "@iconify/react";
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
 import { renderer } from "../../Renderer";
-=======
-import React, { useState } from "react";
->>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
 import { Manager } from "../../shared/ContextMenu/Manager";
 import { Props } from "../../shared/ContextMenu/Props";
 import { Glass } from "../Glass/Glass";
@@ -15,7 +11,6 @@ export function ContextMenu(props: Props) {
         left: 100,
         top: 100
     });
-<<<<<<< HEAD
     const [innerHeight, setInnerHeightState] = useState(0);
     const [innerWidth, setInnerWidthState] = useState(0);
     const [show, setShowState] = useState(props.show);
@@ -72,42 +67,22 @@ export function ContextMenu(props: Props) {
     manager.on("close", () => setShowState(false));
     manager.on("move", (position) => setPositionState(position));
 
-=======
-    const [show, setShowState] = useState(props.show);
-    const manager = new Manager();
-
-    manager.on("open", () => setShowState(true));
-    manager.on("close", () => setShowState(false));
-    manager.on("move", (position) => setPositionState(position));
-    
->>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
     if (props.onManagerReady) {
         props.onManagerReady(manager);
     }
 
     return (
-<<<<<<< HEAD
         <div ref={rootRef} style={{
             top: position.top,
             left: position.left,
             display: show ? "flex" : "none",
             height: innerHeight + "px",
             width: innerWidth + "px"
-=======
-        <div style={{
-            top: position.top,
-            left: position.left,
-            display: show ? "flex" : "none"
->>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
         }} className={styles.root}>
             <Glass className={styles.glass}></Glass>
             <div className={styles.glassCover}></div>
 
-<<<<<<< HEAD
             <div ref={innerRef} className={styles.inner}>
-=======
-            <div className={styles.inner}>
->>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
                 <div className={styles.iconButtons}>
                     <button>
                         <Icon icon={"fluent:navigation-16-regular"} />
@@ -119,7 +94,6 @@ export function ContextMenu(props: Props) {
                 </div>
 
                 <div className={styles.buttons}>
-<<<<<<< HEAD
                     {props.content?.map(item => {
                         return (
                             <button key={item.label + new Date() + Math.random()}>
@@ -131,23 +105,6 @@ export function ContextMenu(props: Props) {
                             </button>
                         );
                     })}
-=======
-                    <button>
-                        <div className={styles.buttonIcon}>
-                            O
-                        </div>
-
-                        <span>This is a button #1</span>
-                    </button>
-
-                    <button>
-                        <div className={styles.buttonIcon}>
-                            
-                        </div>
-
-                        <span>This is a button #2</span>
-                    </button>
->>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
                 </div>
             </div>
         </div>
