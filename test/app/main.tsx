@@ -127,6 +127,7 @@ function Home() {
             >
                 Dark Theme
             </ToggleButton>
+<<<<<<< HEAD
             <Button onClick={() => ctx?.show()}>Open Context</Button>
 
             <ContextMenu content={[
@@ -172,6 +173,11 @@ function Home() {
                 },
                 
             ]} onManagerReady={!ctx ? e => setCtx(e) : () => {}} />
+=======
+            <Button>Test</Button>
+
+            <ContextMenu onManagerReady={!ctx ? x => setCtx(x) : () => {}} />
+>>>>>>> 8ed80778287a06451da412078c760e2f694ae7b6
         </FlexPanel>
     );
 }
