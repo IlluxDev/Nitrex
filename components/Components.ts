@@ -15,6 +15,8 @@ import { defaultLightTheme } from "./controls/windows/DefaultLightTheme";
 import { windowEffects as windowsWindowEffects } from "./utils/windows/WindowEffects";
 import { NavigationView } from "./controls/shared/NavigationView";
 import { routeManager } from "./controls/shared/ContentRouter/RouteManager";
+import { language } from "./utils/Language";
+import { ContextMenu } from "./controls/shared/ContextMenu";
 
 export {
     Button,
@@ -27,7 +29,9 @@ export {
     TextBlock,
     TextBox,
     NavigationView,
+    ContextMenu,
     themeManager,
+    language,
     ipcController,
     renderer,
     routeManager,

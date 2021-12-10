@@ -14,12 +14,24 @@ import {
     windowsWindowEffects as windowEffects,
     Button,
     TitleBar,
+    ContextMenu,
 } from "@illuxdev/nitrex-components";
 import "./index.css";
+import { ThemeProps } from "@illuxdev/nitrex-components/controls/windows/ThemeProps";
+import { Manager } from "@illuxdev/nitrex-components/controls/shared/ContextMenu/Manager";
+
+const dt = {
+    ...defaultDarkTheme,
+    ...{
+        fill_accent_default: "#FEB2BF",
+        fill_accent_secondary: "#FEB2BFAB",
+        fill_accent_tertiary: "#FEB2BFAA"
+    } as ThemeProps
+}
 
 renderer.setPageZoom(1);
 themeManager.setOs((localStorage.getItem("os") as any) ?? "windows");
-themeManager.installTheme(localStorage.getItem("theme") == "light" ? defaultLightTheme : defaultDarkTheme);
+themeManager.installTheme(localStorage.getItem("theme") == "light" ? defaultLightTheme : dt);
 
 if (!localStorage.getItem("os")) {
     localStorage.setItem("os", "windows");
@@ -31,7 +43,6 @@ function Cats() {
     const [catSource, setCat] = useState("");
     const [loading, setLoading] = useState(false);
     const [downloading, setDl] = useState(false);
-
     function renderNewCat() {
         console.log("[KITTY ENGINE] Rendering a new cat!! Meoww");
         const fetchRes = fetch("https://api.mythicalkitten.com/cats");
@@ -89,6 +100,15 @@ function Cats() {
 }
 
 function Home() {
+    const [ctx, setCtx] = useState<Manager | null>(null);
+
+        useEffect(() => {
+            if (ctx) {
+                ctx.show();
+                ctx.moveTo(0, 0);
+            }
+        }, [ctx]);
+
     return (
         <FlexPanel padding={0} spacing={10}>
             <TextBlock header={6}>Enable Dark Theme</TextBlock>
@@ -98,7 +118,7 @@ function Home() {
                     localStorage.setItem("theme", useDark ? "dark" : "light")
 
                     if (useDark) {
-                        themeManager.installTheme(defaultDarkTheme);
+                        themeManager.installTheme(dt);
                         return;
                     }
 
@@ -107,7 +127,51 @@ function Home() {
             >
                 Dark Theme
             </ToggleButton>
-            <Button>Test</Button>
+            <Button onClick={() => ctx?.show()}>Open Context</Button>
+
+            <ContextMenu content={[
+                {
+                    label: "This is a large test item ...........",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                {
+                    label: "This is a test item",
+                    icon: "fluent:search-16-regular"
+                },
+                
+            ]} onManagerReady={!ctx ? e => setCtx(e) : () => {}} />
         </FlexPanel>
     );
 }

@@ -152,4 +152,9 @@ $background_layerOnAccentAcrylic_default: var(
 ::-webkit-scrollbar-thumb {
     background: $fill_text_tertiary;
     border-radius: 8px;
+    border: 1px solid $background_solidBackground_base;
+}
+
+::-webkit-scrollbar-track {
+    background: $background_solidBackground_base;
 }

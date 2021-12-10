@@ -5,7 +5,7 @@ import {
     BrowserWindow,
     BrowserWindowConstructorOptions,
     dialog,
-    ipcMain,
+    ipcMain
 } from "electron";
 import electronIsDev from "electron-is-dev";
 import path from "path";
@@ -44,8 +44,8 @@ export class ElectronNitrex {
                         webviewTag: true,
                     },
                 },
-                width: 1200,
-                height: 800,
+                width: 800,
+                height: 400,
                 title: "Nitrex App",
                 icon: null,
             },

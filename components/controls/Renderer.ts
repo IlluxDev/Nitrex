@@ -7,6 +7,20 @@ if ((window as any).require) {
 }
 
 class Renderer {
+    private mouseLocation = {
+        left: 0,
+        top: 0
+    };
+
+    public constructor() {
+        window.addEventListener("mousemove", e => {
+            this.mouseLocation = {
+                left: e.clientX,
+                top: e.clientY
+            };
+        });
+    }
+
     /**
      * Set the application zoom
      * @supported Desktop
@@ -27,6 +41,10 @@ class Renderer {
         }
 
         window.open(url, "_blank");
+    }
+
+    public getMousePosition(): { left: number, top: number } {
+        return this.mouseLocation;
     }
 }
 

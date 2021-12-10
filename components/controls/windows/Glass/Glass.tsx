@@ -8,7 +8,7 @@ export function Glass(props: Props) {
         <div style={props.style ?? {}} className={`${styles.root} ${props.className ? props.className : {}}`}>
             <div
                 style={{
-                    opacity: "0.05",
+                    opacity: "0.01",
                     backgroundImage: `url(${sheet})`,
                     backgroundSize: "auto",
                 }}

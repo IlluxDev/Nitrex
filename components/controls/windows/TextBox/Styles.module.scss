@@ -156,7 +156,7 @@
 
 .dropDownItem {
     background: $fill_control_transparent;
-    padding: 5px;
+    padding: 10px;
     width: calc(100% - 10px);
     border-radius: 4px;
     margin: 4px 0;
@@ -164,8 +164,28 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+
+    &:after {
+        position: absolute;
+        content: "";
+        width: 3px;
+        height: 15px;
+        left: 5px;
+        transform: translate(-50%, 0) scaleY(0);
+        transition: 100ms;
+    }
 
     &:hover {
         background: $fill_subtle_secondary;
+    }
+}
+
+.dropDownItemCurrent {
+    background: $fill_subtle_secondary;
+
+    &:after {
+        background: $fill_accent_default;
+        transform: translate(-50%, 0) scaleY(1);
     }
 }
