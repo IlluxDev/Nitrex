@@ -14,11 +14,9 @@ import {
     windowsWindowEffects as windowEffects,
     Button,
     TitleBar,
-    ContextMenu,
 } from "@illuxdev/nitrex-components";
 import "./index.css";
 import { ThemeProps } from "@illuxdev/nitrex-components/controls/windows/ThemeProps";
-import { Manager } from "@illuxdev/nitrex-components/controls/shared/ContextMenu/Manager";
 
 const dt = {
     ...defaultDarkTheme,
@@ -100,14 +98,6 @@ function Cats() {
 }
 
 function Home() {
-    const [ctx, setCtx] = useState<Manager | null>(null);
-
-        useEffect(() => {
-            if (ctx) {
-                ctx.show();
-                ctx.moveTo(0, 0);
-            }
-        }, [ctx]);
 
     return (
         <FlexPanel padding={0} spacing={10}>
@@ -127,51 +117,6 @@ function Home() {
             >
                 Dark Theme
             </ToggleButton>
-            <Button onClick={() => ctx?.show()}>Open Context</Button>
-
-            <ContextMenu content={[
-                {
-                    label: "This is a large test item ...........",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                {
-                    label: "This is a test item",
-                    icon: "fluent:search-16-regular"
-                },
-                
-            ]} onManagerReady={!ctx ? e => setCtx(e) : () => {}} />
         </FlexPanel>
     );
 }

@@ -9,8 +9,6 @@ import { NavigationItem } from "./NavigationItem";
 import { FlexPanel, ipcController, routeManager } from "../../../Components";
 import { WindowOnTitleUpdateMessage } from "../../shared/TitleBar/WindowOnTitleUpdateMessage";
 import { NavigationItemProps } from "../../shared/NavigationView/NavigationItemProps";
-import { Manager } from "../../shared/ContextMenu/Manager";
-import { ContextMenu } from "../ContextMenu/ContextMenu";
 
 const defaultIcon = "https://raw.githubusercontent.com/IlluxDev/Illux/0d4714ae67a80223326aeb623e7d8aa21104744b/LogoDynamic.svg";
 let onTitleUpdated = (title: string) => {};
@@ -36,7 +34,6 @@ export function NavigationView(props: Props) {
     const [sideBarOpened, setSideBarOpenedState] = useState(
         localStorage.getItem("_Nitrex_NavigationView_opened") == "true"
     );
-    const [titleBarMenuManager, setTitleBarMenuManager] = useState<Manager>(null);
 
     onRouteUpdated = name => {
         if (routeManager.getHistoryPosition() == 0) {
@@ -138,10 +135,7 @@ export function NavigationView(props: Props) {
                                 />
                             </button>
 
-                            <div onClick={() => {
-                                console.log(titleBarMenuManager);
-                                titleBarMenuManager?.show();
-                            }} className={styles.leftModeTitleBarTitleIcon}>
+                            <div className={styles.leftModeTitleBarTitleIcon}>
                                 <img
                                     alt={"ERROR: Failed to load default icon"}
                                     src={defaultIcon}
@@ -261,18 +255,6 @@ export function NavigationView(props: Props) {
 
                 <div className={styles.contentInner}>{props.children}</div>
             </div>
-
-            <ContextMenu show={true} content={[
-                {
-                    label: "Restore"
-                },
-                {
-                    label: "Size"
-                },
-                {
-                    label: "Minimize"
-                }
-            ]} onManagerReady={!titleBarMenuManager ? setTitleBarMenuManager : () => {}} />
         </div>
     );
 }

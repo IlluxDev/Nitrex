@@ -23,6 +23,12 @@ export function NavigationItem(props: NavigationItemProps) {
             : 0;
     }
 
+    useEffect(() => {
+        return () => {
+            setOpenedState(false);
+        }
+    })
+
     routeManager.on("routeChange", () => {
         setCurrentRouteState(routeManager.getCurrentRouteName());
     });

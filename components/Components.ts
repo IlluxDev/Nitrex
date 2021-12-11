@@ -16,7 +16,6 @@ import { windowEffects as windowsWindowEffects } from "./utils/windows/WindowEff
 import { NavigationView } from "./controls/shared/NavigationView";
 import { routeManager } from "./controls/shared/ContentRouter/RouteManager";
 import { language } from "./utils/Language";
-import { ContextMenu } from "./controls/shared/ContextMenu";
 
 export {
     Button,
@@ -29,7 +28,6 @@ export {
     TextBlock,
     TextBox,
     NavigationView,
-    ContextMenu,
     themeManager,
     language,
     ipcController,

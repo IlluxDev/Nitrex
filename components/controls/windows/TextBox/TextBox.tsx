@@ -15,17 +15,36 @@ export function TextBox(props: Props) {
     const dropDownInnerRef = useRef(null);
     const inputWrapperRef = useRef(null);
 
+    if (dropDownInnerRef.current && dropDownInnerRef.current.offsetHeight + "px" != dropDownHeight) {
+        setDropDownHeightState(dropDownInnerRef.current.offsetHeight + "px");
+    }
+    
+    if (inputWrapperRef.current && inputWrapperRef.current.offsetWidth + "px" != inputWidth) {
+        setInputWidthState(inputWrapperRef.current.offsetWidth + "px");
+    }
+
     useEffect(() => {
+        setDropDownHeightState(dropDownInnerRef.current.offsetHeight + "px");
+        console.log(dropDownInnerRef.current.offsetHeight + "px");
+
         new ResizeObserver(() => {
             setDropDownHeightState(dropDownInnerRef.current.offsetHeight + "px");
+            console.log(dropDownInnerRef.current.offsetHeight + "px");
         }).observe(dropDownInnerRef.current);
     }, [dropDownInnerRef]);
 
     useEffect(() => {
+        setInputWidthState(inputWrapperRef.current.offsetWidth + "px");
+
         new ResizeObserver(() => {
             setInputWidthState(inputWrapperRef.current.offsetWidth + "px");
         }).observe(inputWrapperRef.current);
     }, [inputWrapperRef]);
+
+    useEffect(() => {
+        setDropDownHeightState(dropDownInnerRef.current.offsetHeight + "px");
+        setInputWidthState(inputWrapperRef.current.offsetWidth + "px");
+    }, [open]);
 
     return (
         <div className={styles.root}>
